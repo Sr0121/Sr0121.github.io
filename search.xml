@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[LeetCode:150. Evaluate Reverse Polish Notation]]></title>
+    <url>%2F2019%2F06%2F10%2FLeetCode-150-Evaluate-Reverse-Polish-Notation%2F</url>
+    <content type="text"><![CDATA[题目概述 Evaluate the value of an arithmetic expression in Reverse Polish Notation. Valid operators are +, -, *, /. Each operand may be an integer or another expression. 本题就是要实现一个简单的stack，当输入为数字的时候进行push操作，对于操作符则需要pop出两个数字，并且进行计算，最后返回stack中的唯一元素即可。 代码实现 12345678910111213141516171819202122232425262728class Solution(object): def evalRPN(self, tokens): """ :type tokens: List[str] :rtype: int """ stack = [] for item in tokens: if item == "+": num1 = stack.pop() num2 = stack.pop() stack.append(num1+num2) elif item == "-": num1 = stack.pop() num2 = stack.pop() stack.append(num2-num1) elif item == "*": num1 = stack.pop() num2 = stack.pop() stack.append(num1*num2) elif item == "/": num1 = stack.pop() num2 = stack.pop() stack.append(int(num2/num1)) else: stack.append(int(item)) return stack[0]]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>LeetCode</tag>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[LeetCode:149. Max Points on a Line]]></title>
     <url>%2F2019%2F06%2F10%2FLeetCode-149-Max-Points-on-a-Line%2F</url>
     <content type="text"><![CDATA[题目概述 Given n points on a 2D plane, find the maximum number of points that lie on the same straight line. 这题比较坑，而且这个hard难度考察的也并不是算法。这题目最直观的想法是通过求两点的直线方程后，对所有点进行遍历并记数。我们需要求到两点之间的斜率等信息。 但是，本题要考虑的还有： 如何尽量避免重复的运算 对平行于Y轴的直线的特殊处理 需要考虑除法带来的一些计算问题：计算机内部的除法得到的值并非是一个分数，而是一个有限小数。比如对于[1,1]、[4,2]两点，通过求解得到的斜率不是正好的1/3，而是类似0.33333的有限小数，因此尽管点[7,3]在这条直线上，但是使用0.33333*(7-1)+1-3得到的并不是0，而是一个很接近0的数字，因此需要尽量避免使用除法 因此，在本题中，我使用了checkMetrix来表示两个点之间是否已经经过了计算，并且使用乘法代替除法 代码实现 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950class Solution(object): def __init__(self): self.checkMetrix = None def maxPoints(self, points): """ :type points: List[List[int]] :rtype: int """ wordLen = len(points) self.checkMetrix = [[0] * wordLen for _ in range(wordLen)] maxCount = 0 flag = 0 for i in range(wordLen): for j in range(wordLen): if self.checkMetrix[i][j] == 1: continue if i == j: continue if points[i][0] == points[j][0] and points[i][1] == points[j][1]: continue maxCount = max(self.countPoints(i, j, points), maxCount) flag = 1 if flag == 0: return wordLen else: return maxCount def countPoints(self, index1, index2, points): point1 = points[index1] point2 = points[index2] count = 0 if point1[0] == point2[0]: for i in range(len(points)): if points[i][0] == point1[0]: self.checkMetrix[i][index1] = 1 self.checkMetrix[i][index2] = 1 self.checkMetrix[index1][i] = 1 self.checkMetrix[index2][i] = 1 count += 1 else: for i in range(len(points)): if (point1[1] - point2[1]) * (points[i][0]-point1[0]) == (points[i][1] - point1[1]) * (point1[0] - point2[0]): self.checkMetrix[i][index1] = 1 self.checkMetrix[i][index2] = 1 self.checkMetrix[index1][i] = 1 self.checkMetrix[index2][i] = 1 count += 1 return count l]]></content>
