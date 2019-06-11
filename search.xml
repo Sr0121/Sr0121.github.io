@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[LeetCode:152. Maximum Product Subarray]]></title>
+    <url>%2F2019%2F06%2F11%2FLeetCode-152-Maximum-Product-Subarray%2F</url>
+    <content type="text"><![CDATA[题目概述 Given an integer array nums, find the contiguous subarray within an array (containing at least one number) which has the largest product. 本题和之前求连续子序列的最大和的那题很像。但是乘法与加法不同，还需要考虑两个负数的乘积很大的情况。 在这里，我用的解法是动态规划。对于序列nums，为了求解出最大的连续子序列的最大乘积，需要维护三个数组，分别为max_local, min_local和max_global。max_local[i]的含义是，以索引为i结束的连续子序列的乘积最大值；min_local[i]的含义是，以索引为i结束的连续子序列的乘积最小值，max_global[i]为到索引i为止，全局的乘积最大值。其中max_local[0], min_local[0]以及max_global[0]都为nums[0]。动态规划的状态转移公式为： 123max_local[i] = max(max_local[i-1]*nums[i], min_local[i-1]*nums[i], nums[i])min_local[i] = min(max_local[i-1]*nums[i], min_local[i-1]*nums[i], nums[i])max_global[i] = max(max_local[i], max_global[i-1]) 题目概述 12345678910111213141516171819class Solution: def maxProduct(self, nums: 'list[int]') -&gt; 'int': if len(nums) == 0: return 0 max_local = [0] * len(nums) min_local = [0] * len(nums) max_global = [0] * len(nums) max_local[0] = nums[0] min_local[0] = nums[0] max_global[0] = nums[0] for i in range(1, len(nums)): max_local[i] = max(max_local[i-1] * nums[i], min_local[i-1] * nums[i], nums[i]) min_local[i] = min(max_local[i-1] * nums[i], min_local[i-1] * nums[i], nums[i]) max_global[i] = max(max_global[i-1], max_local[i]) return max_global[-1]]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>LeetCode</tag>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[LeetCode:151. Reverse Words in a String]]></title>
     <url>%2F2019%2F06%2F11%2FLeetCode-151-Reverse-Words-in-a-String%2F</url>
     <content type="text"><![CDATA[题目概述 Given an input string, reverse the string word by word. 本题用python实现的话其实挺简单的，直接用strip和split方法就可以 代码实现 1234567891011class Solution: def reverseWords(self, s: str) -&gt; str: s = s.strip() s_list = s.split(" ") result = "" for i in range(len(s_list)-1, -1, -1): if s_list[i] == "": continue result += " "+s_list[i] return result[1:]]]></content>
