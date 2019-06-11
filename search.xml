@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[LeetCode:151. Reverse Words in a String]]></title>
+    <url>%2F2019%2F06%2F11%2FLeetCode-151-Reverse-Words-in-a-String%2F</url>
+    <content type="text"><![CDATA[题目概述 Given an input string, reverse the string word by word. 本题用python实现的话其实挺简单的，直接用strip和split方法就可以 代码实现 1234567891011class Solution: def reverseWords(self, s: str) -&gt; str: s = s.strip() s_list = s.split(" ") result = "" for i in range(len(s_list)-1, -1, -1): if s_list[i] == "": continue result += " "+s_list[i] return result[1:]]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>LeetCode</tag>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[LeetCode:150. Evaluate Reverse Polish Notation]]></title>
     <url>%2F2019%2F06%2F10%2FLeetCode-150-Evaluate-Reverse-Polish-Notation%2F</url>
     <content type="text"><![CDATA[题目概述 Evaluate the value of an arithmetic expression in Reverse Polish Notation. Valid operators are +, -, *, /. Each operand may be an integer or another expression. 本题就是要实现一个简单的stack，当输入为数字的时候进行push操作，对于操作符则需要pop出两个数字，并且进行计算，最后返回stack中的唯一元素即可。 代码实现 12345678910111213141516171819202122232425262728class Solution(object): def evalRPN(self, tokens): """ :type tokens: List[str] :rtype: int """ stack = [] for item in tokens: if item == "+": num1 = stack.pop() num2 = stack.pop() stack.append(num1+num2) elif item == "-": num1 = stack.pop() num2 = stack.pop() stack.append(num2-num1) elif item == "*": num1 = stack.pop() num2 = stack.pop() stack.append(num1*num2) elif item == "/": num1 = stack.pop() num2 = stack.pop() stack.append(int(num2/num1)) else: stack.append(int(item)) return stack[0]]]></content>
