@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[LeetCode:160. Intersection of Two Linked Lists]]></title>
+    <url>%2F2019%2F06%2F12%2FLeetCode-160-Intersection-of-Two-Linked-Lists%2F</url>
+    <content type="text"><![CDATA[题目概述 Write a program to find the node at which the intersection of two singly linked lists begins. 本题的思路就是对两个链表进行从头到尾的遍历，并且将所得的地址存在两个vector中，然后从后往前比较vector，找到第一个不同的地址的索引，该索引+1就是两个链表的交点地址。 代码实现 1234567891011121314151617181920212223242526272829303132class Solution &#123;public: ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) &#123; vector&lt;struct ListNode *&gt; vector1; vector&lt;struct ListNode *&gt; vector2; while (headA != nullptr)&#123; vector1.push_back(headA); headA = headA-&gt;next; &#125; vector1.push_back(nullptr); while (headB != nullptr)&#123; vector2.push_back(headB); headB = headB-&gt;next; &#125; vector2.push_back(nullptr); int i = 1; int maxNum = vector1.size() &gt; vector2.size()? vector2.size(): vector1.size(); for (i = 1; i &lt;= maxNum; i++)&#123; if (vector1[vector1.size()-i] != vector2[vector2.size()-i])&#123; break; &#125; &#125; return vector1[vector1.size()-i+1]; &#125;&#125;;]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>LeetCode</tag>
+        <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[LeetCode:155. Min Stack]]></title>
     <url>%2F2019%2F06%2F12%2FLeetCode-155-Min-Stack%2F</url>
     <content type="text"><![CDATA[题目概述 Design a stack that supports push, pop, top, and retrieving the minimum element in constant time. push(x) -- Push element x onto stack. pop() -- Removes the element on top of the stack. top() -- Get the top element. getMin() -- Retrieve the minimum element in the stack. 本题的解法就是要实现两个栈。其中一个栈用来存放原数据信息，第二个栈用来存放当前栈的最小值。第二个栈的栈顶是当前栈的最小值。在进行push和pop的时候，对第一个栈进行常规操作，当push的值小于第二个栈的栈顶时，要将该值也push进第二个栈；如果pop出的值为第二个栈的栈顶元素时，也需要对第二个栈进行pop操作。 代码实现 1234567891011121314151617181920212223242526272829303132333435class MinStack &#123;private: stack&lt;int&gt; itemStack; stack&lt;int&gt; minStack;public: /** initialize your data structure here. */ MinStack() &#123; &#125; void push(int x) &#123; if (minStack.empty() || minStack.top() &gt;= x)&#123; itemStack.push(x); minStack.push(x); &#125; else &#123; itemStack.push(x); &#125; &#125; void pop() &#123; if (itemStack.top() == minStack.top())&#123; itemStack.pop(); minStack.pop(); &#125; else &#123; itemStack.pop(); &#125; &#125; int top() &#123; return itemStack.top(); &#125; int getMin() &#123; return minStack.top(); &#125;&#125;;]]></content>
@@ -33,7 +45,7 @@
       </categories>
       <tags>
         <tag>LeetCode</tag>
-        <tag>C++</tag>
+        <tag>Python</tag>
       </tags>
   </entry>
   <entry>
