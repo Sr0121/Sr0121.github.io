@@ -1,9 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[LeetCode:155. Min Stack]]></title>
+    <url>%2F2019%2F06%2F12%2FLeetCode-155-Min-Stack%2F</url>
+    <content type="text"><![CDATA[题目概述 Design a stack that supports push, pop, top, and retrieving the minimum element in constant time. push(x) -- Push element x onto stack. pop() -- Removes the element on top of the stack. top() -- Get the top element. getMin() -- Retrieve the minimum element in the stack. 本题的解法就是要实现两个栈。其中一个栈用来存放原数据信息，第二个栈用来存放当前栈的最小值。第二个栈的栈顶是当前栈的最小值。在进行push和pop的时候，对第一个栈进行常规操作，当push的值小于第二个栈的栈顶时，要将该值也push进第二个栈；如果pop出的值为第二个栈的栈顶元素时，也需要对第二个栈进行pop操作。 代码实现 1234567891011121314151617181920212223242526272829303132333435class MinStack &#123;private: stack&lt;int&gt; itemStack; stack&lt;int&gt; minStack;public: /** initialize your data structure here. */ MinStack() &#123; &#125; void push(int x) &#123; if (minStack.empty() || minStack.top() &gt;= x)&#123; itemStack.push(x); minStack.push(x); &#125; else &#123; itemStack.push(x); &#125; &#125; void pop() &#123; if (itemStack.top() == minStack.top())&#123; itemStack.pop(); minStack.pop(); &#125; else &#123; itemStack.pop(); &#125; &#125; int top() &#123; return itemStack.top(); &#125; int getMin() &#123; return minStack.top(); &#125;&#125;;]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>LeetCode</tag>
+        <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LeetCode:154. Find Minimum in Rotated Sorted Array II]]></title>
+    <url>%2F2019%2F06%2F12%2FLeetCode-154-Find-Minimum-in-Rotated-Sorted-Array-II%2F</url>
+    <content type="text"><![CDATA[题目概述 Suppose an array sorted in ascending order is rotated at some pivot unknown to you beforehand. (i.e., [0,1,2,4,5,6,7] might become [4,5,6,7,0,1,2]). Find the minimum element. The array may contain duplicates. 同理LeetCode: 153. Find Minimum in Rotated Sorted Array 代码实现 123456class Solution: def findMin(self, nums: 'list[int]') -&gt; 'int': for i in range(1, len(nums)): if nums[i] &lt; nums[i-1]: return nums[i] return nums[0]]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>LeetCode</tag>
+        <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LeetCode:153. Find Minimum in Rotated Sorted Array]]></title>
+    <url>%2F2019%2F06%2F12%2FLeetCode-153-Find-Minimum-in-Rotated-Sorted-Array%2F</url>
+    <content type="text"><![CDATA[题目概述 Suppose an array sorted in ascending order is rotated at some pivot unknown to you beforehand. (i.e., [0,1,2,4,5,6,7] might become [4,5,6,7,0,1,2]). Find the minimum element. You may assume no duplicate exists in the array. 由于输入的数组是通过有序的数组进行旋转后得到的，因此在从左向右遍历的时候，突然变小的那个数字一定是全局最小值 代码实现 123456class Solution: def findMin(self, nums: 'list[int]') -&gt; 'int': for i in range(1, len(nums)): if nums[i] &lt; nums[i-1]: return nums[i] return nums[0]]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>LeetCode</tag>
+        <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[LeetCode:152. Maximum Product Subarray]]></title>
     <url>%2F2019%2F06%2F11%2FLeetCode-152-Maximum-Product-Subarray%2F</url>
-    <content type="text"><![CDATA[题目概述 Given an integer array nums, find the contiguous subarray within an array (containing at least one number) which has the largest product. 本题和之前求连续子序列的最大和的那题很像。但是乘法与加法不同，还需要考虑两个负数的乘积很大的情况。 在这里，我用的解法是动态规划。对于序列nums，为了求解出最大的连续子序列的最大乘积，需要维护三个数组，分别为max_local, min_local和max_global。max_local[i]的含义是，以索引为i结束的连续子序列的乘积最大值；min_local[i]的含义是，以索引为i结束的连续子序列的乘积最小值，max_global[i]为到索引i为止，全局的乘积最大值。其中max_local[0], min_local[0]以及max_global[0]都为nums[0]。动态规划的状态转移公式为： 123max_local[i] = max(max_local[i-1]*nums[i], min_local[i-1]*nums[i], nums[i])min_local[i] = min(max_local[i-1]*nums[i], min_local[i-1]*nums[i], nums[i])max_global[i] = max(max_local[i], max_global[i-1]) 题目概述 12345678910111213141516171819class Solution: def maxProduct(self, nums: 'list[int]') -&gt; 'int': if len(nums) == 0: return 0 max_local = [0] * len(nums) min_local = [0] * len(nums) max_global = [0] * len(nums) max_local[0] = nums[0] min_local[0] = nums[0] max_global[0] = nums[0] for i in range(1, len(nums)): max_local[i] = max(max_local[i-1] * nums[i], min_local[i-1] * nums[i], nums[i]) min_local[i] = min(max_local[i-1] * nums[i], min_local[i-1] * nums[i], nums[i]) max_global[i] = max(max_global[i-1], max_local[i]) return max_global[-1]]]></content>
+    <content type="text"><![CDATA[题目概述 Given an integer array nums, find the contiguous subarray within an array (containing at least one number) which has the largest product. 本题和之前求连续子序列的最大和的那题很像。但是乘法与加法不同，还需要考虑两个负数的乘积很大的情况。 在这里，我用的解法是动态规划。对于序列nums，为了求解出最大的连续子序列的最大乘积，需要维护三个数组，分别为max_local, min_local和max_global。max_local[i]的含义是，以索引为i结束的连续子序列的乘积最大值；min_local[i]的含义是，以索引为i结束的连续子序列的乘积最小值，max_global[i]为到索引i为止，全局的乘积最大值。其中max_local[0], min_local[0]以及max_global[0]都为nums[0]。动态规划的状态转移公式为： 123max_local[i] = max(max_local[i-1]*nums[i], min_local[i-1]*nums[i], nums[i])min_local[i] = min(max_local[i-1]*nums[i], min_local[i-1]*nums[i], nums[i])max_global[i] = max(max_local[i], max_global[i-1]) 代码实现 12345678910111213141516171819class Solution: def maxProduct(self, nums: 'list[int]') -&gt; 'int': if len(nums) == 0: return 0 max_local = [0] * len(nums) min_local = [0] * len(nums) max_global = [0] * len(nums) max_local[0] = nums[0] min_local[0] = nums[0] max_global[0] = nums[0] for i in range(1, len(nums)): max_local[i] = max(max_local[i-1] * nums[i], min_local[i-1] * nums[i], nums[i]) min_local[i] = min(max_local[i-1] * nums[i], min_local[i-1] * nums[i], nums[i]) max_global[i] = max(max_global[i-1], max_local[i]) return max_global[-1]]]></content>
       <categories>
         <category>LeetCode</category>
       </categories>
