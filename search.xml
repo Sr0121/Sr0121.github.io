@@ -1,6 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[LeetCode:167. Two Sum II - Input array is sorted]]></title>
+    <url>%2F2019%2F06%2F15%2FLeetCode-167-Two-Sum-II-Input-array-is-sorted%2F</url>
+    <content type="text"><![CDATA[题目概述 Given an array of integers that is already sorted in ascending order, find two numbers such that they add up to a specific target number. The function twoSum should return indices of the two numbers such that they add up to the target, where index1 must be less than index2. 简单题，由于数组是递增的，所以一开始假定index1为0，index2为数组的最后一个索引，如果对应的两个数相加比target小，则让index1加一，反之让index2减1，直到找到两个和为target的值的索引 最后注意把求得的index+1即可。 代码实现 123456789101112class Solution: def twoSum(self, numbers: 'list[int]', target: 'int') -&gt; 'list[int]': index1 = 0 index2 = len(numbers) - 1 while numbers[index1] + numbers[index2] != target: if numbers[index1] + numbers[index2] &gt; target: index2 -= 1 else: index1 += 1 return [index1+1, index2+1]]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>LeetCode</tag>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LeetCode:166. Fraction to Recurring Decimal]]></title>
+    <url>%2F2019%2F06%2F15%2FLeetCode-166-Fraction-to-Recurring-Decimal%2F</url>
+    <content type="text"><![CDATA[题目概述 Given two integers representing the numerator and denominator of a fraction, return the fraction in string format. If the fractional part is repeating, enclose the repeating part in parentheses. 本题的难点就在如何找到无限循环小数的循环体。 以5/3为例：5/3的整数部分为int(5/3)也就是1，余数为2，然后计算小数点1位之后的数字时，实际上是把2乘以了10，也就是20再除以3，得到了6，余2。这里的6就是小数点后1位的数字。接着，再用余数2*10/3…以此类推。所以说，我们只需要一个数组，存放每一次进行除法操作后的余数，如果余数相同，则已经开始循环了。 在实现的时候，我使用的是数组而不是哈希表，主要还是因为题目需要在结果字符串中添加括号，使用数组更容易对括号的地方进行定位。 代码实现 1234567891011121314151617181920212223242526272829303132class Solution: def fractionToDecimal(self, numerator: 'int', denominator: 'int') -&gt; 'str': sign = 1 if numerator/denominator &gt;= 0 else -1 numerator = abs(numerator) denominator = abs(denominator) remainder = numerator % denominator if remainder == 0: return str(int(sign * numerator / denominator)) result = "-" if sign == -1 else "" result += str(int(numerator/denominator)) result += '.' remainderList = [] while True: if remainder == 0: return result if remainder in remainderList: for i in range(len(remainderList)): if remainderList[i] == remainder: insertIndex = len(remainderList) - i resultList = list(result) resultList.insert(-insertIndex, '(') resultList.append(')') result = "".join(resultList) return result else: remainderList.append(remainder) remainder *= 10 result += str(int(remainder / denominator)) remainder = remainder % denominator]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>LeetCode</tag>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LeetCode:165. Compare Version Numbers]]></title>
+    <url>%2F2019%2F06%2F15%2FLeetCode-165-Compare-Version-Numbers%2F</url>
+    <content type="text"><![CDATA[题目概述 Compare two version numbers version1 and version2. If version1 > version2 return 1; if version1 < version2 return -1;otherwise return 0. You may assume that the version strings are non-empty and contain only digits and the . character. The . character does not represent a decimal point and is used to separate number sequences. For instance, 2.5 is not "two and a half" or "half way to version three", it is the fifth second-level revision of the second first-level revision. You may assume the default revision number for each level of a version number to be 0. For example, version number 3.4 has a revision number of 3 and 4 for its first and second level revision number. Its third and fourth level revision number are both 0. 这题其实不难，本质上就是把字符串根据’.’进行切割后形成两个数组，然后对两个数组的元素进行逐一比较即可。 代码实现 1234567891011121314151617181920212223class Solution: def compareVersion(self, version1: 'str', version2: 'str') -&gt; 'int': list1 = version1.split('.') list2 = version2.split('.') maxNum = min(len(list1), len(list2)) for i in range(maxNum): if int(list1[i]) &gt; int(list2[i]): return 1 elif int(list1[i]) &lt; int(list2[i]): return -1 if len(list1) &gt; len(list2): for i in range(maxNum, len(list1)): if int(list1[i]) &gt; 0: return 1 return 0 elif len(list1) == len(list2): return 0 else: for i in range(maxNum, len(list2)): if int(list2[i]) &gt; 0: return -1 return 0]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>LeetCode</tag>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[LeetCode:164. Maximum Gap]]></title>
     <url>%2F2019%2F06%2F14%2FLeetCode-164-Maximum-Gap%2F</url>
     <content type="text"><![CDATA[题目概述 Given an unsorted array, find the maximum difference between the successive elements in its sorted form. Return 0 if the array contains less than 2 elements. 本题最难的地方就是要求时间和空间复杂度都为O(n) 所以本题的思路就是使用桶排序，因为这是一种时间复杂度和空间复杂度都为O(n)的排序算法。但是本题要求的不仅是排序，还需要算出数与数之间最大的Gap。 参考了网上的一些做法后，我也逐渐理清了思路。 首先，这个最大gap的值，不可能小于(maxNum-minNum)/size的值，其中maxNum和minNum为数组中的最大值和最小值，而size则为输入的数组大小。 考虑到这点，我们就可以用size+1个桶来存放nums中的所有数字。每个桶的大小为(maxNum-minNum)/size，存放的桶的索引值则为(i-minNum)/size。这样，我们就只需要找到每个桶的最大值和最小值，并且来比较桶与桶之间的最大Gap，这个最大Gap就是整个数组的最大Gap。（因为桶内的两个数的最大Gap不可能成为全局最大Gap） 由于不需要进行数与数之间的比较，本算法的时间复杂度和空间复杂度都是线性的。 代码实现 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566class Solution &#123;public: int maximumGap(vector&lt;int&gt;&amp; nums) &#123; if (nums.size() &lt; 2) &#123; return 0; &#125; int maxNum = INT_MIN; int minNum = INT_MAX; for (auto i:nums) &#123; if (i &lt; minNum) &#123; minNum = i; &#125; if (i &gt; maxNum) &#123; maxNum = i; &#125; &#125; if (maxNum == minNum) return 0; int len = nums.size(); int bucketSize = ceil((double)(maxNum-minNum)/nums.size()); int bucketNum = nums.size()+1; vector&lt;vector&lt;int&gt;&gt; bucket(bucketNum); for (auto i:bucket) &#123; i.resize(0); &#125; for (auto i:nums) &#123; int index = (i-minNum)/bucketSize; bucket[index].push_back(i); &#125; int result = INT_MIN; vector&lt;bool&gt; isValid(bucketNum); vector&lt;int&gt; bucketMin(bucketNum); vector&lt;int&gt; bucketMax(bucketNum); for (int i = 0; i &lt; bucketNum; i++) &#123; if (bucket[i].size() &gt; 0)&#123; isValid[i] = true; int tmpMin = INT_MAX; int tmpMax = INT_MIN; for (int j = 0; j &lt; bucket[i].size(); j++)&#123; if (bucket[i][j] &lt; tmpMin) tmpMin = bucket[i][j]; if (bucket[i][j] &gt; tmpMax) tmpMax = bucket[i][j]; &#125; bucketMin[i] = tmpMin; bucketMax[i] = tmpMax; &#125; else &#123; isValid[i] = false; &#125; &#125; int lastMax = bucketMax[0]; for (int i = 1; i &lt; bucketNum; i++) &#123; if (!isValid[i]) continue; result = result &gt; bucketMin[i] - lastMax ? result : bucketMin[i] - lastMax; lastMax = bucketMax[i]; &#125; return result; &#125;&#125;;]]></content>
