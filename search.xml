@@ -1,9 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[LeetCode:200. Number of Islands]]></title>
+    <url>%2F2019%2F06%2F19%2FLeetCode-200-Number-of-Islands%2F</url>
+    <content type="text"><![CDATA[题目描述 1Given a 2d grid map of &apos;1&apos;s (land) and &apos;0&apos;s (water), count the number of islands. An island is surrounded by water and is formed by connecting adjacent lands horizontally or vertically. You may assume all four edges of the grid are all surrounded by water. 这题需要一个额外的二维数组，来记录某一个点是否被检查过。然后我们需要对所有的点按顺序进行一次深度优先搜索，如果说这个点已经被检查过，则不再搜索。那么，一开始需要进行搜索的点的个数，就是岛屿的数量。 代码实现 1234567891011121314151617181920212223242526272829303132class Solution: def __init__(self): self.count = 0 self.matrix = None def numIslands(self, grid: 'list[list[str]]') -&gt; 'int': if len(grid) == 0: return 0 if len(grid[0]) == 0: return 0 self.matrix = [[0] * len(grid[0]) for _ in range(len(grid))] for i in range(len(grid)): for j in range(len(grid[0])): if grid[i][j] == '1' and self.matrix[i][j] == 0: self.count += 1 self.dfs(i, j, grid) return self.count def dfs(self, x, y, grid): if grid[x][y] == '1': self.matrix[x][y] = 1 if x &gt; 0 and self.matrix[x-1][y] == 0: self.dfs(x-1, y, grid) if y &gt; 0 and self.matrix[x][y-1] == 0: self.dfs(x, y-1, grid) if x &lt; len(grid)-1 and self.matrix[x+1][y] == 0: self.dfs(x+1, y, grid) if y &lt; len(grid[0])-1 and self.matrix[x][y+1] == 0: self.dfs(x, y+1, grid)]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>LeetCode</tag>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LeetCode:199. Binary Tree Right Side View]]></title>
+    <url>%2F2019%2F06%2F19%2FLeetCode-199-Binary-Tree-Right-Side-View%2F</url>
+    <content type="text"><![CDATA[题目描述 1Given a binary tree, imagine yourself standing on the right side of it, return the values of the nodes you can see ordered from top to bottom. 这题很像之前的按照行来对树进行遍历，就是用一个类似先用一个queue来存放头节点，对queue中的所有元素的left和right进行检查，如果不是None的话就存放到另一个tmp_queue中，直到遍历完queue中的所有元素为止。接着把tmp_queue赋值给queue，进行新的一层的遍历。 所以只需要记录每一次的tmp_queue的最后一个元素即可。 代码实现 1234567891011121314151617181920class Solution: def rightSideView(self, root: 'TreeNode') -&gt; 'list[int]': result = [] if root == None: return result queue = [root] result.append(root.val) while len(queue) &gt; 0: tmp = [] for i in queue: if i.left != None: tmp.append(i.left) if i.right != None: tmp.append(i.right) if len(tmp) &gt; 0: result.append(tmp[-1].val) queue = tmp return result]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>LeetCode</tag>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[LeetCode:198. House Robber]]></title>
     <url>%2F2019%2F06%2F19%2FLeetCode-198-House-Robber%2F</url>
     <content type="text"><![CDATA[题目描述 123You are a professional robber planning to rob houses along a street. Each house has a certain amount of money stashed, the only constraint stopping you from robbing each of them is that adjacent houses have security system connected and it will automatically contact the police if two adjacent houses were broken into on the same night.Given a list of non-negative integers representing the amount of money of each house, determine the maximum amount of money you can rob tonight without alerting the police. 这题就是一个很明显的动态规划。由于两次偷盗的索引不能相邻，因此某个索引的偷盗最大值为上个索引的偷盗最大值或上上个索引的偷盗值加上当前nums的值，即dp[i] = max(dp[i-1], dp[i-2] + nums[i]) 代码实现 1234567891011121314class Solution: def rob(self, nums: 'list[int]') -&gt; 'int': if len(nums) == 0: return 0 dp = [0] * len(nums) dp[0] = nums[0] if len(nums) == 1: return dp[0] dp[1] = max(nums[0], nums[1]) for i in range(2, len(dp)): dp[i] = max(dp[i-1], dp[i-2] + nums[i]) return dp[-1]]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
       <tags>
         <tag>LeetCode</tag>
         <tag>Python</tag>
