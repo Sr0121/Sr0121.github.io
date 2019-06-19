@@ -1,6 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[LeetCode:198. House Robber]]></title>
+    <url>%2F2019%2F06%2F19%2FLeetCode-198-House-Robber%2F</url>
+    <content type="text"><![CDATA[题目描述 123You are a professional robber planning to rob houses along a street. Each house has a certain amount of money stashed, the only constraint stopping you from robbing each of them is that adjacent houses have security system connected and it will automatically contact the police if two adjacent houses were broken into on the same night.Given a list of non-negative integers representing the amount of money of each house, determine the maximum amount of money you can rob tonight without alerting the police. 这题就是一个很明显的动态规划。由于两次偷盗的索引不能相邻，因此某个索引的偷盗最大值为上个索引的偷盗最大值或上上个索引的偷盗值加上当前nums的值，即dp[i] = max(dp[i-1], dp[i-2] + nums[i]) 代码实现 1234567891011121314class Solution: def rob(self, nums: 'list[int]') -&gt; 'int': if len(nums) == 0: return 0 dp = [0] * len(nums) dp[0] = nums[0] if len(nums) == 1: return dp[0] dp[1] = max(nums[0], nums[1]) for i in range(2, len(dp)): dp[i] = max(dp[i-1], dp[i-2] + nums[i]) return dp[-1]]]></content>
+      <tags>
+        <tag>LeetCode</tag>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LeetCode:174. Dungeon Game]]></title>
+    <url>%2F2019%2F06%2F19%2FLeetCode-174-Dungeon-Game%2F</url>
+    <content type="text"><![CDATA[题目概述 123456789The demons had captured the princess (P) and imprisoned her in the bottom-right corner of a dungeon. The dungeon consists of M x N rooms laid out in a 2D grid. Our valiant knight (K) was initially positioned in the top-left room and must fight his way through the dungeon to rescue the princess.The knight has an initial health point represented by a positive integer. If at any point his health point drops to 0 or below, he dies immediately.Some of the rooms are guarded by demons, so the knight loses health (negative integers) upon entering these rooms; other rooms are either empty (0&apos;s) or contain magic orbs that increase the knight&apos;s health (positive integers).In order to reach the princess as quickly as possible, the knight decides to move only rightward or downward in each step.Write a function to determine the knight&apos;s minimum initial health so that he is able to rescue the princess. 这道题目翻译一下，就是要保证这个骑士在走过每一个格子之后，血量至少为1。这题可以用动态规划来进行求解。如果一个格子上的数字为-5，那么骑士在踏上这个格子的时候，至少需要max(1, 1-(-5)) = 6点血量；如果格子上的数字为5，那么骑士只需要max(1, 1-5) = 1点血量。 接着需要考虑周围格子的情况。如果某个格子的右边的格子至少需要有4点血量，另一个格子至少要3点血量，那么在经过这个格子之后，我们需要至少保留min(4, 3) = 3点血量。 那么，状态转移公式就是dp[i][j] = max(min(dp[i+1][j], dp[i][j+1]) - dungeon[i][j], 1) 代码实现 12345678910111213141516171819class Solution: def calculateMinimumHP(self, dungeon: 'list[list[int]]') -&gt; 'int': row = len(dungeon) column = len(dungeon[0]) dp = [[0] * column for _ in range(row)] dp[row-1][column-1] = max(1 - dungeon[row-1][column-1], 1) for i in range(column-2, -1, -1): dp[row-1][i] = max(dp[row-1][i+1] - dungeon[row-1][i], 1) for i in range(row - 2, -1, -1): dp[i][column - 1] = max(dp[i + 1][column - 1] - dungeon[i][column - 1], 1) for i in range(row - 2, -1, -1): for j in range(column - 2, -1, -1): dp[i][j] = max(min(dp[i+1][j], dp[i][j+1]) - dungeon[i][j], 1) return dp[0][0]]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>LeetCode</tag>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LeetCode:173. Binary Search Tree Iterator]]></title>
+    <url>%2F2019%2F06%2F17%2FLeetCode-173-Binary-Search-Tree-Iterator%2F</url>
+    <content type="text"><![CDATA[题目概述 Implement an iterator over a binary search tree (BST). Your iterator will be initialized with the root node of a BST. Calling next() will return the next smallest number in the BST. 这题我使用了一个DFS来遍历BST，并且把按顺序把树的节点存到了self.nodes的list中。这个类同时还保存了一个当前对象在self.nodes的索引值，如果使用了next方法，就把这个索引值加一，hasnext则判断这个索引值和self.nodes的长度的关系 代码实现 12345678910111213141516171819202122232425262728class BSTIterator: def __init__(self, root: TreeNode): self.nodes = [] self.dfs(root) self.index = -1 def next(self) -&gt; int: """ @return the next smallest number """ self.index += 1 return self.nodes[self.index].val def hasNext(self) -&gt; bool: """ @return whether we have a next smallest number """ if self.index &lt; len(self.nodes) - 1: return True else: return False def dfs(self, root): if root == None: return self.dfs(root.left) self.nodes.append(root) self.dfs(root.right)]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>LeetCode</tag>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[LeetCode:172. Factorial Trailing Zeroes]]></title>
     <url>%2F2019%2F06%2F16%2FLeetCode-172-Factorial-Trailing-Zeroes%2F</url>
     <content type="text"><![CDATA[题目概述 Given an integer n, return the number of trailing zeroes in n!. 在阶乘中，只有5的倍数能产生0，因此这道题就转化成了n!的因子中有多少个5. 这里需要注意的是，25，125这种数字包含了多个5，需要进行重复计算。 代码实现 12345678class Solution: def trailingZeroes(self, n: int) -&gt; int: divisor = 5 result = 0 while divisor &lt;= n: result += n // divisor divisor *= 5 return result]]></content>
