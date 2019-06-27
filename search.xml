@@ -1,6 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[LeetCode:213. House Robber II]]></title>
+    <url>%2F2019%2F06%2F27%2FLeetCode-213-House-Robber-II%2F</url>
+    <content type="text"><![CDATA[题目描述 123You are a professional robber planning to rob houses along a street. Each house has a certain amount of money stashed. All houses at this place are arranged in a circle. That means the first house is the neighbor of the last one. Meanwhile, adjacent houses have security system connected and it will automatically contact the police if two adjacent houses were broken into on the same night.Given a list of non-negative integers representing the amount of money of each house, determine the maximum amount of money you can rob tonight without alerting the police. 本题是之前House Robber的升级版。在这里，所有的房子形成一个环形，言下之意就是第一个房子和最后一个房子不能都偷。 假设有n个房子，他们的财产为house[0], house[1], …, house[n-1]，要保证house[0]和house[n-1]都不被偷，并且求出能偷的最大值。如果不偷house[n-1]，那么就转化成了House Robber中的house[0], …, house[n-2]的情形；同理，如果不偷house[0]，那么就转化成了求house[1], …, house[n-1]的情形。因此，本题就是求House Robber中的house[0], …, house[n-2]和house[1], …, house[n-1]的最大值。 代码实现 12345678910111213141516171819202122232425262728293031323334353637class Solution: def rob1(self, nums) -&gt; 'list[int]': if len(nums) &lt;= 2: return max(nums) dp = [0] * len(nums) dp[0] = nums[0] dp[1] = max(nums[0], nums[1]) for i in range(2, len(nums)): dp[i] = max(dp[i-1], dp[i-2] + nums[i]) return dp def rob2(self, nums) -&gt; 'list[int]': if len(nums) &lt;= 2: return max(nums) dp = [0] * len(nums) dp[len(nums)-1] = nums[len(nums)-1] dp[len(nums)-2] = max(nums[len(nums)-1], nums[len(nums)-2]) for i in range(len(nums)-3, -1, -1): dp[i] = max(dp[i+1], dp[i+2] + nums[i]) return dp def rob(self, nums: 'list[int]') -&gt; 'int': if len(nums) &lt;= 2: return max(nums) dp1 = self.rob1(nums) dp2 = self.rob2(nums) return max(dp1[-2], dp2[1])]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>LeetCode</tag>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LeetCode:212. Word Search II]]></title>
+    <url>%2F2019%2F06%2F26%2FLeetCode-212-Word-Search-II%2F</url>
+    <content type="text"><![CDATA[题目描述 123Given a 2D board and a list of words from the dictionary, find all words in the board.Each word must be constructed from letters of sequentially adjacent cell, where &quot;adjacent&quot; cells are those horizontally or vertically neighboring. The same letter cell may not be used more than once in a word. 这题我一开始尝试暴力搜索，需要对所有字符串，board的长和宽都进行一次循环遍历。最后出了很多bug，而且超时。 后来查阅了网上的一些资料，才知道这题也要使用之前的Trie树来进行搜索。这样可以减少一层的循环。 所以一开始，需要把word里的所有字符串存到Trie中，然后对board中的所有元素依此进行深度优先搜索，查找当前的字符是否在Trie当前节点的子节点中，如果没有则直接返回，如果有，则让当前Trie的节点变为该子节点，然后查找当前字符的上下左右四个相邻的字符是否在新的Trie节点的子节点中，以此类推，实现一个深度优先搜索。如果当前节点是某个Trie中的字符串的结束字符，则将该字符串存入结果中，最终返回结果。 代码实现 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768class Node: def __init__(self, val): self.val = val self.next = [None] * 26 self.end = Falseclass Trie: def __init__(self): """ Initialize your data structure here. """ self.start = Node("") def insert(self, word: str) -&gt; None: """ Adds a word into the data structure. """ this = self.start for i in range(len(word)): index = ord(word[i]) - ord('a') if this.next[index] == None: this.next[index] = Node(this.val + word[i]) this = this.next[index] this.end = Trueclass Solution: def findWords(self, board: 'list[list[str]]', words: 'list[str]') -&gt; 'list[str]': def dfs(root, x, y): if isVisited[x][y] == 1: return if root.end == True: result.append(root.val) root.end = False isVisited[x][y] = 1 direct = [[0, 1], [1, 0], [0, -1], [-1, 0]] for dir in direct: newx = x + dir[0] newy = y + dir[1] if newx &lt; 0 or newx &gt;= len(board) or newy &lt; 0 or newy &gt;= len(board[0]): continue if root.next[ord(board[newx][newy]) - ord('a')] != None: dfs(root.next[ord(board[newx][newy]) - ord('a')], newx, newy) isVisited[x][y] = 0 trie = Trie() for word in words: trie.insert(word) result = [] if len(board) == 0 or len(board[0]) == 0: return result isVisited = [[0] * len(board[0]) for _ in range(len(board))] for i in range(len(board)): for j in range(len(board[0])): if trie.start.next[ord(board[i][j]) - ord('a')] != None: dfs(trie.start.next[ord(board[i][j]) - ord('a')], i, j) return result]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>LeetCode</tag>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LeetCode:211. Add and Search Word - Data structure design]]></title>
+    <url>%2F2019%2F06%2F25%2FLeetCode-211-Add-and-Search-Word-Data-structure-design%2F</url>
+    <content type="text"><![CDATA[题目描述 123456Design a data structure that supports the following two operations:void addWord(word)bool search(word)search(word) can search a literal word or a regular expression string containing only letters a-z or .. A . means it can represent any one letter. 本题就是要实现一个数据结构，可以进行增加字符串和查找功能，这里的查找功能可以是模糊查找。 本题的数据结构与之前的Trie一致，但是查找方面不同。这里的查找使用DFS，如果出现要匹配’.’，则需要在所有的子树上进行查找，任意子树返回True，则为匹配成功。 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758class Node: def __init__(self, val): self.val = val self.next = [] self.end = Falseclass WordDictionary: def __init__(self): """ Initialize your data structure here. """ self.start = Node(-1) def addWord(self, word: str) -&gt; None: """ Adds a word into the data structure. """ this = self.start index = 0 while index &lt; len(word): find = False for i in this.next: if i.val == word[index]: find = True this = i index += 1 break if find == False: newNode = Node(word[index]) this.next.append(newNode) this = newNode index += 1 this.end = True def search(self, word: str) -&gt; bool: """ Returns if the word is in the data structure. A word could contain the dot character '.' to represent any one letter. """ return self.dfs(word, self.start, 0) def dfs(self, word, node, index): if index == len(word): return node.end if word[index] == '.': for i in node.next: if self.dfs(word, i, index+1): return True return False else: for i in node.next: if i.val == word[index] and self.dfs(word, i, index+1): return True return False]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>LeetCode</tag>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LeetCode:209. Minimum Size Subarray Sum]]></title>
+    <url>%2F2019%2F06%2F25%2FLeetCode-209-Minimum-Size-Subarray-Sum%2F</url>
+    <content type="text"><![CDATA[题目描述 1Given an array of n positive integers and a positive integer s, find the minimal length of a contiguous subarray of which the sum ≥ s. If there isn&apos;t one, return 0 instead. 题目要求在一串数字中找到最短的连续数字，让他们的和大于给定的正数。 这里需要记录数组的开始和结尾的索引，并且需要记录连续的数字之和。每当数字比给定目标小的时候，右边的索引要往右移动，其他情况则左边索引向右移动一格，并且如果比最小的结果更小的时候需要记录这个长度。 代码实现 123456789101112131415161718192021222324252627class Solution: def minSubArrayLen(self, s: int, nums: 'list[int]') -&gt; int: if len(nums) == 0: return 0 start = 0 end = 1 sum = nums[0] result = len(nums) find = False while True: if sum &gt;= s: find = True result = end - start if end - start &lt; result else result if start &lt; len(nums)-1: sum -= nums[start] start += 1 else: break else: if end &lt; len(nums): sum += nums[end] end += 1 else: break return 0 if find == False else result]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>LeetCode</tag>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[LeetCode:208. Implement Trie (Prefix Tree)]]></title>
     <url>%2F2019%2F06%2F24%2FLeetCode-208-Implement-Trie-Prefix-Tree%2F</url>
     <content type="text"><![CDATA[题目描述 1Implement a trie with insert, search, and startsWith methods. Trie树能够存储字符串，它的每一个节点都代表了一个字母，结构如下所示： 上图中，存放了at、bee、ben、bt、q五个字符串。其中绿色代表着字符串的结束，它可以出现在树的非叶子节点。 因此对于每个节点，需要存放其值，子节点以及是否位字符串的结束，其定义如下： 12345class Node: def __init__(self, val): self.val = val self.next = [] self.end = False 在进行insert(‘bed’)的时候，会从最顶的节点开始向下查找，如果查找到’b’，那么就会在这个’b’节点继续往下查找’e’，如果也有的话继续在’e’查找’d’ 。但是如果一开始没有查找到’b’，则会新创建一个节点’b’，然后在这个新节点下面继续查找’e’（虽然一定是找不到的），找不到的话创建’e’ ，以此类推。 在进行search的时候，也会从头节点开始向下进行查找，但是如果找不到，那么会直接返回False。如果完整地找到了这个字符串，还需要看该字符串的最后一个节点的end是否为True，如果是则返回True，否则返回False。 startswith操作和search操作基本一致，但是它不需要检查字符串的最后一个节点的end状态。 代码实现 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879class Node: def __init__(self, val): self.val = val self.next = [] self.end = Falseclass Trie: def __init__(self): """ Initialize your data structure here. """ self.start = Node(-1) def insert(self, word: str) -&gt; None: """ Inserts a word into the trie. """ this = self.start index = 0 while index &lt; len(word): find = False for i in this.next: if i.val == word[index]: find = True this = i index += 1 break if find == False: newNode = Node(word[index]) this.next.append(newNode) this = newNode index += 1 this.end = True def search(self, word: str) -&gt; bool: """ Returns if the word is in the trie. """ this = self.start index = 0 while index &lt; len(word): find = False for i in this.next: if i.val == word[index]: find = True this = i index += 1 break if find == False: return False if this.end == True: return True else: return False def startsWith(self, prefix: str) -&gt; bool: """ Returns if there is any word in the trie that starts with the given prefix. """ this = self.start index = 0 while index &lt; len(prefix): find = False for i in this.next: if i.val == prefix[index]: find = True this = i index += 1 break if find == False: return False return True]]></content>
