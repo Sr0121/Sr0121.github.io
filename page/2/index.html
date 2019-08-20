@@ -387,8 +387,18 @@
       
         
           <p><strong>题目描述</strong></p>
-<table><tr><td bgcolor="#EDEDED">Given a 2D board and a list of words from the dictionary, find all words in the board.
-    Each word must be constructed from letters of sequentially adjacent cell, where "adjacent" cells are those horizontally or vertically neighboring. The same letter cell may not be used more than once in a word.</td></tr></table>
+<p>Given a 2D board and a list of words from the dictionary, find all words in the board.</p>
+<p>Each word must be constructed from letters of sequentially adjacent cell, where “adjacent” cells are those horizontally or vertically neighboring. The same letter cell may not be used more than once in a word.</p>
+<p><strong>Example:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Input: </span><br><span class="line">board = [</span><br><span class="line">  [&apos;o&apos;,&apos;a&apos;,&apos;a&apos;,&apos;n&apos;],</span><br><span class="line">  [&apos;e&apos;,&apos;t&apos;,&apos;a&apos;,&apos;e&apos;],</span><br><span class="line">  [&apos;i&apos;,&apos;h&apos;,&apos;k&apos;,&apos;r&apos;],</span><br><span class="line">  [&apos;i&apos;,&apos;f&apos;,&apos;l&apos;,&apos;v&apos;]</span><br><span class="line">]</span><br><span class="line">words = [&quot;oath&quot;,&quot;pea&quot;,&quot;eat&quot;,&quot;rain&quot;]</span><br><span class="line"></span><br><span class="line">Output: [&quot;eat&quot;,&quot;oath&quot;]</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>Note:</strong></p>
+<ol>
+<li>All inputs are consist of lowercase letters <code>a-z</code>.</li>
+<li>The values of <code>words</code> are distinct.</li>
+</ol>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2019/06/26/LeetCode-212-Word-Search-II/#more" rel="contents">
@@ -535,10 +545,12 @@
       
         
           <p><strong>题目描述</strong></p>
-<table><tr><td bgcolor="#EDEDED">Design a data structure that supports the following two operations:
-    void addWord(word)
-    bool search(word)
-    search(word) can search a literal word or a regular expression string containing only letters a-z or .. A . means it can represent any one letter.</td></tr></table>
+<p>Design a data structure that supports the following two operations:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">void addWord(word)</span><br><span class="line">bool search(word)</span><br></pre></td></tr></table></figure>
+
+<p>search(word) can search a literal word or a regular expression string containing only letters <code>a-z</code> or <code>.</code>. A <code>.</code> means it can represent any one letter.</p>
+<p><strong>Example:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">addWord(&quot;bad&quot;)</span><br><span class="line">addWord(&quot;dad&quot;)</span><br><span class="line">addWord(&quot;mad&quot;)</span><br><span class="line">search(&quot;pad&quot;) -&gt; false</span><br><span class="line">search(&quot;bad&quot;) -&gt; true</span><br><span class="line">search(&quot;.ad&quot;) -&gt; true</span><br><span class="line">search(&quot;b..&quot;) -&gt; true</span><br></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2019/06/25/LeetCode-211-Add-and-Search-Word-Data-structure-design/#more" rel="contents">
@@ -685,7 +697,12 @@
       
         
           <p><strong>题目描述</strong></p>
-<table><tr><td bgcolor="#EDEDED">Given an array of n positive integers and a positive integer s, find the minimal length of a contiguous subarray of which the sum ≥ s. If there isn't one, return 0 instead.</td></tr></table>
+<p>Given an array of <strong>n</strong> positive integers and a positive integer <strong>s</strong>, find the minimal length of a <strong>contiguous</strong> subarray of which the sum ≥ <strong>s</strong>. If there isn’t one, return 0 instead.</p>
+<p><strong>Example:</strong> </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: s = 7, nums = [2,3,1,2,4,3]</span><br><span class="line">Output: 2</span><br><span class="line">Explanation: the subarray [4,3] has the minimal length under the problem constraint.</span><br></pre></td></tr></table></figure>
+
+<p><strong>Follow up:</strong></p>
+<p>If you have figured out the <em>O</em>(<em>n</em>) solution, try coding another solution of which the time complexity is <em>O</em>(<em>n</em> log <em>n</em>). </p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2019/06/25/LeetCode-209-Minimum-Size-Subarray-Sum/#more" rel="contents">
@@ -832,7 +849,15 @@
       
         
           <p><strong>题目描述</strong></p>
-<table><tr><td bgcolor="#EDEDED">Implement a trie with insert, search, and startsWith methods.</td></tr></table>
+<p>Implement a trie with <code>insert</code>, <code>search</code>, and <code>startsWith</code> methods.</p>
+<p><strong>Example:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Trie trie = new Trie();</span><br><span class="line"></span><br><span class="line">trie.insert(&quot;apple&quot;);</span><br><span class="line">trie.search(&quot;apple&quot;);   // returns true</span><br><span class="line">trie.search(&quot;app&quot;);     // returns false</span><br><span class="line">trie.startsWith(&quot;app&quot;); // returns true</span><br><span class="line">trie.insert(&quot;app&quot;);   </span><br><span class="line">trie.search(&quot;app&quot;);     // returns true</span><br></pre></td></tr></table></figure>
+
+<p><strong>Note:</strong></p>
+<ul>
+<li>You may assume that all inputs are consist of lowercase letters <code>a-z</code>.</li>
+<li>All inputs are guaranteed to be non-empty strings.</li>
+</ul>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2019/06/24/LeetCode-208-Implement-Trie-Prefix-Tree/#more" rel="contents">
@@ -979,7 +1004,9 @@
       
         
           <p><strong>题目描述</strong></p>
-<table><tr><td bgcolor="#EDEDED">Reverse a singly linked list.</td></tr></table>
+<p>Reverse a singly linked list.</p>
+<p><strong>Example:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: 1-&gt;2-&gt;3-&gt;4-&gt;5-&gt;NULL</span><br><span class="line">Output: 5-&gt;4-&gt;3-&gt;2-&gt;1-&gt;NULL</span><br></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2019/06/23/LeetCode-206-Reverse-Linked-List/#more" rel="contents">
@@ -1126,9 +1153,17 @@
       
         
           <p><strong>题目描述</strong></p>
-<table><tr><td bgcolor="#EDEDED">Given two strings s and t, determine if they are isomorphic.
-    Two strings are isomorphic if the characters in s can be replaced to get t.
-    All occurrences of a character must be replaced with another character while preserving the order of characters. No two characters may map to the same character but a character may map to itself.</td></tr></table>
+<p>Given two strings <strong>s</strong> and <strong>t</strong>, determine if they are isomorphic.</p>
+<p>Two strings are isomorphic if the characters in <strong>s</strong> can be replaced to get <strong>t</strong>.</p>
+<p>All occurrences of a character must be replaced with another character while preserving the order of characters. No two characters may map to the same character but a character may map to itself.</p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: s = &quot;egg&quot;, t = &quot;add&quot;</span><br><span class="line">Output: true</span><br></pre></td></tr></table></figure>
+
+<p><strong>Example 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: s = &quot;foo&quot;, t = &quot;bar&quot;</span><br><span class="line">Output: false</span><br></pre></td></tr></table></figure>
+
+<p><strong>Example 3:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: s = &quot;paper&quot;, t = &quot;title&quot;</span><br><span class="line">Output: true</span><br></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2019/06/23/LeetCode-205-Isomorphic-Strings/#more" rel="contents">
@@ -1275,7 +1310,9 @@
       
         
           <p><strong>题目描述</strong></p>
-<table><tr><td bgcolor="#EDEDED">Count the number of prime numbers less than a non-negative number, n.</td></tr></table>
+<p>Count the number of prime numbers less than a non-negative number, <strong>n</strong>.</p>
+<p><strong>Example:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: 10</span><br><span class="line">Output: 4</span><br><span class="line">Explanation: There are 4 prime numbers less than 10, they are 2, 3, 5, 7.</span><br></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2019/06/23/LeetCode-204-Count-Primes/#more" rel="contents">
@@ -1422,7 +1459,9 @@
       
         
           <p><strong>题目描述</strong></p>
-<table><tr><td bgcolor="#EDEDED">Remove all elements from a linked list of integers that have value val.</td></tr></table>
+<p>Remove all elements from a linked list of integers that have value <strong>val</strong>.</p>
+<p><strong>Example:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input:  1-&gt;2-&gt;6-&gt;3-&gt;4-&gt;5-&gt;6, val = 6</span><br><span class="line">Output: 1-&gt;2-&gt;3-&gt;4-&gt;5</span><br></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2019/06/20/LeetCode-203-Remove-Linked-List-Elements/#more" rel="contents">
@@ -1569,8 +1608,10 @@
       
         
           <p><strong>题目描述</strong></p>
-<table><tr><td bgcolor="#EDEDED">Write an algorithm to determine if a number is "happy".
-    A happy number is a number defined by the following process: Starting with any positive integer, replace the number by the sum of the squares of its digits, and repeat the process until the number equals 1 (where it will stay), or it loops endlessly in a cycle which does not include 1. Those numbers for which this process ends in 1 are happy numbers.</td></tr></table>
+<p>Write an algorithm to determine if a number is “happy”.</p>
+<p>A happy number is a number defined by the following process: Starting with any positive integer, replace the number by the sum of the squares of its digits, and repeat the process until the number equals 1 (where it will stay), or it loops endlessly in a cycle which does not include 1. Those numbers for which this process ends in 1 are happy numbers.</p>
+<p><strong>Example:</strong> </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Input: 19</span><br><span class="line">Output: true</span><br><span class="line">Explanation: </span><br><span class="line">12 + 92 = 82</span><br><span class="line">82 + 22 = 68</span><br><span class="line">62 + 82 = 100</span><br><span class="line">12 + 02 + 02 = 1</span><br></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2019/06/20/LeetCode-202-Happy-Number/#more" rel="contents">
@@ -1717,7 +1758,12 @@
       
         
           <p><strong>题目描述</strong></p>
-<table><tr><td bgcolor="#EDEDED">Given a range [m, n] where 0 <= m <="n" return the bitwise and of all numbers in this range, inclusive.< td></=></td></tr>
+<p>Given a range [m, n] where 0 &lt;= m &lt;= n &lt;= 2147483647, return the bitwise AND of all numbers in this range, inclusive.</p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: [5,7]</span><br><span class="line">Output: 4</span><br></pre></td></tr></table></figure>
+
+<p><strong>Example 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: [0,1]</span><br><span class="line">Output: 0</span><br></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2019/06/20/LeetCode-201-Bitwise-AND-of-Numbers-Range/#more" rel="contents">
@@ -1727,7 +1773,7 @@
           <!--/noindex-->
         
       
-    </table></div>
+    </div>
     
     
     

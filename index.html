@@ -1143,7 +1143,15 @@
       
         
           <p><strong>题目描述</strong></p>
-<table><tr><td bgcolor="#EDEDED">Given an array of integers and an integer k, find out whether there are two distinct indices i and j in the array such that nums[i] = nums[j] and the absolute difference between i and j is at most k.</td></tr></table>
+<p>Given an array of integers and an integer <em>k</em>, find out whether there are two distinct indices <em>i</em> and <em>j</em> in the array such that <strong>nums[i] = nums[j]</strong> and the <strong>absolute</strong> difference between <em>i</em> and <em>j</em> is at most <em>k</em>.</p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: nums = [1,2,3,1], k = 3</span><br><span class="line">Output: true</span><br></pre></td></tr></table></figure>
+
+<p><strong>Example 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: nums = [1,0,1,1], k = 1</span><br><span class="line">Output: true</span><br></pre></td></tr></table></figure>
+
+<p><strong>Example 3:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: nums = [1,2,3,1,2,3], k = 2</span><br><span class="line">Output: false</span><br></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2019/07/03/LeetCode-219-Contains-Duplicate-II/#more" rel="contents">
@@ -1290,11 +1298,19 @@
       
         
           <p><strong>题目描述</strong></p>
-<table><tr><td bgcolor="#EDEDED">A city's skyline is the outer contour of the silhouette formed by all the buildings in that city when viewed from a distance. Now suppose you are given the locations and height of all the buildings as shown on a cityscape photo (Figure A), write a program to output the skyline formed by these buildings collectively (Figure B).</td></tr></table>
-
-
-
+<p>A city’s skyline is the outer contour of the silhouette formed by all the buildings in that city when viewed from a distance. Now suppose you are <strong>given the locations and height of all the buildings</strong> as shown on a cityscape photo (Figure A), write a program to <strong>output the skyline</strong> formed by these buildings collectively (Figure B).</p>
 <p><a href="https://leetcode.com/static/images/problemset/skyline1.jpg" target="_blank" rel="noopener"><img src="https://assets.leetcode.com/uploads/2018/10/22/skyline1.png" alt="Buildings"> </a><a href="https://leetcode.com/static/images/problemset/skyline2.jpg" target="_blank" rel="noopener"><img src="https://assets.leetcode.com/uploads/2018/10/22/skyline2.png" alt="Skyline Contour"></a></p>
+<p>The geometric information of each building is represented by a triplet of integers <code>[Li, Ri, Hi]</code>, where <code>Li</code> and <code>Ri</code>are the x coordinates of the left and right edge of the ith building, respectively, and <code>Hi</code> is its height. It is guaranteed that <code>0 ≤ Li, Ri ≤ INT_MAX</code>, <code>0 &lt; Hi ≤ INT_MAX</code>, and <code>Ri - Li &gt; 0</code>. You may assume all buildings are perfect rectangles grounded on an absolutely flat surface at height 0.</p>
+<p>For instance, the dimensions of all buildings in Figure A are recorded as: <code>[ [2 9 10], [3 7 15], [5 12 12], [15 20 10], [19 24 8] ]</code>.</p>
+<p>The output is a list of “<strong>key points</strong>“ (red dots in Figure B) in the format of <code>[ [x1,y1], [x2, y2], [x3, y3], ... ]</code>that uniquely defines a skyline. <strong>A key point is the left endpoint of a horizontal line segment</strong>. Note that the last key point, where the rightmost building ends, is merely used to mark the termination of the skyline, and always has zero height. Also, the ground in between any two adjacent buildings should be considered part of the skyline contour.</p>
+<p>For instance, the skyline in Figure B should be represented as:<code>[ [2 10], [3 15], [7 12], [12 0], [15 10], [20 8], [24, 0] ]</code>.</p>
+<p><strong>Notes:</strong></p>
+<ul>
+<li>The number of buildings in any input list is guaranteed to be in the range <code>[0, 10000]</code>.</li>
+<li>The input list is already sorted in ascending order by the left x position <code>Li</code>.</li>
+<li>The output list must be sorted by the x position.</li>
+<li>There must be no consecutive horizontal lines of equal height in the output skyline. For instance, <code>[...[2 3], [4 5], [7 5], [11 5], [12 7]...]</code> is not acceptable; the three lines of height 5 should be merged into one in the final output as such: <code>[...[2 3], [4 5], [12 7], ...]</code></li>
+</ul>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2019/07/02/LeetCode-218-The-Skyline-Problem/#more" rel="contents">
@@ -1441,7 +1457,17 @@
       
         
           <p><strong>题目描述</strong></p>
-<table><tr><td bgcolor="#EDEDED">Find all possible combinations of k numbers that add up to a number n, given that only numbers from 1 to 9 can be used and each combination should be a unique set of numbers.</td></tr></table>
+<p>Find all possible combinations of <strong>k</strong> numbers that add up to a number <strong>n</strong>, given that only numbers from 1 to 9 can be used and each combination should be a unique set of numbers.</p>
+<p><strong>Note:</strong></p>
+<ul>
+<li>All numbers will be positive integers.</li>
+<li>The solution set must not contain duplicate combinations.</li>
+</ul>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: k = 3, n = 7</span><br><span class="line">Output: [[1,2,4]]</span><br></pre></td></tr></table></figure>
+
+<p><strong>Example 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: k = 3, n = 9</span><br><span class="line">Output: [[1,2,6], [1,3,5], [2,3,4]]</span><br></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2019/07/01/LeetCode-216-Combination-Sum-III/#more" rel="contents">
@@ -1588,7 +1614,12 @@
       
         
           <p><strong>题目描述</strong></p>
-<table><tr><td bgcolor="#EDEDED">Given a string s, you are allowed to convert it to a palindrome by adding characters in front of it. Find and return the shortest palindrome you can find by performing this transformation.</td></tr></table>
+<p>Given a string <strong>s</strong>, you are allowed to convert it to a palindrome by adding characters in front of it. Find and return the shortest palindrome you can find by performing this transformation.</p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: &quot;aacecaaa&quot;</span><br><span class="line">Output: &quot;aaacecaaa&quot;</span><br></pre></td></tr></table></figure>
+
+<p><strong>Example 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: &quot;abcd&quot;</span><br><span class="line">Output: &quot;dcbabcd&quot;</span><br></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2019/06/29/LeetCode-214-Shortest-Palindrome/#more" rel="contents">
@@ -1735,8 +1766,13 @@
       
         
           <p><strong>题目描述</strong></p>
-<table><tr><td bgcolor="#EDEDED">You are a professional robber planning to rob houses along a street. Each house has a certain amount of money stashed. All houses at this place are arranged in a circle. That means the first house is the neighbor of the last one. Meanwhile, adjacent houses have security system connected and it will automatically contact the police if two adjacent houses were broken into on the same night.
-    Given a list of non-negative integers representing the amount of money of each house, determine the maximum amount of money you can rob tonight without alerting the police.</td></tr></table>
+<p>You are a professional robber planning to rob houses along a street. Each house has a certain amount of money stashed. All houses at this place are <strong>arranged in a circle.</strong> That means the first house is the neighbor of the last one. Meanwhile, adjacent houses have security system connected and <strong>it will automatically contact the police if two adjacent houses were broken into on the same night</strong>.</p>
+<p>Given a list of non-negative integers representing the amount of money of each house, determine the maximum amount of money you can rob tonight <strong>without alerting the police</strong>.</p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Input: [2,3,2]</span><br><span class="line">Output: 3</span><br><span class="line">Explanation: You cannot rob house 1 (money = 2) and then rob house 3 (money = 2),</span><br><span class="line">             because they are adjacent houses.</span><br></pre></td></tr></table></figure>
+
+<p><strong>Example 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Input: [1,2,3,1]</span><br><span class="line">Output: 4</span><br><span class="line">Explanation: Rob house 1 (money = 1) and then rob house 3 (money = 3).</span><br><span class="line">             Total amount you can rob = 1 + 3 = 4.</span><br></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2019/06/27/LeetCode-213-House-Robber-II/#more" rel="contents">
