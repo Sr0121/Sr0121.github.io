@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="题目概述 Compare two version numbers version1 and version2. If version1 &amp;gt; version2 return 1; if version1 &amp;lt; version2 return -1;otherwise return 0. You may assume that the version strings are non-empty and">
+<meta name="description" content="题目概述 Compare two version numbers version1 and version2. If *version1* &amp;gt; *version2* return 1; if *version1* &amp;lt; *version2* return -1;otherwise return 0. You may assume that the version strings are">
 <meta name="keywords" content="LeetCode,Python">
 <meta property="og:type" content="article">
 <meta property="og:title" content="LeetCode:165. Compare Version Numbers">
 <meta property="og:url" content="https://sr0121.github.io/2019/06/15/LeetCode-165-Compare-Version-Numbers/index.html">
 <meta property="og:site_name" content="Rong @@@">
-<meta property="og:description" content="题目概述 Compare two version numbers version1 and version2. If version1 &amp;gt; version2 return 1; if version1 &amp;lt; version2 return -1;otherwise return 0. You may assume that the version strings are non-empty and">
+<meta property="og:description" content="题目概述 Compare two version numbers version1 and version2. If *version1* &amp;gt; *version2* return 1; if *version1* &amp;lt; *version2* return -1;otherwise return 0. You may assume that the version strings are">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-06-15T14:39:57.738Z">
+<meta property="og:updated_time" content="2019-08-20T16:13:31.723Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LeetCode:165. Compare Version Numbers">
-<meta name="twitter:description" content="题目概述 Compare two version numbers version1 and version2. If version1 &amp;gt; version2 return 1; if version1 &amp;lt; version2 return -1;otherwise return 0. You may assume that the version strings are non-empty and">
+<meta name="twitter:description" content="题目概述 Compare two version numbers version1 and version2. If *version1* &amp;gt; *version2* return 1; if *version1* &amp;lt; *version2* return -1;otherwise return 0. You may assume that the version strings are">
 
 
 
@@ -385,13 +385,34 @@
 
       
         <p><strong>题目概述</strong></p>
-<table><tr><td bgcolor="#EDEDED">Compare two version numbers version1 and version2.
-If version1 > version2 return 1; if version1 < version2 return -1;otherwise return 0.
-You may assume that the version strings are non-empty and contain only digits and the . character.
-The . character does not represent a decimal point and is used to separate number sequences.
-For instance, 2.5 is not "two and a half" or "half way to version three", it is the fifth second-level revision of the second first-level revision.
-You may assume the default revision number for each level of a version number to be 0. For example, version number 3.4 has a revision number of 3 and 4 for its first and second level revision number. Its third and fourth level revision number are both 0.</td></tr></table>
+<p>Compare two version numbers <em>version1</em> and <em>version2</em>.
+If <code>*version1* &gt; *version2*</code> return <code>1;</code> if <code>*version1* &lt; *version2*</code> return <code>-1;</code>otherwise return <code>0</code>.</p>
+<p>You may assume that the version strings are non-empty and contain only digits and the <code>.</code> character.</p>
+<p>The <code>.</code> character does not represent a decimal point and is used to separate number sequences.</p>
+<p>For instance, <code>2.5</code> is not “two and a half” or “half way to version three”, it is the fifth second-level revision of the second first-level revision.</p>
+<p>You may assume the default revision number for each level of a version number to be <code>0</code>. For example, version number <code>3.4</code> has a revision number of <code>3</code> and <code>4</code> for its first and second level revision number. Its third and fourth level revision number are both <code>0</code>.</p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: version1 = &quot;0.1&quot;, version2 = &quot;1.1&quot;</span><br><span class="line">Output: -1</span><br></pre></td></tr></table></figure>
 
+<p><strong>Example 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: version1 = &quot;1.0.1&quot;, version2 = &quot;1&quot;</span><br><span class="line">Output: 1</span><br></pre></td></tr></table></figure>
+
+<p><strong>Example 3:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: version1 = &quot;7.5.2.4&quot;, version2 = &quot;7.5.3&quot;</span><br><span class="line">Output: -1</span><br></pre></td></tr></table></figure>
+
+<p><strong>Example 4:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: version1 = &quot;1.01&quot;, version2 = &quot;1.001&quot;</span><br><span class="line">Output: 0</span><br><span class="line">Explanation: Ignoring leading zeroes, both “01” and “001&quot; represent the same number “1”</span><br></pre></td></tr></table></figure>
+
+<p><strong>Example 5:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: version1 = &quot;1.0&quot;, version2 = &quot;1.0.0&quot;</span><br><span class="line">Output: 0</span><br><span class="line">Explanation: The first version number does not have a third level revision number, which means its third level revision number is default to &quot;0&quot;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>Note:</strong></p>
+<ol>
+<li>Version strings are composed of numeric strings separated by dots <code>.</code> and this numeric strings <strong>may</strong> have leading zeroes. </li>
+<li>Version strings do not start or end with dots, and they will not be two consecutive dots.</li>
+</ol>
 <a id="more"></a>
 
 <p>这题其实不难，本质上就是把字符串根据’.’进行切割后形成两个数组，然后对两个数组的元素进行逐一比较即可。</p>

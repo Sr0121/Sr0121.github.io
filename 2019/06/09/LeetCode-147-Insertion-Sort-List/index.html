@@ -79,19 +79,19 @@
 
 
 
-<meta name="description" content="题目概述 Sort a linked list using insertion sort. A graphical example of insertion sort. The partial sorted list (black) initially contains only the first element in the list. With each iteration one elem">
+<meta name="description" content="题目概述 Sort a linked list using insertion sort. A graphical example of insertion sort. The partial sorted list (black) initially contains only the first element in the list.With each iteration one eleme">
 <meta name="keywords" content="LeetCode,C++">
 <meta property="og:type" content="article">
 <meta property="og:title" content="LeetCode:147. Insertion Sort List">
 <meta property="og:url" content="https://sr0121.github.io/2019/06/09/LeetCode-147-Insertion-Sort-List/index.html">
 <meta property="og:site_name" content="Rong @@@">
-<meta property="og:description" content="题目概述 Sort a linked list using insertion sort. A graphical example of insertion sort. The partial sorted list (black) initially contains only the first element in the list. With each iteration one elem">
+<meta property="og:description" content="题目概述 Sort a linked list using insertion sort. A graphical example of insertion sort. The partial sorted list (black) initially contains only the first element in the list.With each iteration one eleme">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/0/0f/Insertion-sort-example-300px.gif">
-<meta property="og:updated_time" content="2019-06-09T08:34:52.125Z">
+<meta property="og:updated_time" content="2019-08-20T16:07:25.583Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LeetCode:147. Insertion Sort List">
-<meta name="twitter:description" content="题目概述 Sort a linked list using insertion sort. A graphical example of insertion sort. The partial sorted list (black) initially contains only the first element in the list. With each iteration one elem">
+<meta name="twitter:description" content="题目概述 Sort a linked list using insertion sort. A graphical example of insertion sort. The partial sorted list (black) initially contains only the first element in the list.With each iteration one eleme">
 <meta name="twitter:image" content="https://upload.wikimedia.org/wikipedia/commons/0/0f/Insertion-sort-example-300px.gif">
 
 
@@ -387,12 +387,14 @@
 
       
         <p><strong>题目概述</strong></p>
-<table><tr><td bgcolor="#EDEDED">Sort a linked list using insertion sort.
-A graphical example of insertion sort. The partial sorted list (black) initially contains only the first element in the list.
-With each iteration one element (red) is removed from the input data and inserted in-place into the sorted list
-</td></tr></table>
-
-<p><img src="https://upload.wikimedia.org/wikipedia/commons/0/0f/Insertion-sort-example-300px.gif" alt="img"></p>
+<p>Sort a linked list using insertion sort.</p>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/0/0f/Insertion-sort-example-300px.gif" alt="img"><br>A graphical example of insertion sort. The partial sorted list (black) initially contains only the first element in the list.<br>With each iteration one element (red) is removed from the input data and inserted in-place into the sorted list</p>
+<p><strong>Algorithm of Insertion Sort:</strong></p>
+<ol>
+<li>Insertion sort iterates, consuming one input element each repetition, and growing a sorted output list.</li>
+<li>At each iteration, insertion sort removes one element from the input data, finds the location it belongs within the sorted list, and inserts it there.</li>
+<li>It repeats until no input elements remain.</li>
+</ol>
 <a id="more"></a>
 
 <p>本题本质上是一个水题，就是简单的插入排序，只是使用了链表来进行处理。只需要将普通的数组插入排序对数组的遍历操作改成对链表的遍历即可。</p>

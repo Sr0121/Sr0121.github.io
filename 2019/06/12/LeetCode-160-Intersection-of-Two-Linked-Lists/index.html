@@ -79,18 +79,23 @@
 
 
 
-<meta name="description" content="题目概述 Write a program to find the node at which the intersection of two singly linked lists begins.">
+<meta name="description" content="题目概述 Write a program to find the node at which the intersection of two singly linked lists begins. For example, the following two linked lists:  begin to intersect at node c1. Example 1:  123Input: in">
 <meta name="keywords" content="LeetCode,C++">
 <meta property="og:type" content="article">
 <meta property="og:title" content="LeetCode:160. Intersection of Two Linked Lists">
 <meta property="og:url" content="https://sr0121.github.io/2019/06/12/LeetCode-160-Intersection-of-Two-Linked-Lists/index.html">
 <meta property="og:site_name" content="Rong @@@">
-<meta property="og:description" content="题目概述 Write a program to find the node at which the intersection of two singly linked lists begins.">
+<meta property="og:description" content="题目概述 Write a program to find the node at which the intersection of two singly linked lists begins. For example, the following two linked lists:  begin to intersect at node c1. Example 1:  123Input: in">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-06-12T15:17:32.692Z">
+<meta property="og:image" content="https://assets.leetcode.com/uploads/2018/12/13/160_statement.png">
+<meta property="og:image" content="https://assets.leetcode.com/uploads/2018/12/13/160_example_1.png">
+<meta property="og:image" content="https://assets.leetcode.com/uploads/2018/12/13/160_example_2.png">
+<meta property="og:image" content="https://assets.leetcode.com/uploads/2018/12/13/160_example_3.png">
+<meta property="og:updated_time" content="2019-08-20T16:12:30.359Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LeetCode:160. Intersection of Two Linked Lists">
-<meta name="twitter:description" content="题目概述 Write a program to find the node at which the intersection of two singly linked lists begins.">
+<meta name="twitter:description" content="题目概述 Write a program to find the node at which the intersection of two singly linked lists begins. For example, the following two linked lists:  begin to intersect at node c1. Example 1:  123Input: in">
+<meta name="twitter:image" content="https://assets.leetcode.com/uploads/2018/12/13/160_statement.png">
 
 
 
@@ -385,9 +390,35 @@
 
       
         <p><strong>题目概述</strong></p>
-<table><tr><td bgcolor="#EDEDED">Write a program to find the node at which the intersection of two singly linked lists begins.
-</td></tr></table>
+<p>Write a program to find the node at which the intersection of two singly linked lists begins.</p>
+<p>For example, the following two linked lists:</p>
+<p><img src="https://assets.leetcode.com/uploads/2018/12/13/160_statement.png" alt="img"></p>
+<p>begin to intersect at node c1.</p>
+<p><strong>Example 1:</strong></p>
+<p><img src="https://assets.leetcode.com/uploads/2018/12/13/160_example_1.png" alt="img"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: intersectVal = 8, listA = [4,1,8,4,5], listB = [5,0,1,8,4,5], skipA = 2, skipB = 3</span><br><span class="line">Output: Reference of the node with value = 8</span><br><span class="line">Input Explanation: The intersected node&apos;s value is 8 (note that this must not be 0 if the two lists intersect). From the head of A, it reads as [4,1,8,4,5]. From the head of B, it reads as [5,0,1,8,4,5]. There are 2 nodes before the intersected node in A; There are 3 nodes before the intersected node in B.</span><br></pre></td></tr></table></figure>
 
+
+
+<p><strong>Example 2:</strong></p>
+<p><img src="https://assets.leetcode.com/uploads/2018/12/13/160_example_2.png" alt="img"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: intersectVal = 2, listA = [0,9,1,2,4], listB = [3,2,4], skipA = 3, skipB = 1</span><br><span class="line">Output: Reference of the node with value = 2</span><br><span class="line">Input Explanation: The intersected node&apos;s value is 2 (note that this must not be 0 if the two lists intersect). From the head of A, it reads as [0,9,1,2,4]. From the head of B, it reads as [3,2,4]. There are 3 nodes before the intersected node in A; There are 1 node before the intersected node in B.</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>Example 3:</strong></p>
+<p><img src="https://assets.leetcode.com/uploads/2018/12/13/160_example_3.png" alt="img"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Input: intersectVal = 0, listA = [2,6,4], listB = [1,5], skipA = 3, skipB = 2</span><br><span class="line">Output: null</span><br><span class="line">Input Explanation: From the head of A, it reads as [2,6,4]. From the head of B, it reads as [1,5]. Since the two lists do not intersect, intersectVal must be 0, while skipA and skipB can be arbitrary values.</span><br><span class="line">Explanation: The two lists do not intersect, so return null.</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>Notes:</strong></p>
+<ul>
+<li>If the two linked lists have no intersection at all, return <code>null</code>.</li>
+<li>The linked lists must retain their original structure after the function returns.</li>
+<li>You may assume there are no cycles anywhere in the entire linked structure.</li>
+<li>Your code should preferably run in O(n) time and use only O(1) memory.</li>
+</ul>
 <a id="more"></a>
 
 <p>本题的思路就是对两个链表进行从头到尾的遍历，并且将所得的地址存在两个vector中，然后从后往前比较vector，找到第一个不同的地址的索引，该索引+1就是两个链表的交点地址。</p>

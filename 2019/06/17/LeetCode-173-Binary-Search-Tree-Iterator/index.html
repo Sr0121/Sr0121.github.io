@@ -79,18 +79,20 @@
 
 
 
-<meta name="description" content="题目概述 Implement an iterator over a binary search tree (BST). Your iterator will be initialized with the root node of a BST. Calling next() will return the next smallest number in the BST.">
+<meta name="description" content="题目概述 Implement an iterator over a binary search tree (BST). Your iterator will be initialized with the root node of a BST. Calling next() will return the next smallest number in the BST. Example:  123">
 <meta name="keywords" content="LeetCode,Python">
 <meta property="og:type" content="article">
 <meta property="og:title" content="LeetCode:173. Binary Search Tree Iterator">
 <meta property="og:url" content="https://sr0121.github.io/2019/06/17/LeetCode-173-Binary-Search-Tree-Iterator/index.html">
 <meta property="og:site_name" content="Rong @@@">
-<meta property="og:description" content="题目概述 Implement an iterator over a binary search tree (BST). Your iterator will be initialized with the root node of a BST. Calling next() will return the next smallest number in the BST.">
+<meta property="og:description" content="题目概述 Implement an iterator over a binary search tree (BST). Your iterator will be initialized with the root node of a BST. Calling next() will return the next smallest number in the BST. Example:  123">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-08-18T13:29:01.726Z">
+<meta property="og:image" content="https://assets.leetcode.com/uploads/2018/12/25/bst-tree.png">
+<meta property="og:updated_time" content="2019-08-20T16:17:28.855Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LeetCode:173. Binary Search Tree Iterator">
-<meta name="twitter:description" content="题目概述 Implement an iterator over a binary search tree (BST). Your iterator will be initialized with the root node of a BST. Calling next() will return the next smallest number in the BST.">
+<meta name="twitter:description" content="题目概述 Implement an iterator over a binary search tree (BST). Your iterator will be initialized with the root node of a BST. Calling next() will return the next smallest number in the BST. Example:  123">
+<meta name="twitter:image" content="https://assets.leetcode.com/uploads/2018/12/25/bst-tree.png">
 
 
 
@@ -385,8 +387,19 @@
 
       
         <p><strong>题目概述</strong></p>
-<table><tr><td bgcolor="#EDEDED">Implement an iterator over a binary search tree (BST). Your iterator will be initialized with the root node of a BST.
-Calling next() will return the next smallest number in the BST.</td></tr></table>
+<p>Implement an iterator over a binary search tree (BST). Your iterator will be initialized with the root node of a BST.</p>
+<p>Calling <code>next()</code> will return the next smallest number in the BST.</p>
+<p><strong>Example:</strong></p>
+<p><strong><img src="https://assets.leetcode.com/uploads/2018/12/25/bst-tree.png" alt="img"></strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">BSTIterator iterator = new BSTIterator(root);</span><br><span class="line">iterator.next();    // return 3</span><br><span class="line">iterator.next();    // return 7</span><br><span class="line">iterator.hasNext(); // return true</span><br><span class="line">iterator.next();    // return 9</span><br><span class="line">iterator.hasNext(); // return true</span><br><span class="line">iterator.next();    // return 15</span><br><span class="line">iterator.hasNext(); // return true</span><br><span class="line">iterator.next();    // return 20</span><br><span class="line">iterator.hasNext(); // return false</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>Note:</strong></p>
+<ul>
+<li><code>next()</code> and <code>hasNext()</code> should run in average O(1) time and uses O(<em>h</em>) memory, where <em>h</em> is the height of the tree.</li>
+<li>You may assume that <code>next()</code> call will always be valid, that is, there will be at least a next smallest number in the BST when <code>next()</code> is called.</li>
+</ul>
 <a id="more"></a>
 
 <p>这题我使用了一个DFS来遍历BST，并且把按顺序把树的节点存到了self.nodes的list中。这个类同时还保存了一个当前对象在self.nodes的索引值，如果使用了next方法，就把这个索引值加一，hasnext则判断这个索引值和self.nodes的长度的关系</p>

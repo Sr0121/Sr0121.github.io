@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="题目概述 Given an input string, reverse the string word by word.">
+<meta name="description" content="题目概述 Given an input string, reverse the string word by word. Example 1: 12Input: &amp;quot;the sky is blue&amp;quot;Output: &amp;quot;blue is sky the&amp;quot;  Example 2: 123Input: &amp;quot;  hello world!  &amp;quot;Output">
 <meta name="keywords" content="LeetCode,Python">
 <meta property="og:type" content="article">
 <meta property="og:title" content="LeetCode:151. Reverse Words in a String">
 <meta property="og:url" content="https://sr0121.github.io/2019/06/11/LeetCode-151-Reverse-Words-in-a-String/index.html">
 <meta property="og:site_name" content="Rong @@@">
-<meta property="og:description" content="题目概述 Given an input string, reverse the string word by word.">
+<meta property="og:description" content="题目概述 Given an input string, reverse the string word by word. Example 1: 12Input: &amp;quot;the sky is blue&amp;quot;Output: &amp;quot;blue is sky the&amp;quot;  Example 2: 123Input: &amp;quot;  hello world!  &amp;quot;Output">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-06-11T07:04:24.808Z">
+<meta property="og:updated_time" content="2019-08-20T16:08:44.747Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LeetCode:151. Reverse Words in a String">
-<meta name="twitter:description" content="题目概述 Given an input string, reverse the string word by word.">
+<meta name="twitter:description" content="题目概述 Given an input string, reverse the string word by word. Example 1: 12Input: &amp;quot;the sky is blue&amp;quot;Output: &amp;quot;blue is sky the&amp;quot;  Example 2: 123Input: &amp;quot;  hello world!  &amp;quot;Output">
 
 
 
@@ -385,8 +385,24 @@
 
       
         <p><strong>题目概述</strong></p>
-<table><tr><td bgcolor="#EDEDED">Given an input string, reverse the string word by word.</td></tr></table>
+<p>Given an input string, reverse the string word by word.</p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: &quot;the sky is blue&quot;</span><br><span class="line">Output: &quot;blue is sky the&quot;</span><br></pre></td></tr></table></figure>
 
+<p><strong>Example 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: &quot;  hello world!  &quot;</span><br><span class="line">Output: &quot;world! hello&quot;</span><br><span class="line">Explanation: Your reversed string should not contain leading or trailing spaces.</span><br></pre></td></tr></table></figure>
+
+<p><strong>Example 3:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: &quot;a good   example&quot;</span><br><span class="line">Output: &quot;example good a&quot;</span><br><span class="line">Explanation: You need to reduce multiple spaces between two words to a single space in the reversed string.</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>Note:</strong></p>
+<ul>
+<li>A word is defined as a sequence of non-space characters.</li>
+<li>Input string may contain leading or trailing spaces. However, your reversed string should not contain leading or trailing spaces.</li>
+<li>You need to reduce multiple spaces between two words to a single space in the reversed string.</li>
+</ul>
 <a id="more"></a>
 
 <p>本题用python实现的话其实挺简单的，直接用strip和split方法就可以</p>

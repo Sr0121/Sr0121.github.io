@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="题目概述 Given n points on a 2D plane, find the maximum number of points that lie on the same straight line.">
+<meta name="description" content="题目概述 Given n points on a 2D plane, find the maximum number of points that lie on the same straight line. Example 1: 12345678910Input: [[1,1],[2,2],[3,3]]Output: 3Explanation:^||        o|     o|  o  +">
 <meta name="keywords" content="LeetCode,Python">
 <meta property="og:type" content="article">
 <meta property="og:title" content="LeetCode:149. Max Points on a Line">
 <meta property="og:url" content="https://sr0121.github.io/2019/06/10/LeetCode-149-Max-Points-on-a-Line/index.html">
 <meta property="og:site_name" content="Rong @@@">
-<meta property="og:description" content="题目概述 Given n points on a 2D plane, find the maximum number of points that lie on the same straight line.">
+<meta property="og:description" content="题目概述 Given n points on a 2D plane, find the maximum number of points that lie on the same straight line. Example 1: 12345678910Input: [[1,1],[2,2],[3,3]]Output: 3Explanation:^||        o|     o|  o  +">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-06-10T14:02:36.939Z">
+<meta property="og:updated_time" content="2019-08-20T16:08:01.762Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LeetCode:149. Max Points on a Line">
-<meta name="twitter:description" content="题目概述 Given n points on a 2D plane, find the maximum number of points that lie on the same straight line.">
+<meta name="twitter:description" content="题目概述 Given n points on a 2D plane, find the maximum number of points that lie on the same straight line. Example 1: 12345678910Input: [[1,1],[2,2],[3,3]]Output: 3Explanation:^||        o|     o|  o  +">
 
 
 
@@ -385,9 +385,14 @@
 
       
         <p><strong>题目概述</strong></p>
-<table><tr><td bgcolor="#EDEDED">Given n points on a 2D plane, find the maximum number of points that lie on the same straight line.
-</td></tr></table>
+<p>Given <em>n</em> points on a 2D plane, find the maximum number of points that lie on the same straight line.</p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Input: [[1,1],[2,2],[3,3]]</span><br><span class="line">Output: 3</span><br><span class="line">Explanation:</span><br><span class="line">^</span><br><span class="line">|</span><br><span class="line">|        o</span><br><span class="line">|     o</span><br><span class="line">|  o  </span><br><span class="line">+-------------&gt;</span><br><span class="line">0  1  2  3  4</span><br></pre></td></tr></table></figure>
 
+<p><strong>Example 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Input: [[1,1],[3,2],[5,3],[4,1],[2,3],[1,4]]</span><br><span class="line">Output: 4</span><br><span class="line">Explanation:</span><br><span class="line">^</span><br><span class="line">|</span><br><span class="line">|  o</span><br><span class="line">|     o        o</span><br><span class="line">|        o</span><br><span class="line">|  o        o</span><br><span class="line">+-------------------&gt;</span><br><span class="line">0  1  2  3  4  5  6</span><br></pre></td></tr></table></figure>
+
+<p><strong>NOTE:</strong> input types have been changed on April 15, 2019. Please reset to default code definition to get new method signature.</p>
 <a id="more"></a>
 
 <p>这题比较坑，而且这个hard难度考察的也并不是算法。这题目最直观的想法是通过求两点的直线方程后，对所有点进行遍历并记数。我们需要求到两点之间的斜率等信息。</p>

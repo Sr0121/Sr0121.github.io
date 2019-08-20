@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="题目概述 Given an unsorted array, find the maximum difference between the successive elements in its sorted form. Return 0 if the array contains less than 2 elements.">
+<meta name="description" content="题目概述 Given an unsorted array, find the maximum difference between the successive elements in its sorted form. Return 0 if the array contains less than 2 elements. Example 1: 1234Input: [3,6,9,1]Output">
 <meta name="keywords" content="LeetCode,C++">
 <meta property="og:type" content="article">
 <meta property="og:title" content="LeetCode:164. Maximum Gap">
 <meta property="og:url" content="https://sr0121.github.io/2019/06/14/LeetCode-164-Maximum-Gap/index.html">
 <meta property="og:site_name" content="Rong @@@">
-<meta property="og:description" content="题目概述 Given an unsorted array, find the maximum difference between the successive elements in its sorted form. Return 0 if the array contains less than 2 elements.">
+<meta property="og:description" content="题目概述 Given an unsorted array, find the maximum difference between the successive elements in its sorted form. Return 0 if the array contains less than 2 elements. Example 1: 1234Input: [3,6,9,1]Output">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-06-14T14:42:10.893Z">
+<meta property="og:updated_time" content="2019-08-20T16:13:17.145Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LeetCode:164. Maximum Gap">
-<meta name="twitter:description" content="题目概述 Given an unsorted array, find the maximum difference between the successive elements in its sorted form. Return 0 if the array contains less than 2 elements.">
+<meta name="twitter:description" content="题目概述 Given an unsorted array, find the maximum difference between the successive elements in its sorted form. Return 0 if the array contains less than 2 elements. Example 1: 1234Input: [3,6,9,1]Output">
 
 
 
@@ -385,10 +385,19 @@
 
       
         <p><strong>题目概述</strong></p>
-<table><tr><td bgcolor="#EDEDED">Given an unsorted array, find the maximum difference between the successive elements in its sorted form.
-Return 0 if the array contains less than 2 elements.
-</td></tr></table>
+<p>Given an unsorted array, find the maximum difference between the successive elements in its sorted form.</p>
+<p>Return 0 if the array contains less than 2 elements.</p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Input: [3,6,9,1]</span><br><span class="line">Output: 3</span><br><span class="line">Explanation: The sorted form of the array is [1,3,6,9], either</span><br><span class="line">             (3,6) or (6,9) has the maximum difference 3.</span><br></pre></td></tr></table></figure>
 
+<p><strong>Example 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: [10]</span><br><span class="line">Output: 0</span><br><span class="line">Explanation: The array contains less than 2 elements, therefore return 0.</span><br></pre></td></tr></table></figure>
+
+<p><strong>Note:</strong></p>
+<ul>
+<li>You may assume all elements in the array are non-negative integers and fit in the 32-bit signed integer range.</li>
+<li>Try to solve it in linear time/space.</li>
+</ul>
 <a id="more"></a>
 
 <p>本题最难的地方就是要求时间和空间复杂度都为O(n)</p>

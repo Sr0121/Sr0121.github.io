@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="题目概述 Design a stack that supports push, pop, top, and retrieving the minimum element in constant time.     push(x) -- Push element x onto stack.     pop() -- Removes the element on top of the stack.">
+<meta name="description" content="题目概述 Design a stack that supports push, pop, top, and retrieving the minimum element in constant time.  push(x) – Push element x onto stack. pop() – Removes the element on top of the stack. top() – Ge">
 <meta name="keywords" content="LeetCode,C++">
 <meta property="og:type" content="article">
 <meta property="og:title" content="LeetCode:155. Min Stack">
 <meta property="og:url" content="https://sr0121.github.io/2019/06/12/LeetCode-155-Min-Stack/index.html">
 <meta property="og:site_name" content="Rong @@@">
-<meta property="og:description" content="题目概述 Design a stack that supports push, pop, top, and retrieving the minimum element in constant time.     push(x) -- Push element x onto stack.     pop() -- Removes the element on top of the stack.">
+<meta property="og:description" content="题目概述 Design a stack that supports push, pop, top, and retrieving the minimum element in constant time.  push(x) – Push element x onto stack. pop() – Removes the element on top of the stack. top() – Ge">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-06-12T08:23:15.971Z">
+<meta property="og:updated_time" content="2019-08-20T16:11:50.799Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LeetCode:155. Min Stack">
-<meta name="twitter:description" content="题目概述 Design a stack that supports push, pop, top, and retrieving the minimum element in constant time.     push(x) -- Push element x onto stack.     pop() -- Removes the element on top of the stack.">
+<meta name="twitter:description" content="题目概述 Design a stack that supports push, pop, top, and retrieving the minimum element in constant time.  push(x) – Push element x onto stack. pop() – Removes the element on top of the stack. top() – Ge">
 
 
 
@@ -385,11 +385,15 @@
 
       
         <p><strong>题目概述</strong></p>
-<table><tr><td bgcolor="#EDEDED">Design a stack that supports push, pop, top, and retrieving the minimum element in constant time.
-    push(x) -- Push element x onto stack.
-    pop() -- Removes the element on top of the stack.
-    top() -- Get the top element.
-    getMin() -- Retrieve the minimum element in the stack.</td></tr></table>
+<p>Design a stack that supports push, pop, top, and retrieving the minimum element in constant time.</p>
+<ul>
+<li>push(x) – Push element x onto stack.</li>
+<li>pop() – Removes the element on top of the stack.</li>
+<li>top() – Get the top element.</li>
+<li>getMin() – Retrieve the minimum element in the stack.</li>
+</ul>
+<p><strong>Example:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">MinStack minStack = new MinStack();</span><br><span class="line">minStack.push(-2);</span><br><span class="line">minStack.push(0);</span><br><span class="line">minStack.push(-3);</span><br><span class="line">minStack.getMin();   --&gt; Returns -3.</span><br><span class="line">minStack.pop();</span><br><span class="line">minStack.top();      --&gt; Returns 0.</span><br><span class="line">minStack.getMin();   --&gt; Returns -2.</span><br></pre></td></tr></table></figure>
 
 <a id="more"></a>
 

@@ -387,8 +387,14 @@
       
         
           <p><strong>题目概述</strong></p>
-<table><tr><td bgcolor="#EDEDED">Given n points on a 2D plane, find the maximum number of points that lie on the same straight line.
-</td></tr></table>
+<p>Given <em>n</em> points on a 2D plane, find the maximum number of points that lie on the same straight line.</p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Input: [[1,1],[2,2],[3,3]]</span><br><span class="line">Output: 3</span><br><span class="line">Explanation:</span><br><span class="line">^</span><br><span class="line">|</span><br><span class="line">|        o</span><br><span class="line">|     o</span><br><span class="line">|  o  </span><br><span class="line">+-------------&gt;</span><br><span class="line">0  1  2  3  4</span><br></pre></td></tr></table></figure>
+
+<p><strong>Example 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Input: [[1,1],[3,2],[5,3],[4,1],[2,3],[1,4]]</span><br><span class="line">Output: 4</span><br><span class="line">Explanation:</span><br><span class="line">^</span><br><span class="line">|</span><br><span class="line">|  o</span><br><span class="line">|     o        o</span><br><span class="line">|        o</span><br><span class="line">|  o        o</span><br><span class="line">+-------------------&gt;</span><br><span class="line">0  1  2  3  4  5  6</span><br></pre></td></tr></table></figure>
+
+<p><strong>NOTE:</strong> input types have been changed on April 15, 2019. Please reset to default code definition to get new method signature.</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2019/06/10/LeetCode-149-Max-Points-on-a-Line/#more" rel="contents">
@@ -535,8 +541,12 @@
       
         
           <p><strong>题目概述</strong></p>
-<table><tr><td bgcolor="#EDEDED">Sort a linked list in O(n log n) time using constant space complexity.
-</td></tr></table>
+<p>Sort a linked list in <em>O</em>(<em>n</em> log <em>n</em>) time using constant space complexity.</p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: 4-&gt;2-&gt;1-&gt;3</span><br><span class="line">Output: 1-&gt;2-&gt;3-&gt;4</span><br></pre></td></tr></table></figure>
+
+<p><strong>Example 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: -1-&gt;5-&gt;3-&gt;4-&gt;0</span><br><span class="line">Output: -1-&gt;0-&gt;3-&gt;4-&gt;5</span><br></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2019/06/09/LeetCode-148-Sort-List/#more" rel="contents">
@@ -683,12 +693,14 @@
       
         
           <p><strong>题目概述</strong></p>
-<table><tr><td bgcolor="#EDEDED">Sort a linked list using insertion sort.
-A graphical example of insertion sort. The partial sorted list (black) initially contains only the first element in the list.
-With each iteration one element (red) is removed from the input data and inserted in-place into the sorted list
-</td></tr></table>
-
-<p><img src="https://upload.wikimedia.org/wikipedia/commons/0/0f/Insertion-sort-example-300px.gif" alt="img"></p>
+<p>Sort a linked list using insertion sort.</p>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/0/0f/Insertion-sort-example-300px.gif" alt="img"><br>A graphical example of insertion sort. The partial sorted list (black) initially contains only the first element in the list.<br>With each iteration one element (red) is removed from the input data and inserted in-place into the sorted list</p>
+<p><strong>Algorithm of Insertion Sort:</strong></p>
+<ol>
+<li>Insertion sort iterates, consuming one input element each repetition, and growing a sorted output list.</li>
+<li>At each iteration, insertion sort removes one element from the input data, finds the location it belongs within the sorted list, and inserts it there.</li>
+<li>It repeats until no input elements remain.</li>
+</ol>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2019/06/09/LeetCode-147-Insertion-Sort-List/#more" rel="contents">
