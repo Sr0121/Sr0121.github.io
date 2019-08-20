@@ -1,9 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[LeetCode:181. Employees Earning More Than Their Managers]]></title>
+    <url>%2F2019%2F08%2F20%2FLeetCode-181-Employees-Earning-More-Than-Their-Managers%2F</url>
+    <content type="text"><![CDATA[题目描述 The Employee table holds all employees including their managers. Every employee has an Id, and there is also a column for the manager Id. 12345678+----+-------+--------+-----------+| Id | Name | Salary | ManagerId |+----+-------+--------+-----------+| 1 | Joe | 70000 | 3 || 2 | Henry | 80000 | 4 || 3 | Sam | 60000 | NULL || 4 | Max | 90000 | NULL |+----+-------+--------+-----------+ Given the Employee table, write a SQL query that finds out employees who earn more than their managers. For the above table, Joe is the only employee who earns more than his manager. 12345+----------+| Employee |+----------+| Joe |+----------+ 在where语句中查找出每行对应的manager的salary后进行比较即可。 代码实现 123select s.name as Employeefrom Employee as swhere s.Salary &gt; (select t.Salary from Employee as t where t.id = s.managerid)]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>LeetCode</tag>
+        <tag>SQL</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LeetCode:179. Largest Number]]></title>
+    <url>%2F2019%2F08%2F20%2FLeetCode-179-Largest-Number%2F</url>
+    <content type="text"><![CDATA[题目描述 Given a list of non negative integers, arrange them such that they form the largest number. Example 1: 12Input: [10,2]Output: &quot;210&quot; Example 2: 12Input: [3,30,34,5,9]Output: &quot;9534330&quot; 题目要求对一串数组进行重新排列，让他们组合成最大的数字。比如[10,2]排列成”210”，[3,30,34,5,9]排列成”9534330”。 我们需要对每个字符的位数依次比较，比如[3,30,34,5,9]，第一位最大的是9，那么9就一定排在第一个，第一位第二大的是5，那么5就排在第二个，第三大的是3，然后就比第二位，于是第三个数字就是34…事实上，对于字符串a和b来说，如果a+b大于b+a，那么在最终排列的时候，a一定排在b的前面。 因此只需要实现一个compare函数，利用python内置的sort进行快排，就可以很快地得到我们需要的排序结果。最后注意要删除最左边的”0”，以及确保字符串不为空 代码实现 12345678910111213141516171819202122from functools import cmp_to_keyclass Solution: def largestNumber(self, nums: List[int]) -&gt; str: def compare(x, y): if int(str(x)+str(y)) &gt; int(str(y)+str(x)): return 1 elif int(str(x)+str(y)) &lt; int(str(y)+str(x)): return -1 else: return 0 nums = sorted(nums, key=cmp_to_key(compare)) result = "" for i in range(len(nums)-1, -1, -1): result += str(nums[i]) result = result.lstrip("0") result = "0" if result == "" else result return result]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>LeetCode</tag>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[LeetCode:178. Rank Scores]]></title>
     <url>%2F2019%2F08%2F19%2FLeetCode-178-Rank-Scores%2F</url>
-    <content type="text"><![CDATA[题目描述 Write a SQL query to rank scores. If there is a tie between two scores, both should have the same ranking. Note that after a tie, the next ranking number should be the next consecutive integer value. In other words, there should be no "holes" between ranks. +----+-------+ | Id | Score | +----+-------+ | 1 | 3.50 | | 2 | 3.65 | | 3 | 4.00 | | 4 | 3.85 | | 5 | 4.00 | | 6 | 3.65 | +----+-------+ For example, given the above Scores table, your query should generate the following report (order by highest score): +-------+------+ | Score | Rank | +-------+------+ | 4.00 | 1 | | 4.00 | 1 | | 3.85 | 2 | | 3.65 | 3 | | 3.65 | 3 | | 3.50 | 4 | +-------+------+ 这题的思路就是构建一张空的表格t，该表格中的score分数由原表格s生成，但是score唯一。 然后比较两张表格。对于每个s中的分数，需要统计t中比s的score更大或相等的数字有几个。 这里要注意的就是需要加上group by s.id的语句，这里的group by的功能大概就是为了在输出的时候，确定每个id都输出的意思。不加group by则只会输出一行。 代码实现 1234567select s.Score, count(t.Score) as Rankfrom Scores as s,(select distinct Score from Scores) as t where s.Score &lt;= t.scoregroup by s.idorder by s.Score desc;]]></content>
+    <content type="text"><![CDATA[题目描述 Write a SQL query to rank scores. If there is a tie between two scores, both should have the same ranking. Note that after a tie, the next ranking number should be the next consecutive integer value. In other words, there should be no “holes” between ranks. 12345678910+----+-------+| Id | Score |+----+-------+| 1 | 3.50 || 2 | 3.65 || 3 | 4.00 || 4 | 3.85 || 5 | 4.00 || 6 | 3.65 |+----+-------+ For example, given the above Scores table, your query should generate the following report (order by highest score): 12345678910+-------+------+| Score | Rank |+-------+------+| 4.00 | 1 || 4.00 | 1 || 3.85 | 2 || 3.65 | 3 || 3.65 | 3 || 3.50 | 4 |+-------+------+ 这题的思路就是构建一张空的表格t，该表格中的score分数由原表格s生成，但是score唯一。 然后比较两张表格。对于每个s中的分数，需要统计t中比s的score更大或相等的数字有几个。 这里要注意的就是需要加上group by s.id的语句，这里的group by的功能大概就是为了在输出的时候，确定每个id都输出的意思。不加group by则只会输出一行。 代码实现 1234567select s.Score, count(t.Score) as Rankfrom Scores as s,(select distinct Score from Scores) as t where s.Score &lt;= t.scoregroup by s.idorder by s.Score desc;]]></content>
       <categories>
         <category>LeetCode</category>
       </categories>
@@ -15,7 +39,7 @@
   <entry>
     <title><![CDATA[LeetCode:177. Nth Highest Salary]]></title>
     <url>%2F2019%2F08%2F19%2FLeetCode-177-Nth-Highest-Salary%2F</url>
-    <content type="text"><![CDATA[题目描述 Write a SQL query to get the nth highest salary from the Employee table. 这里需要使用函数实现查询第N大的salary，考察的是对limit的使用。 limit n, m表示除去前n项后，再输出m项，因此在这里需要limit N-1, 1就可以满足要求。但是由于limit语句中不能做算术操作，因此要将N-1赋值给另外一个变量后M后，再使用limit M, 1。 赋值的时候注意SQL是大小写不敏感的。 代码实现 123456789CREATE FUNCTION getNthHighestSalary(N INT) RETURNS INTBEGINdeclare M int;set M = N-1; RETURN ( # Write your MySQL query statement below. select distinct Salary from Employee order by Salary desc limit M, 1 );END]]></content>
+    <content type="text"><![CDATA[题目描述 Write a SQL query to get the nth highest salary from the Employee table. 1234567+----+--------+| Id | Salary |+----+--------+| 1 | 100 || 2 | 200 || 3 | 300 |+----+--------+ For example, given the above Employee table, the nth highest salary where n = 2 is 200. If there is no nth highest salary, then the query should return null. 12345+------------------------+| getNthHighestSalary(2) |+------------------------+| 200 |+------------------------+ 这里需要使用函数实现查询第N大的salary，考察的是对limit的使用。 limit n, m表示除去前n项后，再输出m项，因此在这里需要limit N-1, 1就可以满足要求。但是由于limit语句中不能做算术操作，因此要将N-1赋值给另外一个变量后M后，再使用limit M, 1。 赋值的时候注意SQL是大小写不敏感的。 代码实现 123456789CREATE FUNCTION getNthHighestSalary(N INT) RETURNS INTBEGINdeclare M int;set M = N-1; RETURN ( # Write your MySQL query statement below. select distinct Salary from Employee order by Salary desc limit M, 1 );END]]></content>
       <categories>
         <category>LeetCode</category>
       </categories>
@@ -27,7 +51,7 @@
   <entry>
     <title><![CDATA[LeetCode:176. Second Highest Salary]]></title>
     <url>%2F2019%2F08%2F19%2FLeetCode-176-Second-Highest-Salary%2F</url>
-    <content type="text"><![CDATA[题目描述 Write a SQL query to get the second highest salary from the Employee table. 查找第二大的元素，只需要在where语句中过滤掉最大的元素后再使用max即可 代码实现 1select max(Salary) as SecondHighestSalary from Employee where Salary &lt; (select max(Salary) from Employee)]]></content>
+    <content type="text"><![CDATA[题目描述 Write a SQL query to get the second highest salary from the Employee table. 1234567+----+--------+| Id | Salary |+----+--------+| 1 | 100 || 2 | 200 || 3 | 300 |+----+--------+ For example, given the above Employee table, the query should return 200 as the second highest salary. If there is no second highest salary, then the query should return null. 12345+---------------------+| SecondHighestSalary |+---------------------+| 200 |+---------------------+ 查找第二大的元素，只需要在where语句中过滤掉最大的元素后再使用max即可 代码实现 1select max(Salary) as SecondHighestSalary from Employee where Salary &lt; (select max(Salary) from Employee)]]></content>
       <categories>
         <category>LeetCode</category>
       </categories>

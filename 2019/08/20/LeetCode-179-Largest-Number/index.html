@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="题目描述 Given a 2D board and a list of words from the dictionary, find all words in the board.     Each word must be constructed from letters of sequentially adjacent cell, where &quot;adjacent&quot; cells are tho">
+<meta name="description" content="题目描述 Given a list of non negative integers, arrange them such that they form the largest number. Example 1: 12Input: [10,2]Output: &amp;quot;210&amp;quot;  Example 2: 12Input: [3,30,34,5,9]Output: &amp;quot;95343">
 <meta name="keywords" content="LeetCode,Python">
 <meta property="og:type" content="article">
-<meta property="og:title" content="LeetCode:212. Word Search II">
-<meta property="og:url" content="https://sr0121.github.io/2019/06/26/LeetCode-212-Word-Search-II/index.html">
+<meta property="og:title" content="LeetCode:179. Largest Number">
+<meta property="og:url" content="https://sr0121.github.io/2019/08/20/LeetCode-179-Largest-Number/index.html">
 <meta property="og:site_name" content="Rong @@@">
-<meta property="og:description" content="题目描述 Given a 2D board and a list of words from the dictionary, find all words in the board.     Each word must be constructed from letters of sequentially adjacent cell, where &quot;adjacent&quot; cells are tho">
+<meta property="og:description" content="题目描述 Given a list of non negative integers, arrange them such that they form the largest number. Example 1: 12Input: [10,2]Output: &amp;quot;210&amp;quot;  Example 2: 12Input: [3,30,34,5,9]Output: &amp;quot;95343">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-08-18T13:43:16.905Z">
+<meta property="og:updated_time" content="2019-08-20T15:52:30.406Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="LeetCode:212. Word Search II">
-<meta name="twitter:description" content="题目描述 Given a 2D board and a list of words from the dictionary, find all words in the board.     Each word must be constructed from letters of sequentially adjacent cell, where &quot;adjacent&quot; cells are tho">
+<meta name="twitter:title" content="LeetCode:179. Largest Number">
+<meta name="twitter:description" content="题目描述 Given a list of non negative integers, arrange them such that they form the largest number. Example 1: 12Input: [10,2]Output: &amp;quot;210&amp;quot;  Example 2: 12Input: [3,30,34,5,9]Output: &amp;quot;95343">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="https://sr0121.github.io/2019/06/26/LeetCode-212-Word-Search-II/">
+  <link rel="canonical" href="https://sr0121.github.io/2019/08/20/LeetCode-179-Largest-Number/">
 
 
 
 
 
-  <title>LeetCode:212. Word Search II | Rong @@@</title>
+  <title>LeetCode:179. Largest Number | Rong @@@</title>
   
 
 
@@ -295,7 +295,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://sr0121.github.io/2019/06/26/LeetCode-212-Word-Search-II/">
+    <link itemprop="mainEntityOfPage" href="https://sr0121.github.io/2019/08/20/LeetCode-179-Largest-Number/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Rong Song">
@@ -312,7 +312,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">LeetCode:212. Word Search II</h1>
+          <h1 class="post-title" itemprop="name headline">LeetCode:179. Largest Number</h1>
         
 
         <div class="post-meta">
@@ -324,8 +324,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-26T23:35:40+08:00">
-                2019-06-26
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-20T11:26:05+08:00">
+                2019-08-20
               </time>
             
 
@@ -385,16 +385,20 @@
 
       
         <p><strong>题目描述</strong></p>
-<table><tr><td bgcolor="#EDEDED">Given a 2D board and a list of words from the dictionary, find all words in the board.
-    Each word must be constructed from letters of sequentially adjacent cell, where "adjacent" cells are those horizontally or vertically neighboring. The same letter cell may not be used more than once in a word.</td></tr></table>
+<p>Given a list of non negative integers, arrange them such that they form the largest number.</p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: [10,2]</span><br><span class="line">Output: &quot;210&quot;</span><br></pre></td></tr></table></figure>
+
+<p><strong>Example 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: [3,30,34,5,9]</span><br><span class="line">Output: &quot;9534330&quot;</span><br></pre></td></tr></table></figure>
 
 <a id="more"></a>
 
-<p>这题我一开始尝试暴力搜索，需要对所有字符串，board的长和宽都进行一次循环遍历。最后出了很多bug，而且超时。</p>
-<p>后来查阅了网上的一些资料，才知道这题也要使用之前的Trie树来进行搜索。这样可以减少一层的循环。</p>
-<p>所以一开始，需要把word里的所有字符串存到Trie中，然后对board中的所有元素依此进行深度优先搜索，查找当前的字符是否在Trie当前节点的子节点中，如果没有则直接返回，如果有，则让当前Trie的节点变为该子节点，然后查找当前字符的上下左右四个相邻的字符是否在新的Trie节点的子节点中，以此类推，实现一个深度优先搜索。如果当前节点是某个Trie中的字符串的结束字符，则将该字符串存入结果中，最终返回结果。</p>
+<p>题目要求对一串数组进行重新排列，让他们组合成最大的数字。比如[10,2]排列成”210”，[3,30,34,5,9]排列成”9534330”。</p>
+<p>我们需要对每个字符的位数依次比较，比如[3,30,34,5,9]，第一位最大的是9，那么9就一定排在第一个，第一位第二大的是5，那么5就排在第二个，第三大的是3，然后就比第二位，于是第三个数字就是34…事实上，对于字符串a和b来说，如果a+b大于b+a，那么在最终排列的时候，a一定排在b的前面。</p>
+<p>因此只需要实现一个compare函数，利用python内置的sort进行快排，就可以很快地得到我们需要的排序结果。最后注意要删除最左边的”0”，以及确保字符串不为空</p>
 <p><strong>代码实现</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Node</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, val)</span>:</span></span><br><span class="line">        self.val = val</span><br><span class="line">        self.next = [<span class="literal">None</span>] * <span class="number">26</span></span><br><span class="line">        self.end = <span class="literal">False</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Trie</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        Initialize your data structure here.</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        self.start = Node(<span class="string">""</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">insert</span><span class="params">(self, word: str)</span> -&gt; <span class="keyword">None</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        Adds a word into the data structure.</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        this = self.start</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(word)):</span><br><span class="line">            index = ord(word[i]) - ord(<span class="string">'a'</span>)</span><br><span class="line">            <span class="keyword">if</span> this.next[index] == <span class="literal">None</span>:</span><br><span class="line">                this.next[index] = Node(this.val + word[i])</span><br><span class="line">            this = this.next[index]</span><br><span class="line"></span><br><span class="line">        this.end = <span class="literal">True</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">findWords</span><span class="params">(self, board: <span class="string">'list[list[str]]'</span>, words: <span class="string">'list[str]'</span>)</span> -&gt; 'list[str]':</span></span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">dfs</span><span class="params">(root, x, y)</span>:</span></span><br><span class="line">            <span class="keyword">if</span> isVisited[x][y] == <span class="number">1</span>:</span><br><span class="line">                <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> root.end == <span class="literal">True</span>:</span><br><span class="line">                result.append(root.val)</span><br><span class="line">                root.end = <span class="literal">False</span></span><br><span class="line"></span><br><span class="line">            isVisited[x][y] = <span class="number">1</span></span><br><span class="line"></span><br><span class="line">            direct = [[<span class="number">0</span>, <span class="number">1</span>], [<span class="number">1</span>, <span class="number">0</span>], [<span class="number">0</span>, <span class="number">-1</span>], [<span class="number">-1</span>, <span class="number">0</span>]]</span><br><span class="line"></span><br><span class="line">            <span class="keyword">for</span> dir <span class="keyword">in</span> direct:</span><br><span class="line">                newx = x + dir[<span class="number">0</span>]</span><br><span class="line">                newy = y + dir[<span class="number">1</span>]</span><br><span class="line">                <span class="keyword">if</span> newx &lt; <span class="number">0</span> <span class="keyword">or</span> newx &gt;= len(board) <span class="keyword">or</span> newy &lt; <span class="number">0</span> <span class="keyword">or</span> newy &gt;= len(board[<span class="number">0</span>]):</span><br><span class="line">                    <span class="keyword">continue</span></span><br><span class="line">                <span class="keyword">if</span> root.next[ord(board[newx][newy]) - ord(<span class="string">'a'</span>)] != <span class="literal">None</span>:</span><br><span class="line">                    dfs(root.next[ord(board[newx][newy]) - ord(<span class="string">'a'</span>)], newx, newy)</span><br><span class="line"></span><br><span class="line">            isVisited[x][y] = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">        trie = Trie()</span><br><span class="line">        <span class="keyword">for</span> word <span class="keyword">in</span> words:</span><br><span class="line">            trie.insert(word)</span><br><span class="line"></span><br><span class="line">        result = []</span><br><span class="line">        <span class="keyword">if</span> len(board) == <span class="number">0</span> <span class="keyword">or</span> len(board[<span class="number">0</span>]) == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> result</span><br><span class="line"></span><br><span class="line">        isVisited = [[<span class="number">0</span>] * len(board[<span class="number">0</span>]) <span class="keyword">for</span> _ <span class="keyword">in</span> range(len(board))]</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(board)):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(len(board[<span class="number">0</span>])):</span><br><span class="line">                <span class="keyword">if</span> trie.start.next[ord(board[i][j]) - ord(<span class="string">'a'</span>)] != <span class="literal">None</span>:</span><br><span class="line">                    dfs(trie.start.next[ord(board[i][j]) - ord(<span class="string">'a'</span>)], i, j)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> result</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> functools <span class="keyword">import</span> cmp_to_key</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">largestNumber</span><span class="params">(self, nums: List[int])</span> -&gt; str:</span></span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">compare</span><span class="params">(x, y)</span>:</span></span><br><span class="line">            <span class="keyword">if</span> int(str(x)+str(y)) &gt; int(str(y)+str(x)):</span><br><span class="line">                <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">            <span class="keyword">elif</span> int(str(x)+str(y)) &lt; int(str(y)+str(x)):</span><br><span class="line">                <span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        </span><br><span class="line">        nums = sorted(nums, key=cmp_to_key(compare))</span><br><span class="line">        </span><br><span class="line">        result = <span class="string">""</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(nums)<span class="number">-1</span>, <span class="number">-1</span>, <span class="number">-1</span>):</span><br><span class="line">            result += str(nums[i])</span><br><span class="line">        </span><br><span class="line">        result = result.lstrip(<span class="string">"0"</span>)</span><br><span class="line">        result = <span class="string">"0"</span> <span class="keyword">if</span> result == <span class="string">""</span> <span class="keyword">else</span> result</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> result</span><br></pre></td></tr></table></figure>
 
 
       
@@ -428,8 +432,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/06/25/LeetCode-211-Add-and-Search-Word-Data-structure-design/" rel="next" title="LeetCode:211. Add and Search Word - Data structure design">
-                <i class="fa fa-chevron-left"></i> LeetCode:211. Add and Search Word - Data structure design
+              <a href="/2019/08/19/LeetCode-178-Rank-Scores/" rel="next" title="LeetCode:178. Rank Scores">
+                <i class="fa fa-chevron-left"></i> LeetCode:178. Rank Scores
               </a>
             
           </div>
@@ -438,8 +442,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/06/27/LeetCode-213-House-Robber-II/" rel="prev" title="LeetCode:213. House Robber II">
-                LeetCode:213. House Robber II <i class="fa fa-chevron-right"></i>
+              <a href="/2019/08/20/LeetCode-181-Employees-Earning-More-Than-Their-Managers/" rel="prev" title="LeetCode:181. Employees Earning More Than Their Managers">
+                LeetCode:181. Employees Earning More Than Their Managers <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
