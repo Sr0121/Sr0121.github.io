@@ -1,6 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[LeetCode:184. Department Highest Salary]]></title>
+    <url>%2F2019%2F08%2F22%2FLeetCode-184-Department-Highest-Salary%2F</url>
+    <content type="text"><![CDATA[题目描述 The Employee table holds all employees. Every employee has an Id, a salary, and there is also a column for the department Id. 123456789+----+-------+--------+--------------+| Id | Name | Salary | DepartmentId |+----+-------+--------+--------------+| 1 | Joe | 70000 | 1 || 2 | Jim | 90000 | 1 || 3 | Henry | 80000 | 2 || 4 | Sam | 60000 | 2 || 5 | Max | 90000 | 1 |+----+-------+--------+--------------+ The Department table holds all departments of the company. 123456+----+----------+| Id | Name |+----+----------+| 1 | IT || 2 | Sales |+----+----------+ Write a SQL query to find employees who have the highest salary in each of the departments. For the above tables, your SQL query should return the following rows (order of rows does not matter). 1234567+------------+----------+--------+| Department | Employee | Salary |+------------+----------+--------+| IT | Max | 90000 || IT | Jim | 90000 || Sales | Henry | 80000 |+------------+----------+--------+ Explanation: Max and Jim both have the highest salary in the IT department and Henry has the highest salary in the Sales department. 首先需要把两张表根据departmentid join起来，接着需要在employee表中找到每个department中salary的最高值，并且记录其对应的departmentid，最后在join起来的最终结果中寻找每个(departmentid, 最高的salary)所对应的组。 代码实现 123456789select department.name as Department, employee.name as Employee, Salaryfrom employeejoin departmenton employee.departmentid = department.idwhere (employee.departmentid, Salary) in ( select departmentid, max(salary) from employee group by departmentid);]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>LeetCode</tag>
+        <tag>SQL</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LeetCode:183. Customers Who Never Order]]></title>
+    <url>%2F2019%2F08%2F22%2FLeetCode-183-Customers-Who-Never-Order%2F</url>
+    <content type="text"><![CDATA[题目描述 Suppose that a website contains two tables, the Customers table and the Orders table. Write a SQL query to find all customers who never order anything. Table: Customers. 12345678+----+-------+| Id | Name |+----+-------+| 1 | Joe || 2 | Henry || 3 | Sam || 4 | Max |+----+-------+ Table: Orders. 123456+----+------------+| Id | CustomerId |+----+------------+| 1 | 3 || 2 | 1 |+----+------------+ Using the above tables as example, return the following: 123456+-----------+| Customers |+-----------+| Henry || Max |+-----------+ 这题考查的是sql中in的用法，找到customers中不在orders的那些id就可以了 123select name as Customersfrom customerswhere id not in (select customerid from orders);]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>LeetCode</tag>
+        <tag>SQL</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LeetCode:182. Duplicate Emails]]></title>
+    <url>%2F2019%2F08%2F22%2FLeetCode-182-Duplicate-Emails%2F</url>
+    <content type="text"><![CDATA[题目描述 Write a SQL query to find all duplicate emails in a table named Person. 1234567+----+---------+| Id | Email |+----+---------+| 1 | a@b.com || 2 | c@d.com || 3 | a@b.com |+----+---------+ For example, your query should return the following for the above table: 12345+---------+| Email |+---------+| a@b.com |+---------+ 这题考查having语句的用法 代码实现 1234select email from person group by emailhaving count(email) &gt; 1;]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>LeetCode</tag>
+        <tag>SQL</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[LeetCode:181. Employees Earning More Than Their Managers]]></title>
     <url>%2F2019%2F08%2F20%2FLeetCode-181-Employees-Earning-More-Than-Their-Managers%2F</url>
     <content type="text"><![CDATA[题目描述 The Employee table holds all employees including their managers. Every employee has an Id, and there is also a column for the manager Id. 12345678+----+-------+--------+-----------+| Id | Name | Salary | ManagerId |+----+-------+--------+-----------+| 1 | Joe | 70000 | 3 || 2 | Henry | 80000 | 4 || 3 | Sam | 60000 | NULL || 4 | Max | 90000 | NULL |+----+-------+--------+-----------+ Given the Employee table, write a SQL query that finds out employees who earn more than their managers. For the above table, Joe is the only employee who earns more than his manager. 12345+----------+| Employee |+----------+| Joe |+----------+ 在where语句中查找出每行对应的manager的salary后进行比较即可。 代码实现 123select s.name as Employeefrom Employee as swhere s.Salary &gt; (select t.Salary from Employee as t where t.id = s.managerid)]]></content>

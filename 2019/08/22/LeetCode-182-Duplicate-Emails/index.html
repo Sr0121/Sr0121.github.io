@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="题目描述 Write a SQL query to rank scores. If there is a tie between two scores, both should have the same ranking. Note that after a tie, the next ranking number should be the next consecutive integer va">
+<meta name="description" content="题目描述 Write a SQL query to find all duplicate emails in a table named Person. 1234567+----+---------+| Id | Email   |+----+---------+| 1  | a@b.com || 2  | c@d.com || 3  | a@b.com |+----+---------+  Fo">
 <meta name="keywords" content="LeetCode,SQL">
 <meta property="og:type" content="article">
-<meta property="og:title" content="LeetCode:178. Rank Scores">
-<meta property="og:url" content="https://sr0121.github.io/2019/08/19/LeetCode-178-Rank-Scores/index.html">
+<meta property="og:title" content="LeetCode:182. Duplicate Emails">
+<meta property="og:url" content="https://sr0121.github.io/2019/08/22/LeetCode-182-Duplicate-Emails/index.html">
 <meta property="og:site_name" content="Rong @@@">
-<meta property="og:description" content="题目描述 Write a SQL query to rank scores. If there is a tie between two scores, both should have the same ranking. Note that after a tie, the next ranking number should be the next consecutive integer va">
+<meta property="og:description" content="题目描述 Write a SQL query to find all duplicate emails in a table named Person. 1234567+----+---------+| Id | Email   |+----+---------+| 1  | a@b.com || 2  | c@d.com || 3  | a@b.com |+----+---------+  Fo">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-08-20T15:52:48.164Z">
+<meta property="og:updated_time" content="2019-08-22T07:45:57.843Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="LeetCode:178. Rank Scores">
-<meta name="twitter:description" content="题目描述 Write a SQL query to rank scores. If there is a tie between two scores, both should have the same ranking. Note that after a tie, the next ranking number should be the next consecutive integer va">
+<meta name="twitter:title" content="LeetCode:182. Duplicate Emails">
+<meta name="twitter:description" content="题目描述 Write a SQL query to find all duplicate emails in a table named Person. 1234567+----+---------+| Id | Email   |+----+---------+| 1  | a@b.com || 2  | c@d.com || 3  | a@b.com |+----+---------+  Fo">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="https://sr0121.github.io/2019/08/19/LeetCode-178-Rank-Scores/">
+  <link rel="canonical" href="https://sr0121.github.io/2019/08/22/LeetCode-182-Duplicate-Emails/">
 
 
 
 
 
-  <title>LeetCode:178. Rank Scores | Rong @@@</title>
+  <title>LeetCode:182. Duplicate Emails | Rong @@@</title>
   
 
 
@@ -295,7 +295,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://sr0121.github.io/2019/08/19/LeetCode-178-Rank-Scores/">
+    <link itemprop="mainEntityOfPage" href="https://sr0121.github.io/2019/08/22/LeetCode-182-Duplicate-Emails/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Rong Song">
@@ -312,7 +312,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">LeetCode:178. Rank Scores</h1>
+          <h1 class="post-title" itemprop="name headline">LeetCode:182. Duplicate Emails</h1>
         
 
         <div class="post-meta">
@@ -324,8 +324,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-19T22:57:12+08:00">
-                2019-08-19
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-22T15:44:28+08:00">
+                2019-08-22
               </time>
             
 
@@ -385,19 +385,17 @@
 
       
         <p><strong>题目描述</strong></p>
-<p>Write a SQL query to rank scores. If there is a tie between two scores, both should have the same ranking. Note that after a tie, the next ranking number should be the next consecutive integer value. In other words, there should be no “holes” between ranks.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">+----+-------+</span><br><span class="line">| Id | Score |</span><br><span class="line">+----+-------+</span><br><span class="line">| 1  | 3.50  |</span><br><span class="line">| 2  | 3.65  |</span><br><span class="line">| 3  | 4.00  |</span><br><span class="line">| 4  | 3.85  |</span><br><span class="line">| 5  | 4.00  |</span><br><span class="line">| 6  | 3.65  |</span><br><span class="line">+----+-------+</span><br></pre></td></tr></table></figure>
+<p>Write a SQL query to find all duplicate emails in a table named <code>Person</code>.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">+----+---------+</span><br><span class="line">| Id | Email   |</span><br><span class="line">+----+---------+</span><br><span class="line">| 1  | a@b.com |</span><br><span class="line">| 2  | c@d.com |</span><br><span class="line">| 3  | a@b.com |</span><br><span class="line">+----+---------+</span><br></pre></td></tr></table></figure>
 
-<p>For example, given the above <code>Scores</code> table, your query should generate the following report (order by highest score):</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">+-------+------+</span><br><span class="line">| Score | Rank |</span><br><span class="line">+-------+------+</span><br><span class="line">| 4.00  | 1    |</span><br><span class="line">| 4.00  | 1    |</span><br><span class="line">| 3.85  | 2    |</span><br><span class="line">| 3.65  | 3    |</span><br><span class="line">| 3.65  | 3    |</span><br><span class="line">| 3.50  | 4    |</span><br><span class="line">+-------+------+</span><br></pre></td></tr></table></figure>
+<p>For example, your query should return the following for the above table:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">+---------+</span><br><span class="line">| Email   |</span><br><span class="line">+---------+</span><br><span class="line">| a@b.com |</span><br><span class="line">+---------+</span><br></pre></td></tr></table></figure>
 
 <a id="more"></a>
 
-<p>这题的思路就是构建一张空的表格t，该表格中的score分数由原表格s生成，但是score唯一。</p>
-<p>然后比较两张表格。对于每个s中的分数，需要统计t中比s的score更大或相等的数字有几个。</p>
-<p>这里要注意的就是需要加上group by s.id的语句，这里的group by的功能大概就是为了在输出的时候，确定每个id都输出的意思。不加group by则只会输出一行。</p>
+<p>这题考查having语句的用法</p>
 <p><strong>代码实现</strong></p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> s.Score, </span><br><span class="line"><span class="keyword">count</span>(t.Score) <span class="keyword">as</span> <span class="keyword">Rank</span></span><br><span class="line"><span class="keyword">from</span> Scores <span class="keyword">as</span> s,</span><br><span class="line">(<span class="keyword">select</span> <span class="keyword">distinct</span> Score <span class="keyword">from</span> Scores) <span class="keyword">as</span> t </span><br><span class="line"><span class="keyword">where</span> s.Score &lt;= t.score</span><br><span class="line"><span class="keyword">group</span> <span class="keyword">by</span> s.id</span><br><span class="line"><span class="keyword">order</span> <span class="keyword">by</span> s.Score <span class="keyword">desc</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> email </span><br><span class="line"><span class="keyword">from</span> person </span><br><span class="line"><span class="keyword">group</span> <span class="keyword">by</span> email</span><br><span class="line"><span class="keyword">having</span> <span class="keyword">count</span>(email) &gt; <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
 
 
       
@@ -431,8 +429,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/08/19/LeetCode-177-Nth-Highest-Salary/" rel="next" title="LeetCode:177. Nth Highest Salary">
-                <i class="fa fa-chevron-left"></i> LeetCode:177. Nth Highest Salary
+              <a href="/2019/08/20/LeetCode-181-Employees-Earning-More-Than-Their-Managers/" rel="next" title="LeetCode:181. Employees Earning More Than Their Managers">
+                <i class="fa fa-chevron-left"></i> LeetCode:181. Employees Earning More Than Their Managers
               </a>
             
           </div>
@@ -441,8 +439,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/08/20/LeetCode-179-Largest-Number/" rel="prev" title="LeetCode:179. Largest Number">
-                LeetCode:179. Largest Number <i class="fa fa-chevron-right"></i>
+              <a href="/2019/08/22/LeetCode-183-Customers-Who-Never-Order/" rel="prev" title="LeetCode:183. Customers Who Never Order">
+                LeetCode:183. Customers Who Never Order <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
