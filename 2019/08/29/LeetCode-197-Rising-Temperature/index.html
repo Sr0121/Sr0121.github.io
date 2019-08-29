@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="LeetCode,Python,">
+  <meta name="keywords" content="LeetCode,SQL,">
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="题目概述 Given an array of size n, find the majority element. The majority element is the element that appears more than ⌊ n/2 ⌋ times. You may assume that the array is non-empty and the majority element">
-<meta name="keywords" content="LeetCode,Python">
+<meta name="description" content="题目描述 Given a Weather table, write a SQL query to find all dates’ Ids with higher temperature compared to its previous (yesterday’s) dates. 12345678+---------+------------------+------------------+| Id">
+<meta name="keywords" content="LeetCode,SQL">
 <meta property="og:type" content="article">
-<meta property="og:title" content="LeetCode:169. Majority Element">
-<meta property="og:url" content="https://sr0121.github.io/2019/06/16/LeetCode-169-Majority-Element/index.html">
+<meta property="og:title" content="LeetCode:197. Rising Temperature">
+<meta property="og:url" content="https://sr0121.github.io/2019/08/29/LeetCode-197-Rising-Temperature/index.html">
 <meta property="og:site_name" content="Rong @@@">
-<meta property="og:description" content="题目概述 Given an array of size n, find the majority element. The majority element is the element that appears more than ⌊ n/2 ⌋ times. You may assume that the array is non-empty and the majority element">
+<meta property="og:description" content="题目描述 Given a Weather table, write a SQL query to find all dates’ Ids with higher temperature compared to its previous (yesterday’s) dates. 12345678+---------+------------------+------------------+| Id">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-08-20T16:14:31.484Z">
+<meta property="og:updated_time" content="2019-08-29T18:43:49.845Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="LeetCode:169. Majority Element">
-<meta name="twitter:description" content="题目概述 Given an array of size n, find the majority element. The majority element is the element that appears more than ⌊ n/2 ⌋ times. You may assume that the array is non-empty and the majority element">
+<meta name="twitter:title" content="LeetCode:197. Rising Temperature">
+<meta name="twitter:description" content="题目描述 Given a Weather table, write a SQL query to find all dates’ Ids with higher temperature compared to its previous (yesterday’s) dates. 12345678+---------+------------------+------------------+| Id">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="https://sr0121.github.io/2019/06/16/LeetCode-169-Majority-Element/">
+  <link rel="canonical" href="https://sr0121.github.io/2019/08/29/LeetCode-197-Rising-Temperature/">
 
 
 
 
 
-  <title>LeetCode:169. Majority Element | Rong @@@</title>
+  <title>LeetCode:197. Rising Temperature | Rong @@@</title>
   
 
 
@@ -295,7 +295,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://sr0121.github.io/2019/06/16/LeetCode-169-Majority-Element/">
+    <link itemprop="mainEntityOfPage" href="https://sr0121.github.io/2019/08/29/LeetCode-197-Rising-Temperature/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Rong Song">
@@ -312,7 +312,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">LeetCode:169. Majority Element</h1>
+          <h1 class="post-title" itemprop="name headline">LeetCode:197. Rising Temperature</h1>
         
 
         <div class="post-meta">
@@ -324,8 +324,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-16T21:41:12-04:00">
-                2019-06-16
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-29T14:42:01-04:00">
+                2019-08-29
               </time>
             
 
@@ -384,20 +384,21 @@
       
 
       
-        <p><strong>题目概述</strong></p>
-<p>Given an array of size <em>n</em>, find the majority element. The majority element is the element that appears <strong>more than</strong> <code>⌊ n/2 ⌋</code> times.</p>
-<p>You may assume that the array is non-empty and the majority element always exist in the array.</p>
-<p><strong>Example 1:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: [3,2,3]</span><br><span class="line">Output: 3</span><br></pre></td></tr></table></figure>
+        <p><strong>题目描述</strong></p>
+<p>Given a <code>Weather</code> table, write a SQL query to find all dates’ Ids with higher temperature compared to its previous (yesterday’s) dates.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">+---------+------------------+------------------+</span><br><span class="line">| Id(INT) | RecordDate(DATE) | Temperature(INT) |</span><br><span class="line">+---------+------------------+------------------+</span><br><span class="line">|       1 |       2015-01-01 |               10 |</span><br><span class="line">|       2 |       2015-01-02 |               25 |</span><br><span class="line">|       3 |       2015-01-03 |               20 |</span><br><span class="line">|       4 |       2015-01-04 |               30 |</span><br><span class="line">+---------+------------------+------------------+</span><br></pre></td></tr></table></figure>
 
-<p><strong>Example 2:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: [2,2,1,1,1,2,2]</span><br><span class="line">Output: 2</span><br></pre></td></tr></table></figure>
+<p>For example, return the following Ids for the above <code>Weather</code> table:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">+----+</span><br><span class="line">| Id |</span><br><span class="line">+----+</span><br><span class="line">|  2 |</span><br><span class="line">|  4 |</span><br><span class="line">+----+</span><br></pre></td></tr></table></figure>
 
 <a id="more"></a>
 
-<p>题目要求找到数组中的众数。我是把数组进行排序后从左到右找，如果当前数字和之前的数字一样，就会给一个记录值加一，如果发现当前数字与其之前的数字不一样，则把记录值和全局最大值进行比较。</p>
+
+
+<p>考查date_sub的用法，date_sub(date, interval k day)为找到date的前k天并返回。</p>
+<p>date可用curdate()表示今天。</p>
 <p><strong>代码实现</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">majorityElement</span><span class="params">(self, nums: <span class="string">'list[int]'</span>)</span> -&gt; 'int':</span></span><br><span class="line">        nums = sorted(nums)</span><br><span class="line">        <span class="keyword">if</span> len(nums) == <span class="number">1</span>:</span><br><span class="line">            <span class="keyword">return</span> nums[<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line">        maxNum = <span class="number">1</span></span><br><span class="line">        tmpNum = <span class="number">1</span></span><br><span class="line">        targetIndex = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, len(nums)):</span><br><span class="line">            <span class="keyword">if</span> nums[i] == nums[i<span class="number">-1</span>]:</span><br><span class="line">                tmpNum += <span class="number">1</span></span><br><span class="line">            <span class="keyword">elif</span> i &lt; len(nums):</span><br><span class="line">                <span class="keyword">if</span> tmpNum &gt;= maxNum:</span><br><span class="line">                    targetIndex = i<span class="number">-1</span></span><br><span class="line">                    maxNum = tmpNum</span><br><span class="line">                tmpNum = <span class="number">1</span></span><br><span class="line">            <span class="keyword">if</span> i == len(nums)<span class="number">-1</span> <span class="keyword">and</span> tmpNum &gt;= maxNum:</span><br><span class="line">                targetIndex = i</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> nums[targetIndex]</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">select s.id from weather as s, weather as t</span><br><span class="line">where s.temperature &gt; t.temperature and t.recorddate = date_sub(s.recorddate, interval 1 day);</span><br></pre></td></tr></table></figure>
 
 
       
@@ -418,7 +419,7 @@
           
             <a href="/tags/LeetCode/" rel="tag"># LeetCode</a>
           
-            <a href="/tags/Python/" rel="tag"># Python</a>
+            <a href="/tags/SQL/" rel="tag"># SQL</a>
           
         </div>
       
@@ -431,8 +432,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/06/16/LeetCode-168-Excel-Sheet-Column-Title/" rel="next" title="LeetCode:168. Excel Sheet Column Title">
-                <i class="fa fa-chevron-left"></i> LeetCode:168. Excel Sheet Column Title
+              <a href="/2019/08/29/LeetCode-191-Number-of-1-Bits/" rel="next" title="LeetCode:191. Number of 1 Bits">
+                <i class="fa fa-chevron-left"></i> LeetCode:191. Number of 1 Bits
               </a>
             
           </div>
@@ -440,10 +441,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/06/16/LeetCode-171-Excel-Sheet-Column-Number/" rel="prev" title="LeetCode:171. Excel Sheet Column Number">
-                LeetCode:171. Excel Sheet Column Number <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
