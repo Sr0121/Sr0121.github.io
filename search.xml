@@ -1,6 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[LeetCode:222. Count Complete Tree Nodes]]></title>
+    <url>%2F2019%2F08%2F29%2FLeetCode-222-Count-Complete-Tree-Nodes%2F</url>
+    <content type="text"><![CDATA[题目描述 Given a complete binary tree, count the number of nodes. Note: Definition of a complete binary tree from Wikipedia:In a complete binary tree every level, except possibly the last, is completely filled, and all nodes in the last level are as far left as possible. It can have between 1 and 2h nodes inclusive at the last level h. Example: 12345678Input: 1 / \ 2 3 / \ /4 5 6Output: 6 代码实现 12345678910111213141516class Solution: def countNodes(self, root: TreeNode) -&gt; int: result = 0 if root == None: return 0 nodes = [root] while len(nodes) &gt; 0: tmp = nodes.pop(0) result += 1 if tmp.left != None: nodes.append(tmp.left) if tmp.right != None: nodes.append(tmp.right) return result]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>LeetCode</tag>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LeetCode:221. Maximal Square]]></title>
+    <url>%2F2019%2F08%2F29%2FLeetCode-221-Maximal-Square%2F</url>
+    <content type="text"><![CDATA[题目描述 Given a 2D binary matrix filled with 0’s and 1’s, find the largest square containing only 1’s and return its area. Example: 12345678Input: 1 0 1 0 01 0 1 1 11 1 1 1 11 0 0 1 0Output: 4 这题最快的方法还是使用动态规划。当matrix[i][j]为0时，dp[i][j]为0，当matrix[i][j]为1时，状态转移方程为： dp[i][j] = min(dp[i-1][j-1], dp[i][j-1], dp[i-1][j]) + 1 dp[i][j]表示从左上角到matrix[i][j]的最大的正方形的边长。在每一个matrix为1的点，需要看它左上方，上方和左边的dp值，取最小的+1，才是当前的dp。因为最小的边长才是制约dp[i][j]大小的因素。 代码实现 123456789101112131415161718192021222324252627282930class Solution: def maximalSquare(self, matrix: 'List[List[str]]') -&gt; 'int': n = len(matrix) if n == 0: return 0 m = len(matrix[0]) if m == 0: return 0 dp = [[0] * m for _ in range(n)] for i in range(n): if matrix[i][0] == "1": dp[i][0] = 1 for j in range(m): if matrix[0][j] == "1": dp[0][j] = 1 for i in range(1, n): for j in range(1, m): if matrix[i][j] == "1": dp[i][j] = min(dp[i][j - 1], dp[i - 1][j], dp[i - 1][j - 1]) + 1 result = 0 for i in range(0, n): for j in range(0, m): result = max(dp[i][j], result) return result**2]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>LeetCode</tag>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LeetCode:220. Contains Duplicate III]]></title>
+    <url>%2F2019%2F08%2F29%2FLeetCode-220-Contains-Duplicate-III%2F</url>
+    <content type="text"><![CDATA[题目描述 Given an array of integers, find out whether there are two distinct indices i and j in the array such that the absolutedifference between nums[i] and nums[j] is at most t and the absolute difference between i and j is at most k. Example 1: 12Input: nums = [1,2,3,1], k = 3, t = 0Output: true Example 2: 12Input: nums = [1,0,1,1], k = 1, t = 2Output: true Example 3: 12Input: nums = [1,5,9,1,5,9], k = 2, t = 3Output: false 这题时间复杂度为O(n)的方法比较巧妙，将nums里的所有数字除以t后向下取整得到modifiedNums，如果modifiedNums中有两个数字相同，那么它们一定会相差t以内，因此一定返回True，如果没有两个数字相同，那么就去查找比它小1或大1的数字，然后比较它们对应的原数字是否相差t以内。 但是这题要使用一个滑动窗口和一个字典来进行操作。滑动窗口来满足索引差值在k以内，字典的键为modifiedNums中的数字，值为nums中的数字，主要是为了查找到某个键是否在modifiedNums中（如果有直接返回True），以及方便查找原数字的值。字典操作的复杂度都为O(n)。 坑的点主要是t为0的时候，这个时候的情况和t为1的情况其实是一样的。 代码实现 12345678910111213141516171819202122232425class Solution: def containsNearbyAlmostDuplicate(self, nums: 'list[int]', k: 'int', t: 'int') -&gt; 'bool': if len(nums) &lt;= 1: return False if k &lt; 0 or t &lt; 0: return False modifiedNums = [i//max(1, t) for i in nums] leftIndex = 0 bucket = &#123;modifiedNums[0]: nums[0]&#125; for rightIndex in range(1, len(nums)): if rightIndex - leftIndex &gt; k: del bucket[modifiedNums[leftIndex]] leftIndex += 1 if modifiedNums[rightIndex] in bucket.keys(): return True if modifiedNums[rightIndex] - 1 in bucket.keys() and abs( bucket[modifiedNums[rightIndex] - 1] - nums[rightIndex]) &lt;= t: return True if modifiedNums[rightIndex] + 1 in bucket.keys() and abs( bucket[modifiedNums[rightIndex] + 1] - nums[rightIndex]) &lt;= t: return True bucket[modifiedNums[rightIndex]] = nums[rightIndex] return False]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>LeetCode</tag>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[LeetCode:197. Rising Temperature]]></title>
     <url>%2F2019%2F08%2F29%2FLeetCode-197-Rising-Temperature%2F</url>
     <content type="text"><![CDATA[题目描述 Given a Weather table, write a SQL query to find all dates’ Ids with higher temperature compared to its previous (yesterday’s) dates. 12345678+---------+------------------+------------------+| Id(INT) | RecordDate(DATE) | Temperature(INT) |+---------+------------------+------------------+| 1 | 2015-01-01 | 10 || 2 | 2015-01-02 | 25 || 3 | 2015-01-03 | 20 || 4 | 2015-01-04 | 30 |+---------+------------------+------------------+ For example, return the following Ids for the above Weather table: 123456+----+| Id |+----+| 2 || 4 |+----+ 考查date_sub的用法，date_sub(date, interval k day)为找到date的前k天并返回。 date可用curdate()表示今天。 代码实现 12select s.id from weather as s, weather as twhere s.temperature &gt; t.temperature and t.recorddate = date_sub(s.recorddate, interval 1 day);]]></content>

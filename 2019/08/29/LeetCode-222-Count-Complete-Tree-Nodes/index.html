@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="LeetCode,C++,">
+  <meta name="keywords" content="LeetCode,Python,">
 
 
 
@@ -79,20 +79,18 @@
 
 
 
-<meta name="description" content="题目概述 Sort a linked list using insertion sort. A graphical example of insertion sort. The partial sorted list (black) initially contains only the first element in the list.With each iteration one eleme">
-<meta name="keywords" content="LeetCode,C++">
+<meta name="description" content="题目描述 Given a complete binary tree, count the number of nodes. Note:  Definition of a complete binary tree from Wikipedia:In a complete binary tree every level, except possibly the last, is completely">
+<meta name="keywords" content="LeetCode,Python">
 <meta property="og:type" content="article">
-<meta property="og:title" content="LeetCode:147. Insertion Sort List">
-<meta property="og:url" content="https://sr0121.github.io/2019/06/09/LeetCode-147-Insertion-Sort-List/index.html">
+<meta property="og:title" content="LeetCode:222. Count Complete Tree Nodes">
+<meta property="og:url" content="https://sr0121.github.io/2019/08/29/LeetCode-222-Count-Complete-Tree-Nodes/index.html">
 <meta property="og:site_name" content="Rong @@@">
-<meta property="og:description" content="题目概述 Sort a linked list using insertion sort. A graphical example of insertion sort. The partial sorted list (black) initially contains only the first element in the list.With each iteration one eleme">
+<meta property="og:description" content="题目描述 Given a complete binary tree, count the number of nodes. Note:  Definition of a complete binary tree from Wikipedia:In a complete binary tree every level, except possibly the last, is completely">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/0/0f/Insertion-sort-example-300px.gif">
-<meta property="og:updated_time" content="2019-08-20T16:07:25.583Z">
+<meta property="og:updated_time" content="2019-08-30T03:26:32.379Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="LeetCode:147. Insertion Sort List">
-<meta name="twitter:description" content="题目概述 Sort a linked list using insertion sort. A graphical example of insertion sort. The partial sorted list (black) initially contains only the first element in the list.With each iteration one eleme">
-<meta name="twitter:image" content="https://upload.wikimedia.org/wikipedia/commons/0/0f/Insertion-sort-example-300px.gif">
+<meta name="twitter:title" content="LeetCode:222. Count Complete Tree Nodes">
+<meta name="twitter:description" content="题目描述 Given a complete binary tree, count the number of nodes. Note:  Definition of a complete binary tree from Wikipedia:In a complete binary tree every level, except possibly the last, is completely">
 
 
 
@@ -122,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="https://sr0121.github.io/2019/06/09/LeetCode-147-Insertion-Sort-List/">
+  <link rel="canonical" href="https://sr0121.github.io/2019/08/29/LeetCode-222-Count-Complete-Tree-Nodes/">
 
 
 
 
 
-  <title>LeetCode:147. Insertion Sort List | Rong @@@</title>
+  <title>LeetCode:222. Count Complete Tree Nodes | Rong @@@</title>
   
 
 
@@ -297,7 +295,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://sr0121.github.io/2019/06/09/LeetCode-147-Insertion-Sort-List/">
+    <link itemprop="mainEntityOfPage" href="https://sr0121.github.io/2019/08/29/LeetCode-222-Count-Complete-Tree-Nodes/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Rong Song">
@@ -314,7 +312,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">LeetCode:147. Insertion Sort List</h1>
+          <h1 class="post-title" itemprop="name headline">LeetCode:222. Count Complete Tree Nodes</h1>
         
 
         <div class="post-meta">
@@ -326,8 +324,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-09T13:37:06-04:00">
-                2019-06-09
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-29T23:25:27-04:00">
+                2019-08-29
               </time>
             
 
@@ -386,19 +384,19 @@
       
 
       
-        <p><strong>题目概述</strong></p>
-<p>Sort a linked list using insertion sort.</p>
-<p><img src="https://upload.wikimedia.org/wikipedia/commons/0/0f/Insertion-sort-example-300px.gif" alt="img"><br>A graphical example of insertion sort. The partial sorted list (black) initially contains only the first element in the list.<br>With each iteration one element (red) is removed from the input data and inserted in-place into the sorted list</p>
-<p><strong>Algorithm of Insertion Sort:</strong></p>
-<ol>
-<li>Insertion sort iterates, consuming one input element each repetition, and growing a sorted output list.</li>
-<li>At each iteration, insertion sort removes one element from the input data, finds the location it belongs within the sorted list, and inserts it there.</li>
-<li>It repeats until no input elements remain.</li>
-</ol>
+        <p><strong>题目描述</strong></p>
+<p>Given a <strong>complete</strong> binary tree, count the number of nodes.</p>
+<p><strong>Note:</strong> </p>
+<p><strong>Definition of a complete binary tree from Wikipedia:</strong><br>In a complete binary tree every level, except possibly the last, is completely filled, and all nodes in the last level are as far left as possible. It can have between 1 and 2h nodes inclusive at the last level h.</p>
+<p><strong>Example:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Input: </span><br><span class="line">    1</span><br><span class="line">   / \</span><br><span class="line">  2   3</span><br><span class="line"> / \  /</span><br><span class="line">4  5 6</span><br><span class="line"></span><br><span class="line">Output: 6</span><br></pre></td></tr></table></figure>
+
 <a id="more"></a>
 
-<p>本题本质上是一个水题，就是简单的插入排序，只是使用了链表来进行处理。只需要将普通的数组插入排序对数组的遍历操作改成对链表的遍历即可。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">ListNode* <span class="title">insertionSortList</span><span class="params">(ListNode* head)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (head == <span class="literal">nullptr</span>)</span><br><span class="line">            <span class="keyword">return</span> head;</span><br><span class="line"></span><br><span class="line">        ListNode *ori = <span class="keyword">new</span> ListNode(<span class="number">-2147483648</span>);</span><br><span class="line">        ori-&gt;next = head;</span><br><span class="line">        ListNode *last = ori;</span><br><span class="line">        ListNode *current = head;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (current != <span class="literal">nullptr</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (current-&gt;val &gt;= last-&gt;val) &#123;</span><br><span class="line">                current = current-&gt;next;</span><br><span class="line">                last = last-&gt;next;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                ListNode *saveNext = current-&gt;next;</span><br><span class="line">                ListNode *start = ori;</span><br><span class="line">                <span class="keyword">while</span> (start-&gt;next-&gt;val &lt;= current-&gt;val)</span><br><span class="line">                    start = start-&gt;next;</span><br><span class="line">                current-&gt;next = start-&gt;next;</span><br><span class="line">                start-&gt;next = current;</span><br><span class="line">                last-&gt;next = saveNext;</span><br><span class="line">                current = saveNext;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        last-&gt;next = <span class="literal">nullptr</span>;</span><br><span class="line">        <span class="keyword">return</span> ori-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+<p><strong>代码实现</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">class Solution:</span><br><span class="line">    def countNodes(self, root: TreeNode) -&gt; int:</span><br><span class="line">        result = 0</span><br><span class="line">        if root == None:</span><br><span class="line">            return 0</span><br><span class="line">        </span><br><span class="line">        nodes = [root]</span><br><span class="line">        while len(nodes) &gt; 0:</span><br><span class="line">            tmp = nodes.pop(0)</span><br><span class="line">            result += 1</span><br><span class="line">            if tmp.left != None:</span><br><span class="line">                nodes.append(tmp.left)</span><br><span class="line">            if tmp.right != None:</span><br><span class="line">                nodes.append(tmp.right)</span><br><span class="line">                </span><br><span class="line">        return result</span><br></pre></td></tr></table></figure>
 
 
       
@@ -419,7 +417,7 @@
           
             <a href="/tags/LeetCode/" rel="tag"># LeetCode</a>
           
-            <a href="/tags/C/" rel="tag"># C++</a>
+            <a href="/tags/Python/" rel="tag"># Python</a>
           
         </div>
       
@@ -432,8 +430,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/06/09/LeetCode-146-LRU-Cache/" rel="next" title="LeetCode:146. LRU Cache">
-                <i class="fa fa-chevron-left"></i> LeetCode:146. LRU Cache
+              <a href="/2019/08/29/LeetCode-221-Maximal-Square/" rel="next" title="LeetCode:221. Maximal Square">
+                <i class="fa fa-chevron-left"></i> LeetCode:221. Maximal Square
               </a>
             
           </div>
@@ -441,10 +439,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/06/09/LeetCode-148-Sort-List/" rel="prev" title="LeetCode:148. Sort List">
-                LeetCode:148. Sort List <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
