@@ -1,6 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[LeetCode:224. Basic Calculator]]></title>
+    <url>%2F2019%2F08%2F31%2FLeetCode-224-Basic-Calculator%2F</url>
+    <content type="text"><![CDATA[题目描述 Implement a basic calculator to evaluate a simple expression string. The expression string may contain open ( and closing parentheses ), the plus + or minus sign -, non-negativeintegers and empty spaces ``. Example 1: 12Input: &quot;1 + 1&quot;Output: 2 Example 2: 12Input: &quot; 2-1 + 2 &quot;Output: 3 Example 3: 12Input: &quot;(1+(4+5+2)-3)+(6+8)&quot;Output: 23 Note: You may assume that the given expression is always valid. Do not use the eval built-in library function. 这题需要实现一个简单的计算器，比较难的点在于如何处理括号。在对字符串进行处理后，根据’+’, ‘-‘, ‘(‘, ‘)’作为分隔符，得到每一个数字和他们对应的运算符号，存在一个list里。 每次遇到’(‘的时候，就需要进行一次递归，在遇到’)’的时候，从该层递归返回结果。 代码实现 12345678910111213141516171819202122232425262728293031323334class Solution: def calculate(self, s: str) -&gt; int: def tmpCalculation(index): tmp = 0 sign = 1 while index &lt; len(newList): if newList[index] == '(': returnResult, index = tmpCalculation(index + 1) tmp = tmp + sign * returnResult elif newList[index] == ')': return tmp, index elif newList[index] == '+': sign = 1 elif newList[index] == '-': sign = -1 else: tmp = tmp + sign * int(newList[index]) index += 1 return tmp, index s = s.replace(" ", "") s = s.replace("+", " + ") s = s.replace("-", " - ") s = s.replace("(", " ( ") s = s.replace(")", " ) ") s = s.strip() sList = s.split(" ") filterList = filter(lambda x: x != "", sList) newList = list(filterList) result, _ = tmpCalculation(0) return result]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>LeetCode</tag>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LeetCode:223. Rectangle Area]]></title>
+    <url>%2F2019%2F08%2F31%2FLeetCode-223-Rectangle-Area%2F</url>
+    <content type="text"><![CDATA[题目描述 Find the total area covered by two rectilinear rectangles in a 2D plane. Each rectangle is defined by its bottom left corner and top right corner as shown in the figure. Example: 12Input: A = -3, B = 0, C = 3, D = 4, E = 0, F = -1, G = 9, H = 2Output: 45 Note: Assume that the total area is never beyond the maximum possible value of int. 这题的核心就是求重叠部分的面积。 实际上，重叠部分的左下角为(max(A, E), max(B, F))，右上角为(min(C, G), min(D, H))，如果左下角的点不在右上角的点的左下方，则重叠面积为0。 代码实现 12345678910111213class Solution: def computeArea(self, A: int, B: int, C: int, D: int, E: int, F: int, G: int, H: int) -&gt; int: result = (C-A) * (D-B) + (G-E) * (H-F) rtx = min(C, G) rty = min(D, H) ldx = max(A, E) ldy = max(B, F) if ldx &gt; rtx or ldy &gt; rty: return result else: result -= (rtx - ldx) * (rty - ldy) return result]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>LeetCode</tag>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[LeetCode:222. Count Complete Tree Nodes]]></title>
     <url>%2F2019%2F08%2F29%2FLeetCode-222-Count-Complete-Tree-Nodes%2F</url>
     <content type="text"><![CDATA[题目描述 Given a complete binary tree, count the number of nodes. Note: Definition of a complete binary tree from Wikipedia:In a complete binary tree every level, except possibly the last, is completely filled, and all nodes in the last level are as far left as possible. It can have between 1 and 2h nodes inclusive at the last level h. Example: 12345678Input: 1 / \ 2 3 / \ /4 5 6Output: 6 代码实现 12345678910111213141516class Solution: def countNodes(self, root: TreeNode) -&gt; int: result = 0 if root == None: return 0 nodes = [root] while len(nodes) &gt; 0: tmp = nodes.pop(0) result += 1 if tmp.left != None: nodes.append(tmp.left) if tmp.right != None: nodes.append(tmp.right) return result]]></content>

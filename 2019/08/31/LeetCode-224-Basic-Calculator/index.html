@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="题目描述 Write an algorithm to determine if a number is “happy”. A happy number is a number defined by the following process: Starting with any positive integer, replace the number by the sum of the squar">
+<meta name="description" content="题目描述 Implement a basic calculator to evaluate a simple expression string. The expression string may contain open ( and closing parentheses ), the plus + or minus sign -, non-negativeintegers and empty">
 <meta name="keywords" content="LeetCode,Python">
 <meta property="og:type" content="article">
-<meta property="og:title" content="LeetCode:202. Happy Number">
-<meta property="og:url" content="https://sr0121.github.io/2019/06/20/LeetCode-202-Happy-Number/index.html">
+<meta property="og:title" content="LeetCode:224. Basic Calculator">
+<meta property="og:url" content="https://sr0121.github.io/2019/08/31/LeetCode-224-Basic-Calculator/index.html">
 <meta property="og:site_name" content="Rong @@@">
-<meta property="og:description" content="题目描述 Write an algorithm to determine if a number is “happy”. A happy number is a number defined by the following process: Starting with any positive integer, replace the number by the sum of the squar">
+<meta property="og:description" content="题目描述 Implement a basic calculator to evaluate a simple expression string. The expression string may contain open ( and closing parentheses ), the plus + or minus sign -, non-negativeintegers and empty">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-08-20T15:56:29.709Z">
+<meta property="og:updated_time" content="2019-08-31T20:23:26.992Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="LeetCode:202. Happy Number">
-<meta name="twitter:description" content="题目描述 Write an algorithm to determine if a number is “happy”. A happy number is a number defined by the following process: Starting with any positive integer, replace the number by the sum of the squar">
+<meta name="twitter:title" content="LeetCode:224. Basic Calculator">
+<meta name="twitter:description" content="题目描述 Implement a basic calculator to evaluate a simple expression string. The expression string may contain open ( and closing parentheses ), the plus + or minus sign -, non-negativeintegers and empty">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="https://sr0121.github.io/2019/06/20/LeetCode-202-Happy-Number/">
+  <link rel="canonical" href="https://sr0121.github.io/2019/08/31/LeetCode-224-Basic-Calculator/">
 
 
 
 
 
-  <title>LeetCode:202. Happy Number | Rong @@@</title>
+  <title>LeetCode:224. Basic Calculator | Rong @@@</title>
   
 
 
@@ -295,7 +295,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://sr0121.github.io/2019/06/20/LeetCode-202-Happy-Number/">
+    <link itemprop="mainEntityOfPage" href="https://sr0121.github.io/2019/08/31/LeetCode-224-Basic-Calculator/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Rong Song">
@@ -312,7 +312,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">LeetCode:202. Happy Number</h1>
+          <h1 class="post-title" itemprop="name headline">LeetCode:224. Basic Calculator</h1>
         
 
         <div class="post-meta">
@@ -324,8 +324,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-20T20:31:43-04:00">
-                2019-06-20
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-31T16:15:17-04:00">
+                2019-08-31
               </time>
             
 
@@ -385,17 +385,30 @@
 
       
         <p><strong>题目描述</strong></p>
-<p>Write an algorithm to determine if a number is “happy”.</p>
-<p>A happy number is a number defined by the following process: Starting with any positive integer, replace the number by the sum of the squares of its digits, and repeat the process until the number equals 1 (where it will stay), or it loops endlessly in a cycle which does not include 1. Those numbers for which this process ends in 1 are happy numbers.</p>
-<p><strong>Example:</strong> </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Input: 19</span><br><span class="line">Output: true</span><br><span class="line">Explanation: </span><br><span class="line">12 + 92 = 82</span><br><span class="line">82 + 22 = 68</span><br><span class="line">62 + 82 = 100</span><br><span class="line">12 + 02 + 02 = 1</span><br></pre></td></tr></table></figure>
+<p>Implement a basic calculator to evaluate a simple expression string.</p>
+<p>The expression string may contain open <code>(</code> and closing parentheses <code>)</code>, the plus <code>+</code> or minus sign <code>-</code>, <strong>non-negative</strong>integers and empty spaces ``.</p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: &quot;1 + 1&quot;</span><br><span class="line">Output: 2</span><br></pre></td></tr></table></figure>
 
+<p><strong>Example 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: &quot; 2-1 + 2 &quot;</span><br><span class="line">Output: 3</span><br></pre></td></tr></table></figure>
+
+<p><strong>Example 3:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: &quot;(1+(4+5+2)-3)+(6+8)&quot;</span><br><span class="line">Output: 23</span><br></pre></td></tr></table></figure>
+
+<p>Note:</p>
+<ul>
+<li>You may assume that the given expression is always valid.</li>
+<li><strong>Do not</strong> use the <code>eval</code> built-in library function.</li>
+</ul>
 <a id="more"></a>
 
-<p>快乐数就是将自己的每一位数字的平方加起来后，最终为1的数字，如果中间出现了循环，则它不是快乐数。</p>
-<p>所以需要用一个list存放所有在计算中出现的数字，如果原数字在进行计算的时候，出现了list中的数字，则不是快乐数。</p>
+
+
+<p>这题需要实现一个简单的计算器，比较难的点在于如何处理括号。在对字符串进行处理后，根据’+’, ‘-‘, ‘(‘, ‘)’作为分隔符，得到每一个数字和他们对应的运算符号，存在一个list里。</p>
+<p>每次遇到’(‘的时候，就需要进行一次递归，在遇到’)’的时候，从该层递归返回结果。</p>
 <p><strong>代码实现</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">isHappy</span><span class="params">(self, n: <span class="string">'int'</span>)</span> -&gt; 'bool':</span></span><br><span class="line">        <span class="keyword">if</span> n &lt;= <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line"></span><br><span class="line">        ns = []</span><br><span class="line">        <span class="keyword">while</span> n <span class="keyword">is</span> <span class="keyword">not</span> <span class="number">1</span>:</span><br><span class="line">            next_n = <span class="number">0</span></span><br><span class="line">            <span class="keyword">if</span> n <span class="keyword">in</span> ns:</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">            ns.append(n)</span><br><span class="line"></span><br><span class="line">            <span class="keyword">while</span> n &gt; <span class="number">0</span>:</span><br><span class="line">                next_n += (n % <span class="number">10</span>)**<span class="number">2</span></span><br><span class="line">                n = n // <span class="number">10</span></span><br><span class="line"></span><br><span class="line">            n = next_n</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">calculate</span><span class="params">(self, s: str)</span> -&gt; int:</span></span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">tmpCalculation</span><span class="params">(index)</span>:</span></span><br><span class="line">            tmp = <span class="number">0</span></span><br><span class="line">            sign = <span class="number">1</span></span><br><span class="line">            <span class="keyword">while</span> index &lt; len(newList):</span><br><span class="line">                <span class="keyword">if</span> newList[index] == <span class="string">'('</span>:</span><br><span class="line">                    returnResult, index = tmpCalculation(index + <span class="number">1</span>)</span><br><span class="line">                    tmp = tmp + sign * returnResult</span><br><span class="line">                <span class="keyword">elif</span> newList[index] == <span class="string">')'</span>:</span><br><span class="line">                    <span class="keyword">return</span> tmp, index</span><br><span class="line">                <span class="keyword">elif</span> newList[index] == <span class="string">'+'</span>:</span><br><span class="line">                    sign = <span class="number">1</span></span><br><span class="line">                <span class="keyword">elif</span> newList[index] == <span class="string">'-'</span>:</span><br><span class="line">                    sign = <span class="number">-1</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    tmp = tmp + sign * int(newList[index])</span><br><span class="line"></span><br><span class="line">                index += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">            <span class="keyword">return</span> tmp, index</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        s = s.replace(<span class="string">" "</span>, <span class="string">""</span>)</span><br><span class="line">        s = s.replace(<span class="string">"+"</span>, <span class="string">" + "</span>)</span><br><span class="line">        s = s.replace(<span class="string">"-"</span>, <span class="string">" - "</span>)</span><br><span class="line">        s = s.replace(<span class="string">"("</span>, <span class="string">" ( "</span>)</span><br><span class="line">        s = s.replace(<span class="string">")"</span>, <span class="string">" ) "</span>)</span><br><span class="line">        s = s.strip()</span><br><span class="line">        sList = s.split(<span class="string">" "</span>)</span><br><span class="line">        filterList = filter(<span class="keyword">lambda</span> x: x != <span class="string">""</span>, sList)</span><br><span class="line">        newList = list(filterList)</span><br><span class="line">        result, _ = tmpCalculation(<span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> result</span><br></pre></td></tr></table></figure>
 
 
       
@@ -429,8 +442,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/06/20/LeetCode-201-Bitwise-AND-of-Numbers-Range/" rel="next" title="LeetCode:201. Bitwise AND of Numbers Range">
-                <i class="fa fa-chevron-left"></i> LeetCode:201. Bitwise AND of Numbers Range
+              <a href="/2019/08/31/LeetCode-223-Rectangle-Area/" rel="next" title="LeetCode:223. Rectangle Area">
+                <i class="fa fa-chevron-left"></i> LeetCode:223. Rectangle Area
               </a>
             
           </div>
@@ -438,10 +451,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/06/20/LeetCode-203-Remove-Linked-List-Elements/" rel="prev" title="LeetCode:203. Remove Linked List Elements">
-                LeetCode:203. Remove Linked List Elements <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
