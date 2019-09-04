@@ -1,6 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[LeetCode: 229. Majority Element II]]></title>
+    <url>%2F2019%2F09%2F03%2FLeetCode-229-Majority-Element-II%2F</url>
+    <content type="text"><![CDATA[题目描述 Given an integer array of size n, find all elements that appear more than ⌊ n/3 ⌋ times. Note: The algorithm should run in linear time and in O(1) space. Example 1: 12Input: [3,2,3]Output: [3] Example 2: 12Input: [1,1,1,3,3,2,2,2]Output: [1,2] 如果要满足O(1)的space complexity的话，这是挺难的一道题。 由于需要找的数字最多只有两个，我们设置两个计数器，分别记录最有可能返回的两个值，以及他们记数的大小。 在遍历的时候，如果遍历到除了这两个数字之外的其他数字，就给他们两个的记述器都减1，如果遍历到与这两个数字相同的数字，就给相同的那个计数器加1.当某个计数器为0的时候，下一次遍历就可以将该计数器所对应的数字记为该新数字。 之所以这样做，是因为我们只需要记录最有可能的数字，如果说遍历到中途，某个数字的计数器变成0了，就说明它在当前的序列里，占比不会超过1/3，所以它一定不可能。 关于这题的理解我也并不是很透彻，已经标注了star 代码实现 123456789101112131415161718192021222324252627282930313233343536class Solution: def majorityElement(self, nums: 'list[int]') -&gt; 'list[int]': num1, num2 = 0, 0 count1, count2 = 0, 0 threshold = len(nums) // 3 for num in nums: if num1 == num: count1 += 1 elif num2 == num: count2 += 1 elif count1 == 0: num1 = num count1 = 1 elif count2 == 0: num2 = num count2 = 1 else: count1 -= 1 count2 -= 1 count1, count2 = 0, 0 for num in nums: if num == num1: count1 += 1 if num == num2: count2 += 1 result = [] if count1 &gt; threshold: result.append(num1) if num2 != num1 and count2 &gt; threshold: result.append(num2) return result]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>LeetCode</tag>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LeetCode: 228. Summary Ranges]]></title>
+    <url>%2F2019%2F09%2F02%2FLeetCode-228-Summary-Ranges%2F</url>
+    <content type="text"><![CDATA[题目描述 Given a sorted integer array without duplicates, return the summary of its ranges. Example 1: 123Input: [0,1,2,4,5,7]Output: [&quot;0-&gt;2&quot;,&quot;4-&gt;5&quot;,&quot;7&quot;]Explanation: 0,1,2 form a continuous range; 4,5 form a continuous range. Example 2: 123Input: [0,2,3,4,6,8,9]Output: [&quot;0&quot;,&quot;2-&gt;4&quot;,&quot;6&quot;,&quot;8-&gt;9&quot;]Explanation: 2,3,4 form a continuous range; 8,9 form a continuous range. 题目要我们返回所有数字的范围，这些数字已经有序排好，并且没有重复。 这里需要从左向右遍历，当遍历到i，且nums[i] != nums[i-1]+1的时候，i-1就是一个range的右边界，i是下一个边界的左边界。另外需要注意左边界和右边界相同的情况。 为了方便代码的实现，我在输入数组后加入了一个dummy元素，这个元素理论上可以是任何值，它可以让代码更简单，而不需要考虑最后一个值的边界情况。 123456789101112131415161718192021222324class Solution: def summaryRanges(self, nums: 'list[int]') -&gt; 'list[str]': result = [] if len(nums) == 0: return result start = nums[0] if len(nums) == 1: result.append(str(start)) return result nums.append(nums[0]) for i in range(1, len(nums)): if nums[i - 1] == nums[i] - 1: continue else: if start != nums[i - 1]: result.append(str(start) + '-&gt;' + str(nums[i - 1])) else: result.append(str(start)) start = nums[i] return result]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>LeetCode</tag>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[LeetCode: 42. Trapping Rain Water]]></title>
     <url>%2F2019%2F09%2F01%2FLeetCode-42-Trapping-Rain-Water%2F</url>
     <content type="text"><![CDATA[题目描述 Given n non-negative integers representing an elevation map where the width of each bar is 1, compute how much water it is able to trap after raining. The above elevation map is represented by array [0,1,0,2,1,0,1,3,2,1,2,1]. In this case, 6 units of rain water (blue section) are being trapped. Thanks Marcos for contributing this image! Example: 12Input: [0,1,0,2,1,0,1,3,2,1,2,1]Output: 6 这道题目要计算储水量是多少。对于每一个索引i，它的水量的高度为从左边到i点的最高的墙的高度max( : i)，和从i点到最右边的最高墙的高度max( i: )的最小值，即min( max( : i), max( i: ) ) 对于每个点，找左边墙的最高高度有O(n)算法，即从左向右遍历，并且保存遍历的最大值，该最大值就是每个点的左墙高度，同理找右边墙的最高高度也有O(n)算法。 举个例子，对于[0,1,0,2,1,0,1,3,2,1,2,1]来说，对于每个索引的左墙最高度为[0, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 3]，右墙高度为[3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 1]。 在找到两遍的墙的最大值之后，对于每个点，该点的左右墙的最小值即为水的高度。上述例子的最终水面高度就是[0, 1, 1, 2, 2, 2, 2, 3, 2, 2, 2, 1]，最后，减去原本的墙的高度，就可以得到结果。 123456789101112131415161718class Solution: def trap(self, height: 'list[int]') -&gt; 'int': maxHeight = [0] * len(height) tmpMax = 0 for i in range(len(maxHeight)): tmpMax = height[i] if height[i] &gt; tmpMax else tmpMax maxHeight[i] = tmpMax tmpMax = 0 for i in range(len(maxHeight)-1, -1, -1): tmpMax = height[i] if height[i] &gt; tmpMax else tmpMax maxHeight[i] = tmpMax if tmpMax &lt; maxHeight[i] else maxHeight[i] result = 0 for i in range(len(maxHeight)): result += (maxHeight[i] - height[i]) return result]]></content>
