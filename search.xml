@@ -1,6 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[LeetCode: 283. Move Zeroes]]></title>
+    <url>%2F2019%2F09%2F06%2FLeetCode-283-Move-Zeroes%2F</url>
+    <content type="text"><![CDATA[题目描述 Given an array nums, write a function to move all 0‘s to the end of it while maintaining the relative order of the non-zero elements. Example: 12Input: [0,1,0,3,12]Output: [1,3,12,0,0] Note: You must do this in-place without making a copy of the array. Minimize the total number of operations. 题目要求inplace without making a copy对两个索引从左到右进行遍历，第一个索引index1遍历到0元素就停下，然后第二个索引index2继续遍历，直到第一个非零元素且index2&gt;index1就停下，然后交换元素的值即可。 代码实现 1234567891011121314151617181920212223class Solution: def moveZeroes(self, nums: 'list[int]') -&gt; 'None': """ Do not return anything, modify nums in-place instead. """ indexZero = 0 indexNonZero = 0 while True: while indexZero &lt; len(nums): if nums[indexZero] == 0: break indexZero += 1 if indexZero == len(nums): break while indexNonZero &lt; len(nums): if nums[indexNonZero] != 0 and indexNonZero &gt; indexZero: break indexNonZero += 1 if indexNonZero == len(nums): break nums[indexZero] = nums[indexNonZero] nums[indexNonZero] = 0]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>LeetCode</tag>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LeetCode: 295. Find Median from Data Stream]]></title>
+    <url>%2F2019%2F09%2F06%2FLeetCode-295-Find-Median-from-Data-Stream%2F</url>
+    <content type="text"><![CDATA[题目描述 Median is the middle value in an ordered integer list. If the size of the list is even, there is no middle value. So the median is the mean of the two middle value. For example, 12[2,3,4]`, the median is `3[2,3]`, the median is `(2 + 3) / 2 = 2.5 Design a data structure that supports the following two operations: void addNum(int num) - Add a integer number from the data stream to the data structure. double findMedian() - Return the median of all elements so far. Example: 12345addNum(1)addNum(2)findMedian() -&gt; 1.5addNum(3) findMedian() -&gt; 2 Hard题。 如果是去使用quick sort维护数组，那么addNum的复杂度为O(nlogn)，查找为O(1)。 但是，这里可以使用一个最大堆存放整个stream的最小的一半数字，用最小堆存放整个stream的最大的一半数字，那么addNum的复杂度就是O(logn)，查找为O(1)，可以极大程度提升性能。 这里要注意的就是如何去维护两个堆中的数字。所以需要对每次addNum的数字与堆顶的数字进行比较和操作。比较简单，在此不加赘述。 代码实现 1234567891011121314151617181920212223242526272829303132import heapqclass MedianFinder: def __init__(self): """ initialize your data structure here. """ self.minheap = [] self.maxheap = [] def addNum(self, num: int) -&gt; None: if (len(self.minheap) + len(self.maxheap)) &amp; 1: if num &lt; self.minheap[0]: heapq.heappush(self.maxheap, -num) else: heapq.heappush(self.minheap, num) top = heapq.heappop(self.minheap) heapq.heappush(self.maxheap, -top) else: if len(self.maxheap) &gt; 0 and num &lt; -self.maxheap[0]: top = -heapq.heappop(self.maxheap) heapq.heappush(self.minheap, top) heapq.heappush(self.maxheap, -num) else: heapq.heappush(self.minheap, num) def findMedian(self) -&gt; float: if (len(self.minheap) + len(self.maxheap)) &amp; 1: return self.minheap[0] else: return (self.minheap[0] - self.maxheap[0])/2]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>LeetCode</tag>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LeetCode: 239. Sliding Window Maximum]]></title>
+    <url>%2F2019%2F09%2F06%2FLeetCode-239-Sliding-Window-Maximum%2F</url>
+    <content type="text"><![CDATA[题目描述 Given an array nums, there is a sliding window of size k which is moving from the very left of the array to the very right. You can only see the k numbers in the window. Each time the sliding window moves right by one position. Return the max sliding window. Example: 123456789101112Input: nums = [1,3,-1,-3,5,3,6,7], and k = 3Output: [3,3,5,5,6,7] Explanation: Window position Max--------------- -----[1 3 -1] -3 5 3 6 7 3 1 [3 -1 -3] 5 3 6 7 3 1 3 [-1 -3 5] 3 6 7 5 1 3 -1 [-3 5 3] 6 7 5 1 3 -1 -3 [5 3 6] 7 6 1 3 -1 -3 5 [3 6 7] 7 Hard题，难点在于O(n)算法的实现。 这里的O(n)需要使用一个可以维持顺序的队列，成为单调队列。该队列中存储了最有可能成为Max的数字，比如对于k=3, nums=[2, 1, 4, 5]来说，一开始的这个队列长度为0，对nums进行从左到右遍历。首先先看第一个元素2，直接进入队列中，然后看第二个元素1，实际上1还是有可能成为Max的数字的，因为当2出列的时候，1就有可能成为最大的数字，因此push进1，单调队列为[2, 1]，接下来是4，由于4比单调队列中的所有数字都大，而且之前的数字出列之前，之前的数字都不可能再成为最大的数字了，因此把单调队列pop两次，再push进4。此时，第一个sliding window的最大值就是最左边的这个元素4。当遍历到5的时候，由于5比4大，而且之后4也不可能成为最大的了，所以就pop出4，push进5. 这里需要注意的就是要检查每一次出sliding window时出去的这个元素是不是单调队列中最大的那个元素，如果是的话，就要把最开头的这个元素pop掉；如果不是，则不用处理，因为它也一定不会存在于单调队列的其他地方中，也不会对之后的结果有任何影响。（这里可能就是hint所说的双向队列deque的体现吧） 代码实现 123456789101112131415161718192021222324class Solution: def maxSlidingWindow(self, nums: 'list[int]', k: 'int') -&gt; 'list[int]': if len(nums) == 0: return [] queue = [] for i in range(k): while queue != [] and nums[i] &gt; queue[-1]: queue.pop() queue.append(nums[i]) result = [queue[0]] for i in range(k, len(nums)): if nums[i - k] == queue[0]: queue.pop(0) while queue != [] and nums[i] &gt; queue[-1]: queue.pop() queue.append(nums[i]) result.append(queue[0]) return result]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>LeetCode</tag>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LeetCode: 231. Power of Two]]></title>
+    <url>%2F2019%2F09%2F04%2FLeetCode-231-Power-of-Two%2F</url>
+    <content type="text"><![CDATA[题目描述 Given an integer, write a function to determine if it is a power of two. Example 1: 123Input: 1Output: true Explanation: 20 = 1 Example 2: 123Input: 16Output: trueExplanation: 24 = 16 Example 3: 12Input: 218Output: false 所有2的n次方的数字的二进制表示中，只有一个1，并且该1出现在首位。 因此，该题目就是判断输入的数字的二进制表示中有几个1，如果出现了多个1，那就一定不对。在实现方面，我使用了位运算，不断对输入向右移位，直到出现第一个1为止。这个时候进行判断，如果该数字仍然大于1，则说明这个数字还包含了多个1，因此返回false。另外需要排除0和一切负数的情况。 12345678910111213class Solution: def isPowerOfTwo(self, n: int) -&gt; bool: if n &lt; 1: return False while n &gt; 0: if n &amp; 1 == 1: break n &gt;&gt;= 1 if n &gt; 1: return False return True]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>LeetCode</tag>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LeetCode: 230. Kth Smallest Element in a BST]]></title>
+    <url>%2F2019%2F09%2F04%2FLeetCode-230-Kth-Smallest-Element-in-a-BST%2F</url>
+    <content type="text"><![CDATA[题目描述 Given a binary search tree, write a function kthSmallest to find the kth smallest element in it. Note:You may assume k is always valid, 1 ≤ k ≤ BST’s total elements. Example 1: 1234567Input: root = [3,1,4,null,2], k = 1 3 / \ 1 4 \ 2Output: 1 Example 2: 123456789Input: root = [5,3,6,2,4,null,null,1], k = 3 5 / \ 3 6 / \ 2 4 / 1Output: 3 由于这个是一个二叉搜索树，因此内部的数字已经排列好了，我们只需要通过遍历树去找到第k小的数字。 这里可以用中序遍历的方法，在遍历第k次的时候，该node的val就是所需要求解的值。 12345678910111213141516171819202122class Solution: def __init__(self): self.tmp = 0 self.k = 0 self.result = 0 def traversal(self, root): if root == None: return self.traversal(root.left) self.tmp += 1 if self.tmp == self.k: self.result = root.val self.traversal(root.right) def kthSmallest(self, root: 'TreeNode', k: 'int') -&gt; 'int': self.k = k self.traversal(root) return self.result]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>LeetCode</tag>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[LeetCode: 229. Majority Element II]]></title>
     <url>%2F2019%2F09%2F03%2FLeetCode-229-Majority-Element-II%2F</url>
     <content type="text"><![CDATA[题目描述 Given an integer array of size n, find all elements that appear more than ⌊ n/3 ⌋ times. Note: The algorithm should run in linear time and in O(1) space. Example 1: 12Input: [3,2,3]Output: [3] Example 2: 12Input: [1,1,1,3,3,2,2,2]Output: [1,2] 如果要满足O(1)的space complexity的话，这是挺难的一道题。 由于需要找的数字最多只有两个，我们设置两个计数器，分别记录最有可能返回的两个值，以及他们记数的大小。 在遍历的时候，如果遍历到除了这两个数字之外的其他数字，就给他们两个的记述器都减1，如果遍历到与这两个数字相同的数字，就给相同的那个计数器加1.当某个计数器为0的时候，下一次遍历就可以将该计数器所对应的数字记为该新数字。 之所以这样做，是因为我们只需要记录最有可能的数字，如果说遍历到中途，某个数字的计数器变成0了，就说明它在当前的序列里，占比不会超过1/3，所以它一定不可能。 关于这题的理解我也并不是很透彻，已经标注了star 代码实现 123456789101112131415161718192021222324252627282930313233343536class Solution: def majorityElement(self, nums: 'list[int]') -&gt; 'list[int]': num1, num2 = 0, 0 count1, count2 = 0, 0 threshold = len(nums) // 3 for num in nums: if num1 == num: count1 += 1 elif num2 == num: count2 += 1 elif count1 == 0: num1 = num count1 = 1 elif count2 == 0: num2 = num count2 = 1 else: count1 -= 1 count2 -= 1 count1, count2 = 0, 0 for num in nums: if num == num1: count1 += 1 if num == num2: count2 += 1 result = [] if count1 &gt; threshold: result.append(num1) if num2 != num1 and count2 &gt; threshold: result.append(num2) return result]]></content>
