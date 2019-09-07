@@ -1,6 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[LeetCode: 450. Delete Node in a BST]]></title>
+    <url>%2F2019%2F09%2F07%2FLeetCode-450-Delete-Node-in-a-BST%2F</url>
+    <content type="text"><![CDATA[题目描述 Given a root node reference of a BST and a key, delete the node with the given key in the BST. Return the root node reference (possibly updated) of the BST. Basically, the deletion can be divided into two stages: Search for a node to remove. If the node is found, delete the node. Note: Time complexity should be O(height of tree). Example: 1234567891011121314151617181920212223242526root = [5,3,6,2,4,null,7]key = 3 5 / \ 3 6 / \ \2 4 7Given key to delete is 3. So we find the node with value 3 and delete it.One valid answer is [5,4,6,2,null,null,7], shown in the following BST. 5 / \ 4 6 / \2 7Another valid answer is [5,2,6,null,4,null,7]. 5 / \ 2 6 \ \ 4 7 这题需要在二分查找树中删除节点。 在找到该节点位置之后，二分查找树删除节点的思路为： 如果该节点没有子节点，则直接删除 如果该节点有左子节点，就找左子树的最大值替换该节点的值，并且删除左子树中的最大节点 如果该节点有右子节点，就找右子树的最小值替换该节点的值，并且删除右子树中的最小节点 我使用了循环而非递归来做，所以代码看起来会比较繁琐，但是效率会比递归的更高。 代码实现 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566# Definition for a binary tree node.# class TreeNode:# def __init__(self, x):# self.val = x# self.left = None# self.right = Noneclass Solution: def deleteNode(self, root: TreeNode, key: int) -&gt; TreeNode: """ :type root: TreeNode :type key: int :rtype: TreeNode """ if root == None: return root node = root lastNode = None while node.val != key: if node.val &gt; key and node.left != None: lastNode = node node = node.left elif node.val &lt; key and node.right != None: lastNode = node node = node.right else: break if node.val != key: return root if node.left == None and node.right == None: if lastNode == None: return None if lastNode.left != None and lastNode.left.val == key: lastNode.left = None else: lastNode.right = None elif node.left != None: leftMax = node.left leftMaxLast = node while leftMax.right != None: leftMaxLast = leftMax leftMax = leftMax.right if leftMaxLast != node: leftMaxLast.right = leftMax.left else: leftMaxLast.left = leftMax.left node.val = leftMax.val else: rightMin = node.right rightMinLast = node while rightMin.left != None: rightMinLast = rightMin rightMin = rightMin.left if rightMinLast != node: rightMinLast.left = rightMin.right else: rightMinLast.right = rightMin.right node.val = rightMin.val return root]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>LeetCode</tag>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LeetCode: 237. Delete Node in a Linked List]]></title>
+    <url>%2F2019%2F09%2F07%2FLeetCode-237-Delete-Node-in-a-Linked-List%2F</url>
+    <content type="text"><![CDATA[题目描述 Write a function to delete a node (except the tail) in a singly linked list, given only access to that node. Given linked list – head = [4,5,1,9], which looks like following: Example 1: 123Input: head = [4,5,1,9], node = 5Output: [4,1,9]Explanation: You are given the second node with value 5, the linked list should become 4 -&gt; 1 -&gt; 9 after calling your function. Example 2: 123Input: head = [4,5,1,9], node = 1Output: [4,5,9]Explanation: You are given the third node with value 1, the linked list should become 4 -&gt; 5 -&gt; 9 after calling your function. Note: The linked list will have at least two elements. All of the nodes’ values will be unique. The given node will not be the tail and it will always be a valid node of the linked list. Do not return anything from your function. 题目描述有点问题，题目的原意是给一个node，直接在该node存在的list中删除这个node，因为不知道父节点的地址，所以只需要将node的val改成node.next的val，然后把node.next设置成node.next.next就可以了。 1234567891011121314# Definition for singly-linked list.# class ListNode(object):# def __init__(self, x):# self.val = x# self.next = Noneclass Solution: def deleteNode(self, node): """ :type node: ListNode :rtype: void Do not return anything, modify node in-place instead. """ node.val = node.next.val node.next = node.next.next]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>LeetCode</tag>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LeetCode: 653. Two Sum IV - Input is a BST]]></title>
+    <url>%2F2019%2F09%2F07%2FLeetCode-653-Two-Sum-IV-Input-is-a-BST%2F</url>
+    <content type="text"><![CDATA[题目描述 Given a Binary Search Tree and a target number, return true if there exist two elements in the BST such that their sum is equal to the given target. Example 1: 12345678910Input: 5 / \ 3 6 / \ \2 4 7Target = 9Output: True Example 2: 12345678910Input: 5 / \ 3 6 / \ \2 4 7Target = 28Output: False 使用中序遍历整个数，可以得到BST所有元素的从小到大的排列的list，然后对有序list找两个和为target。 对数组的操作比较简单，设置两个index，为数组的最左边和最右边的index，然后把两个元素加起来，如果和大于target，就右边index-=1，小于target就左边index+=1，直到和为target，返回True，或者左边的index大于右边index，返回False。 代码实现 12345678910111213141516171819202122class Solution: def findTarget(self, root: TreeNode, k: int) -&gt; bool: def dfs(root): if root == None: return dfs(root.left) allNums.append(root.val) dfs(root.right) allNums = [] dfs(root) leftIndex = 0 rightIndex = len(allNums) - 1 while leftIndex &lt; rightIndex: if allNums[leftIndex] + allNums[rightIndex] &lt; k: leftIndex += 1 elif allNums[leftIndex] + allNums[rightIndex] &gt; k: rightIndex -= 1 else: return True return False]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>LeetCode</tag>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[LeetCode: 714. Best Time to Buy and Sell Stock with Transaction Fee]]></title>
     <url>%2F2019%2F09%2F07%2FLeetCode-714-Best-Time-to-Buy-and-Sell-Stock-with-Transaction-Fee%2F</url>
     <content type="text"><![CDATA[题目描述 Your are given an array of integers prices, for which the i-th element is the price of a given stock on day i; and a non-negative integer fee representing a transaction fee. You may complete as many transactions as you like, but you need to pay the transaction fee for each transaction. You may not buy more than 1 share of a stock at a time (ie. you must sell the stock share before you buy again.) Return the maximum profit you can make. Example 1: 1234Input: prices = [1, 3, 2, 8, 4, 9], fee = 2Output: 8Explanation: The maximum profit can be achieved by:Buying at prices[0] = 1Selling at prices[3] = 8Buying at prices[4] = 4Selling at prices[5] = 9The total profit is ((8 - 1) - 2) + ((9 - 4) - 2) = 8. 这题有了309铺路之后就显得很好做，也是使用状态机来表示，无非这里只有两个状态（没有了$S_{2}$） $S_{0}$是未买入时的状态，$S_{1}$为买入后的状态，状态转移方程为： $$S_{0}[i]=\max(S_{0}[i-1], S_{1}[i-1]+price[i]-fee) \ S_{1}[i]=\max(S_{1}[i-1], S_{0}[i-1]-price[i])$$ 代码实现 12345678910111213class Solution: def maxProfit(self, prices: 'list[int]', fee: 'int') -&gt; 'int': if len(prices) == 0: return 0 dp = [[0] * len(prices) for _ in range(2)] dp[1][0] = -prices[0] for i in range(1, len(prices)): dp[0][i] = max(dp[0][i - 1], dp[1][i - 1] + prices[i] - fee) dp[1][i] = max(dp[1][i - 1], dp[0][i - 1] - prices[i]) return dp[0][-1]]]></content>
