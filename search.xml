@@ -1,6 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[LeetCode: 445. Add Two Numbers II]]></title>
+    <url>%2F2019%2F09%2F07%2FLeetCode-445-Add-Two-Numbers-II%2F</url>
+    <content type="text"><![CDATA[题目描述 You are given two non-empty linked lists representing two non-negative integers. The most significant digit comes first and each of their nodes contain a single digit. Add the two numbers and return it as a linked list. You may assume the two numbers do not contain any leading zero, except the number 0 itself. Follow up:What if you cannot modify the input lists? In other words, reversing the lists is not allowed. Example: 12Input: (7 -&gt; 2 -&gt; 4 -&gt; 3) + (5 -&gt; 6 -&gt; 4)Output: 7 -&gt; 8 -&gt; 0 -&gt; 7 这里需要对两个链表进行加法，首先需要将列表进行反转，然后从表头进行链表的遍历。然后对两个链表进行同时从头到尾遍历。每一次遍历后将值相加，然后保存到一个新的节点中，然后两个节点都向后移一位。最后要注意两个表都遍历到头了以后，如果carry为1，还需要额外生成一个节点连接到结果的最后。 在返回前，需要对结果再进行一次反转。 123456789101112131415161718192021222324252627282930313233343536class Solution: def addTwoNumbers(self, l1: ListNode, l2: ListNode) -&gt; ListNode: def reverseList(l:'ListNode') -&gt; 'ListNode': if l == None: return l lastNode = None while l.next != None: nextL = l.next l.next = lastNode lastNode = l l = nextL l.next = lastNode return l reversedL1 = reverseList(l1) reversedL2 = reverseList(l2) start = ListNode(0) last = start carry = 0 while reversedL1 != None or reversedL2 != None: val1 = 0 if reversedL1 == None else reversedL1.val val2 = 0 if reversedL2 == None else reversedL2.val val = val1 + val2 + carry carry = val // 10 val = val % 10 last.next = ListNode(val) last = last.next reversedL1 = None if reversedL1 == None else reversedL1.next reversedL2 = None if reversedL2 == None else reversedL2.next if carry == 1: last.next = ListNode(1) return reverseList(start.next)]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>LeetCode</tag>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LeetCode: 350. Intersection of Two Arrays II]]></title>
+    <url>%2F2019%2F09%2F07%2FLeetCode-350-Intersection-of-Two-Arrays-II%2F</url>
+    <content type="text"><![CDATA[题目描述 Given two arrays, write a function to compute their intersection. Example 1: 12Input: nums1 = [1,2,2,1], nums2 = [2,2]Output: [2,2] Example 2: 12Input: nums1 = [4,9,5], nums2 = [9,4,9,8,4]Output: [4,9] Note: Each element in the result should appear as many times as it shows in both arrays. The result can be in any order. 这里我使用了一个dict来存放nums1中的数字，其中key为nums1的数字，value为该key出现在nums1中的次数。然后遍历nums2，并且在dict中查找是否出现过这个key，如果有，则给该key的value-=1，并且在result中加入一次这个key，如果value变成了0，就pop这个key。 代码实现 1234567891011121314151617class Solution: def intersect(self, nums1: List[int], nums2: List[int]) -&gt; List[int]: dic1 = &#123;&#125; for num in nums1: if num in dic1.keys(): dic1[num] += 1 else: dic1[num] = 1 result = [] for num in nums2: if num in dic1.keys(): dic1[num] -= 1 result.append(num) if dic1[num] == 0: dic1.pop(num) return result]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>LeetCode</tag>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LeetCode: 349. Intersection of Two Arrays]]></title>
+    <url>%2F2019%2F09%2F07%2FLeetCode-349-Intersection-of-Two-Arrays%2F</url>
+    <content type="text"><![CDATA[题目描述 Given two arrays, write a function to compute their intersection. Example 1: 12Input: nums1 = [1,2,2,1], nums2 = [2,2]Output: [2] Example 2: 12Input: nums1 = [4,9,5], nums2 = [9,4,9,8,4]Output: [9,4] Note: Each element in the result must be unique. The result can be in any order. 用python的set投机取巧了一下hhh 代码实现 12345class Solution: def intersection(self, nums1: List[int], nums2: List[int]) -&gt; List[int]: s1 = set(nums1) s2 = set(nums2) return list(s1 &amp; s2)]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>LeetCode</tag>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[LeetCode: 450. Delete Node in a BST]]></title>
     <url>%2F2019%2F09%2F07%2FLeetCode-450-Delete-Node-in-a-BST%2F</url>
     <content type="text"><![CDATA[题目描述 Given a root node reference of a BST and a key, delete the node with the given key in the BST. Return the root node reference (possibly updated) of the BST. Basically, the deletion can be divided into two stages: Search for a node to remove. If the node is found, delete the node. Note: Time complexity should be O(height of tree). Example: 1234567891011121314151617181920212223242526root = [5,3,6,2,4,null,7]key = 3 5 / \ 3 6 / \ \2 4 7Given key to delete is 3. So we find the node with value 3 and delete it.One valid answer is [5,4,6,2,null,null,7], shown in the following BST. 5 / \ 4 6 / \2 7Another valid answer is [5,2,6,null,4,null,7]. 5 / \ 2 6 \ \ 4 7 这题需要在二分查找树中删除节点。 在找到该节点位置之后，二分查找树删除节点的思路为： 如果该节点没有子节点，则直接删除 如果该节点有左子节点，就找左子树的最大值替换该节点的值，并且删除左子树中的最大节点 如果该节点有右子节点，就找右子树的最小值替换该节点的值，并且删除右子树中的最小节点 我使用了循环而非递归来做，所以代码看起来会比较繁琐，但是效率会比递归的更高。 代码实现 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566# Definition for a binary tree node.# class TreeNode:# def __init__(self, x):# self.val = x# self.left = None# self.right = Noneclass Solution: def deleteNode(self, root: TreeNode, key: int) -&gt; TreeNode: """ :type root: TreeNode :type key: int :rtype: TreeNode """ if root == None: return root node = root lastNode = None while node.val != key: if node.val &gt; key and node.left != None: lastNode = node node = node.left elif node.val &lt; key and node.right != None: lastNode = node node = node.right else: break if node.val != key: return root if node.left == None and node.right == None: if lastNode == None: return None if lastNode.left != None and lastNode.left.val == key: lastNode.left = None else: lastNode.right = None elif node.left != None: leftMax = node.left leftMaxLast = node while leftMax.right != None: leftMaxLast = leftMax leftMax = leftMax.right if leftMaxLast != node: leftMaxLast.right = leftMax.left else: leftMaxLast.left = leftMax.left node.val = leftMax.val else: rightMin = node.right rightMinLast = node while rightMin.left != None: rightMinLast = rightMin rightMin = rightMin.left if rightMinLast != node: rightMinLast.left = rightMin.right else: rightMinLast.right = rightMin.right node.val = rightMin.val return root]]></content>
