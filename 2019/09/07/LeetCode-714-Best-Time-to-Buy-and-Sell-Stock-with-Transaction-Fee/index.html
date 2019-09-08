@@ -87,12 +87,12 @@
 <meta property="og:site_name" content="Rong @@@">
 <meta property="og:description" content="题目描述 Your are given an array of integers prices, for which the i-th element is the price of a given stock on day i; and a non-negative integer fee representing a transaction fee. You may complete as m">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://sr0121.github.io/Users/sr/Documents/github/Sr0121.github.io/source/_posts/LeetCode-714-Best-Time-to-Buy-and-Sell-Stock-with-Transaction-Fee/1567877449784.jpg">
-<meta property="og:updated_time" content="2019-09-07T17:32:05.762Z">
+<meta property="og:image" content="https://sr0121.github.io/2019/09/07/LeetCode-714-Best-Time-to-Buy-and-Sell-Stock-with-Transaction-Fee/LeetCode-714-Best-Time-to-Buy-and-Sell-Stock-with-Transaction-Fee/1567877449784.jpg">
+<meta property="og:updated_time" content="2019-09-08T03:29:56.335Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LeetCode: 714. Best Time to Buy and Sell Stock with Transaction Fee">
 <meta name="twitter:description" content="题目描述 Your are given an array of integers prices, for which the i-th element is the price of a given stock on day i; and a non-negative integer fee representing a transaction fee. You may complete as m">
-<meta name="twitter:image" content="https://sr0121.github.io/Users/sr/Documents/github/Sr0121.github.io/source/_posts/LeetCode-714-Best-Time-to-Buy-and-Sell-Stock-with-Transaction-Fee/1567877449784.jpg">
+<meta name="twitter:image" content="https://sr0121.github.io/2019/09/07/LeetCode-714-Best-Time-to-Buy-and-Sell-Stock-with-Transaction-Fee/LeetCode-714-Best-Time-to-Buy-and-Sell-Stock-with-Transaction-Fee/1567877449784.jpg">
 
 
 
@@ -398,7 +398,7 @@
 
 
 <p>这题有了309铺路之后就显得很好做，也是使用状态机来表示，无非这里只有两个状态（没有了$S_{2}$）</p>
-<p><img src="/Users/sr/Documents/github/Sr0121.github.io/source/_posts/LeetCode-714-Best-Time-to-Buy-and-Sell-Stock-with-Transaction-Fee/1567877449784.jpg" alt></p>
+<p><img src="./LeetCode-714-Best-Time-to-Buy-and-Sell-Stock-with-Transaction-Fee/1567877449784.jpg" alt></p>
 <p>$S_{0}$是未买入时的状态，$S_{1}$为买入后的状态，状态转移方程为：</p>
 <p>$$S_{0}[i]=\max(S_{0}[i-1], S_{1}[i-1]+price[i]-fee) \ S_{1}[i]=\max(S_{1}[i-1], S_{0}[i-1]-price[i])$$</p>
 <p><strong>代码实现</strong></p>
