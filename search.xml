@@ -1,9 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[LeetCode: 377. Combination Sum IV]]></title>
+    <url>%2F2019%2F09%2F09%2FLeetCode-377-Combination-Sum-IV%2F</url>
+    <content type="text"><![CDATA[题目描述 Given an integer array with all positive numbers and no duplicates, find the number of possible combinations that add up to a positive integer target. Example: 123456789101112131415nums = [1, 2, 3]target = 4The possible combination ways are:(1, 1, 1, 1)(1, 1, 2)(1, 2, 1)(1, 3)(2, 1, 1)(2, 2)(3, 1)Note that different sequences are counted as different combinations.Therefore the output is 7. 一开始以为是一道简单的dfs的题目，结果暴力做直接TLE。 这题应该用DP来做，令dp[i]为这个序列和为i的排列个数。状态转移方程为: $$dp_{i} = \sum_jdp_{i-j}\j\in nums$$ 意思就是$j$是nums中的数字，这个dp的规律就是对于目标和target，它是所有和为target-j的可能性之和，相当于在所有target-j的目标最后加上了j作为一个新的排列。 代码实现 12345678910111213141516class Solution &#123;public: int combinationSum4(vector&lt;int&gt;&amp; nums, int target) &#123; vector&lt;unsigned long&gt; dp(target+1, 0); dp[0] = 1; for (int i=1; i&lt;=target; i++) &#123; for (auto it = nums.begin(); it != nums.end(); it++) &#123; if (i - *it &gt;= 0) &#123; dp[i] += dp[i - *it]; &#125; &#125; &#125; return dp[target]; &#125;&#125;;]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>LeetCode</tag>
+        <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LeetCode: 668. Kth Smallest Number in Multiplication Table]]></title>
+    <url>%2F2019%2F09%2F08%2FLeetCode-668-Kth-Smallest-Number-in-Multiplication-Table%2F</url>
+    <content type="text"><![CDATA[题目描述 Nearly every one have used the Multiplication Table. But could you find out the k-th smallest number quickly from the multiplication table? Given the height m and the length n of a m * n Multiplication Table, and a positive integer k, you need to return the k-th smallest number in this table. Example 1: 123456789Input: m = 3, n = 3, k = 5Output: Explanation: The Multiplication Table:1 2 32 4 63 6 9The 5-th smallest number is 3 (1, 2, 2, 3, 3). Example 2: 12345678Input: m = 2, n = 3, k = 6Output: Explanation: The Multiplication Table:1 2 32 4 6The 6-th smallest number is 6 (1, 2, 2, 3, 4, 6). 真的是挺难的一道二分查找题，主要也是想不到可以这么做。 令left = 1,right=m*n得到mid然后去计算multiplication table中小于mid的个数cnt。如果小于，则令right=mid否则则left=mid+1，最后返回left。 这里可以不用考虑left是否在table中，因为这样做的话是肯定在table里的。因为left一定能找到一个在table中的数字，满足在table中的条件，如果找到了，那么left就不会有变化了，接下来都是right在进行收敛。另外，这里不能用right=mid-1，是因为mid得到的cnt是一个大于等于实际k的值(比如第一个例子，mid为6的时候，cnt为8，如果在k=7点时候直接right=mid-1的话，会永远找不到值)，所以right=mid，而在left=mid+1则没有问题。 代码实现 1234567891011121314151617181920class Solution &#123;public: int findKthNumber(int m, int n, int k) &#123; int left = 1; int right = n*m; while (left &lt; right) &#123; int mid = (right - left) / 2 + left; int cnt = 0; for (int i = 1; i &lt;= m; i++) &#123; cnt += min(mid/i, n); &#125; if (cnt &lt; k) &#123; left = mid+1; &#125; else &#123; right = mid; &#125; &#125; return left; &#125;&#125;;]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>LeetCode</tag>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LeetCode: 337. House Robber III]]></title>
+    <url>%2F2019%2F09%2F08%2FLeetCode-337-House-Robber-III%2F</url>
+    <content type="text"><![CDATA[题目描述 The thief has found himself a new place for his thievery again. There is only one entrance to this area, called the “root.” Besides the root, each house has one and only one parent house. After a tour, the smart thief realized that “all houses in this place forms a binary tree”. It will automatically contact the police if two directly-linked houses were broken into on the same night. Determine the maximum amount of money the thief can rob tonight without alerting the police. Example 1: 12345678910Input: [3,2,3,null,3,null,1] 3 / \ 2 3 \ \ 3 1Output: 7 Explanation: Maximum amount of money the thief can rob = 3 + 3 + 1 = 7. Example 2: 12345678910Input: [3,4,5,1,3,null,1] 3 / \ 4 5 / \ \ 1 3 1Output: 9Explanation: Maximum amount of money the thief can rob = 4 + 5 = 9. 这题是小偷的第三题，前两题因为都是一个数列，所以很容易就可以用DP做。 但是这题所有的路线是用二叉树来表示的，因此首选思路还是DFS。 对于每一个节点，它的偷窃的最大值只有两种情况，第一种是自己的两个子节点们的返回值之和，还有一种是自己的值加上自己的孙子节点们的返回值之和，所以dfs还是比较好实现的。 有一点要注意的是，需要用一个hashMap来存储每个节点的返回值，因为在进行dfs的时候，会重复查找节点的值，如果没有一个hashMap来存储数据的话，会TLE。 代码实现 1234567891011121314151617181920212223242526272829303132class Solution &#123;private: unordered_map&lt;TreeNode*, int&gt; hashMap; int subTreeRob(TreeNode* root) &#123; if (root == NULL) &#123; return 0; &#125; if (hashMap.find(root) != hashMap.end())&#123; return hashMap[root]; &#125; int result = 0; if (root-&gt;left != NULL &amp;&amp; root-&gt;right != NULL) &#123; result = max(root-&gt;val + subTreeRob(root-&gt;left-&gt;left) + subTreeRob(root-&gt;left-&gt;right) + subTreeRob(root-&gt;right-&gt;left) + subTreeRob(root-&gt;right-&gt;right), subTreeRob(root-&gt;left) + subTreeRob(root-&gt;right)); &#125; else if (root-&gt;left != NULL) &#123; result = max(root-&gt;val + subTreeRob(root-&gt;left-&gt;left) + subTreeRob(root-&gt;left-&gt;right), subTreeRob(root-&gt;left)); &#125; else if (root-&gt;right != NULL)&#123; result = max(root-&gt;val + subTreeRob(root-&gt;right-&gt;left) + subTreeRob(root-&gt;right-&gt;right), subTreeRob(root-&gt;right)); &#125; else &#123; result = root-&gt;val; &#125; hashMap[root] = result; return result; &#125;public: int rob(TreeNode* root) &#123; return subTreeRob(root); &#125;&#125;;]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>LeetCode</tag>
+        <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LeetCode: 378. Kth Smallest Element in a Sorted Matrix]]></title>
+    <url>%2F2019%2F09%2F08%2FLeetCode-378-Kth-Smallest-Element-in-a-Sorted-Matrix%2F</url>
+    <content type="text"><![CDATA[题目描述 Given a n x n matrix where each of the rows and columns are sorted in ascending order, find the kth smallest element in the matrix. Note that it is the kth smallest element in the sorted order, not the kth distinct element. Example: 12345678matrix = [ [ 1, 5, 9], [10, 11, 13], [12, 13, 15]],k = 8,return 13. 这题我想不到什么更好的方法，并没有用到行列之间的有序性来做，只是维持了一个最大堆（优先序列）去做，不过OJ还是可以通过的。 代码实现 123456789101112131415class Solution &#123;public: int kthSmallest(vector&lt;vector&lt;int&gt;&gt;&amp; matrix, int k) &#123; priority_queue&lt;int&gt; priorityQueue; for(int i = 0; i &lt; matrix.size(); i++) &#123; for(int j=0; j &lt; matrix[0].size(); j++) &#123; priorityQueue.push(matrix[i][j]); if (priorityQueue.size() &gt; k) &#123; priorityQueue.pop(); &#125; &#125; &#125; return priorityQueue.top(); &#125;&#125;;]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>LeetCode</tag>
+        <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[LeetCode: 480. Sliding Window Median]]></title>
     <url>%2F2019%2F09%2F08%2FLeetCode-480-Sliding-Window-Median%2F</url>
-    <content type="text"><![CDATA[题目描述 Median is the middle value in an ordered integer list. If the size of the list is even, there is no middle value. So the median is the mean of the two middle value. Examples: 12[2,3,4]` , the median is `3[2,3]`, the median is `(2 + 3) / 2 = 2.5 Given an array nums, there is a sliding window of size k which is moving from the very left of the array to the very right. You can only see the k numbers in the window. Each time the sliding window moves right by one position. Your job is to output the median array for each window in the original array. For example,Given nums = [1,3,-1,-3,5,3,6,7], and k = 3. 12345678Window position Median--------------- -----[1 3 -1] -3 5 3 6 7 1 1 [3 -1 -3] 5 3 6 7 -1 1 3 [-1 -3 5] 3 6 7 -1 1 3 -1 [-3 5 3] 6 7 3 1 3 -1 -3 [5 3 6] 7 5 1 3 -1 -3 5 [3 6 7] 6 Therefore, return the median sliding window as [1,-1,-1,3,5,6]. Note:You may assume k is always valid, ie: k is always smaller than input array’s size for non-empty array. 这题和之前的着sliding window中的最大值不一样，之前只需要维护好最大值就可以了，但是这里还是需要维护整个数组的顺序。在这个时候，效率最高的是multiset，本质是一个红黑树，插入、查找、删除的时间复杂度均为O(logn)。 在这里我们需要用一个iterator确定中间值的位置，可以使用auto it = next(multiset, k/2)实现。在确定了初始中间iterator的位置后，每次向右滑动时，都要将新元素加入multiset，同时比较这个值和*iterator的大小，如果比较小，那么它一定排在iterator之前，为了让iterator仍然指向中间的位置，我们需要iterator--（这里不能取等，因为相同的元素在multiset中，新的排在旧的之后） 。同时，还需要将window最左边的元素erase出multiset，如果这个值不大于*iterator，那么需要iterator++（这里需要去等号，因为等会删除的时候，对于任何不大于*iterator的*it，it一定在iterator前） 最后要在multiset中删除元素，multiset不能直接用erase，不然会删除所有相同的元素，而应该使用multiset.find(n)找到第一个it，然后用it删除。最后时间复杂度为O(klogn) 代码实现 1234567891011121314151617181920212223242526272829class Solution &#123;public: vector&lt;double&gt; medianSlidingWindow(vector&lt;int&gt;&amp; nums, int k) &#123; vector&lt;double&gt; result; multiset&lt;double&gt; window(nums.begin(), nums.begin()+k); auto midIterator = next(window.begin(), k/2); for (int i = k; i &lt;= nums.size(); i++) &#123; if (k%2) result.push_back(*midIterator); else result.push_back((*midIterator + *prev(midIterator))/2); if (i == nums.size()) break; window.insert(nums[i]); if (nums[i] &lt; *midIterator) midIterator--; if (nums[i-k] &lt;= *midIterator) midIterator++; auto pos = window.find(nums[i-k]); window.erase(pos); &#125; return result; &#125;&#125;;]]></content>
+    <content type="text"><![CDATA[题目描述 Median is the middle value in an ordered integer list. If the size of the list is even, there is no middle value. So the median is the mean of the two middle value. Examples: 12[2,3,4]` , the median is `3[2,3]`, the median is `(2 + 3) / 2 = 2.5 Given an array nums, there is a sliding window of size k which is moving from the very left of the array to the very right. You can only see the k numbers in the window. Each time the sliding window moves right by one position. Your job is to output the median array for each window in the original array. For example,Given nums = [1,3,-1,-3,5,3,6,7], and k = 3. 12345678Window position Median--------------- -----[1 3 -1] -3 5 3 6 7 1 1 [3 -1 -3] 5 3 6 7 -1 1 3 [-1 -3 5] 3 6 7 -1 1 3 -1 [-3 5 3] 6 7 3 1 3 -1 -3 [5 3 6] 7 5 1 3 -1 -3 5 [3 6 7] 6 Therefore, return the median sliding window as [1,-1,-1,3,5,6]. Note:You may assume k is always valid, ie: k is always smaller than input array’s size for non-empty array. 这题和之前的着sliding window中的最大值不一样，之前只需要维护好最大值就可以了，但是这里还是需要维护整个数组的顺序。在这个时候，效率最高的是multiset，本质是一个红黑树，插入、查找、删除的时间复杂度均为O(logn)。 在这里我们需要用一个iterator确定中间值的位置，可以使用auto it = next(multiset, k/2)实现。在确定了初始中间iterator的位置后，每次向右滑动时，都要将新元素加入multiset，同时比较这个值和*iterator的大小，如果比较小，那么它一定排在iterator之前，为了让iterator仍然指向中间的位置，我们需要iterator--（这里不能取等，因为相同的元素在multiset中，新的排在旧的之后） 。同时，还需要将window最左边的元素erase出multiset，如果这个值不大于*iterator，那么需要iterator++（这里需要去等号，因为等会删除的时候，对于任何不大于*iterator的*it，it一定在iterator前） 最后要在multiset中删除元素，multiset不能直接用erase，不然会删除所有相同的元素，而应该使用multiset.find(n)找到第一个it，然后用it删除。最后时间复杂度为O(nlogk) 代码实现 1234567891011121314151617181920212223242526272829class Solution &#123;public: vector&lt;double&gt; medianSlidingWindow(vector&lt;int&gt;&amp; nums, int k) &#123; vector&lt;double&gt; result; multiset&lt;double&gt; window(nums.begin(), nums.begin()+k); auto midIterator = next(window.begin(), k/2); for (int i = k; i &lt;= nums.size(); i++) &#123; if (k%2) result.push_back(*midIterator); else result.push_back((*midIterator + *prev(midIterator))/2); if (i == nums.size()) break; window.insert(nums[i]); if (nums[i] &lt; *midIterator) midIterator--; if (nums[i-k] &lt;= *midIterator) midIterator++; auto pos = window.find(nums[i-k]); window.erase(pos); &#125; return result; &#125;&#125;;]]></content>
       <categories>
         <category>LeetCode</category>
       </categories>
