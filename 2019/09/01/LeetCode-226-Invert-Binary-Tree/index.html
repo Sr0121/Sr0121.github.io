@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="题目描述 Invert a binary tree. Example: Input: 12345     4   /   \  2     7 / \   / \1   3 6   9  Output: 12345     4   /   \  7     2 / \   / \9   6 3   1">
+<meta name="description" content="题目描述 Invert a binary tree. Example: Input: 12345     4   /   \  2     7 / \   / \1   3 6   9 Output: 12345     4   /   \  7     2 / \   / \9   6 3   1">
 <meta name="keywords" content="LeetCode,Python">
 <meta property="og:type" content="article">
 <meta property="og:title" content="LeetCode:226. Invert Binary Tree">
 <meta property="og:url" content="https://sr0121.github.io/2019/09/01/LeetCode-226-Invert-Binary-Tree/index.html">
 <meta property="og:site_name" content="Rong @@@">
-<meta property="og:description" content="题目描述 Invert a binary tree. Example: Input: 12345     4   /   \  2     7 / \   / \1   3 6   9  Output: 12345     4   /   \  7     2 / \   / \9   6 3   1">
+<meta property="og:description" content="题目描述 Invert a binary tree. Example: Input: 12345     4   /   \  2     7 / \   / \1   3 6   9 Output: 12345     4   /   \  7     2 / \   / \9   6 3   1">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2019-09-01T15:42:48.572Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LeetCode:226. Invert Binary Tree">
-<meta name="twitter:description" content="题目描述 Invert a binary tree. Example: Input: 12345     4   /   \  2     7 / \   / \1   3 6   9  Output: 12345     4   /   \  7     2 / \   / \9   6 3   1">
+<meta name="twitter:description" content="题目描述 Invert a binary tree. Example: Input: 12345     4   /   \  2     7 / \   / \1   3 6   9 Output: 12345     4   /   \  7     2 / \   / \9   6 3   1">
 
 
 
@@ -389,17 +389,11 @@
 <p><strong>Example:</strong></p>
 <p>Input:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">     4</span><br><span class="line">   /   \</span><br><span class="line">  2     7</span><br><span class="line"> / \   / \</span><br><span class="line">1   3 6   9</span><br></pre></td></tr></table></figure>
-
 <p>Output:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">     4</span><br><span class="line">   /   \</span><br><span class="line">  7     2</span><br><span class="line"> / \   / \</span><br><span class="line">9   6 3   1</span><br></pre></td></tr></table></figure>
-
 <a id="more"></a>
-
-
-
 <p>本题就是让我们反转一下二叉树，左右子树进行对调。可以使用一个递归实现。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">invertTree</span><span class="params">(self, root: TreeNode)</span> -&gt; TreeNode:</span></span><br><span class="line">        <span class="keyword">if</span> root == <span class="literal">None</span>:</span><br><span class="line">            <span class="keyword">return</span> root</span><br><span class="line">        tmp = root.left</span><br><span class="line">        root.left = root.right</span><br><span class="line">        root.right = tmp</span><br><span class="line">        <span class="keyword">if</span> root.left:</span><br><span class="line">            self.invertTree(root.left)</span><br><span class="line">        <span class="keyword">if</span> root.right:</span><br><span class="line">            self.invertTree(root.right)</span><br><span class="line">        <span class="keyword">return</span> root</span><br></pre></td></tr></table></figure>
-
 
       
     </div>

@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="题目描述 Implement the following operations of a queue using stacks.  push(x) – Push element x to the back of queue. pop() – Removes the element from in front of queue. peek() – Get the front element. emp">
+<meta name="description" content="题目描述 Implement the following operations of a queue using stacks.  push(x) — Push element x to the back of queue. pop() — Removes the element from in front of queue. peek() — Get the front element. emp">
 <meta name="keywords" content="LeetCode,C++">
 <meta property="og:type" content="article">
 <meta property="og:title" content="LeetCode: 232. Implement Queue using Stacks">
 <meta property="og:url" content="https://sr0121.github.io/2019/09/08/LeetCode-232-Implement-Queue-using-Stacks/index.html">
 <meta property="og:site_name" content="Rong @@@">
-<meta property="og:description" content="题目描述 Implement the following operations of a queue using stacks.  push(x) – Push element x to the back of queue. pop() – Removes the element from in front of queue. peek() – Get the front element. emp">
+<meta property="og:description" content="题目描述 Implement the following operations of a queue using stacks.  push(x) — Push element x to the back of queue. pop() — Removes the element from in front of queue. peek() — Get the front element. emp">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2019-09-08T16:45:15.523Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LeetCode: 232. Implement Queue using Stacks">
-<meta name="twitter:description" content="题目描述 Implement the following operations of a queue using stacks.  push(x) – Push element x to the back of queue. pop() – Removes the element from in front of queue. peek() – Get the front element. emp">
+<meta name="twitter:description" content="题目描述 Implement the following operations of a queue using stacks.  push(x) — Push element x to the back of queue. pop() — Removes the element from in front of queue. peek() — Get the front element. emp">
 
 
 
@@ -387,28 +387,23 @@
         <p><strong>题目描述</strong></p>
 <p>Implement the following operations of a queue using stacks.</p>
 <ul>
-<li>push(x) – Push element x to the back of queue.</li>
-<li>pop() – Removes the element from in front of queue.</li>
-<li>peek() – Get the front element.</li>
-<li>empty() – Return whether the queue is empty.</li>
+<li>push(x) — Push element x to the back of queue.</li>
+<li>pop() — Removes the element from in front of queue.</li>
+<li>peek() — Get the front element.</li>
+<li>empty() — Return whether the queue is empty.</li>
 </ul>
 <p><strong>Example:</strong></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">MyQueue queue = new MyQueue();</span><br><span class="line"></span><br><span class="line">queue.push(1);</span><br><span class="line">queue.push(2);  </span><br><span class="line">queue.peek();  // returns 1</span><br><span class="line">queue.pop();   // returns 1</span><br><span class="line">queue.empty(); // returns false</span><br></pre></td></tr></table></figure>
-
 <p><strong>Notes:</strong></p>
 <ul>
-<li>You must use <em>only</em> standard operations of a stack – which means only <code>push to top</code>, <code>peek/pop from top</code>, <code>size</code>, and <code>is empty</code> operations are valid.</li>
+<li>You must use <em>only</em> standard operations of a stack — which means only <code>push to top</code>, <code>peek/pop from top</code>, <code>size</code>, and <code>is empty</code> operations are valid.</li>
 <li>Depending on your language, stack may not be supported natively. You may simulate a stack by using a list or deque (double-ended queue), as long as you use only standard operations of a stack.</li>
 <li>You may assume that all operations are valid (for example, no pop or peek operations will be called on an empty queue).</li>
 </ul>
 <a id="more"></a>
-
-
-
 <p>使用stack模拟queue，对于peek和pop操作需要另外一个stack协助完成，原stack进行pop操作的时候另一个stack进行push来保存所有元素。</p>
 <p><strong>代码实现</strong></p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyQueue</span> &#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="built_in">stack</span>&lt;<span class="keyword">int</span>&gt; _stack;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="comment">/** Initialize your data structure here. */</span></span><br><span class="line">    MyQueue() &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/** Push element x to the back of queue. */</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">push</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>-&gt;_stack.push(x);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/** Removes the element from in front of queue and returns that element. */</span></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">pop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="built_in">stack</span>&lt;<span class="keyword">int</span>&gt; tmp;</span><br><span class="line">        assert (!<span class="keyword">this</span>-&gt;_stack.empty());</span><br><span class="line">        <span class="keyword">int</span> popNum = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (!<span class="keyword">this</span>-&gt;_stack.empty()) &#123;</span><br><span class="line">            popNum = <span class="keyword">this</span>-&gt;_stack.top();</span><br><span class="line">            <span class="keyword">this</span>-&gt;_stack.pop();</span><br><span class="line">            <span class="keyword">if</span> (!<span class="keyword">this</span>-&gt;_stack.empty()) &#123;</span><br><span class="line">                tmp.push(popNum);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span> (!tmp.empty()) &#123;</span><br><span class="line">            <span class="keyword">this</span>-&gt;_stack.push(tmp.top());</span><br><span class="line">            tmp.pop();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> popNum;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/** Get the front element. */</span></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">peek</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="built_in">stack</span>&lt;<span class="keyword">int</span>&gt; tmp;</span><br><span class="line">        <span class="keyword">int</span> topNum = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (!<span class="keyword">this</span>-&gt;_stack.empty()) &#123;</span><br><span class="line">            tmp.push(<span class="keyword">this</span>-&gt;_stack.top());</span><br><span class="line">            <span class="keyword">this</span>-&gt;_stack.pop();</span><br><span class="line">        &#125;</span><br><span class="line">        topNum = tmp.top();</span><br><span class="line">        <span class="keyword">while</span> (!tmp.empty()) &#123;</span><br><span class="line">            <span class="keyword">this</span>-&gt;push(tmp.top());</span><br><span class="line">            tmp.pop();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> topNum;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/** Returns whether the queue is empty. */</span></span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">empty</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>-&gt;_stack.empty();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
 
       
     </div>

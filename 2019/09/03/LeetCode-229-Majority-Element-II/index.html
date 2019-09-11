@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="题目描述 Given an integer array of size n, find all elements that appear more than ⌊ n/3 ⌋ times. Note: The algorithm should run in linear time and in O(1) space. Example 1: 12Input: [3,2,3]Output: [3]  E">
+<meta name="description" content="题目描述 Given an integer array of size n, find all elements that appear more than ⌊ n/3 ⌋ times. Note: The algorithm should run in linear time and in O(1) space. Example 1: 12Input: [3,2,3]Output: [3] Ex">
 <meta name="keywords" content="LeetCode,Python">
 <meta property="og:type" content="article">
 <meta property="og:title" content="LeetCode: 229. Majority Element II">
 <meta property="og:url" content="https://sr0121.github.io/2019/09/03/LeetCode-229-Majority-Element-II/index.html">
 <meta property="og:site_name" content="Rong @@@">
-<meta property="og:description" content="题目描述 Given an integer array of size n, find all elements that appear more than ⌊ n/3 ⌋ times. Note: The algorithm should run in linear time and in O(1) space. Example 1: 12Input: [3,2,3]Output: [3]  E">
+<meta property="og:description" content="题目描述 Given an integer array of size n, find all elements that appear more than ⌊ n/3 ⌋ times. Note: The algorithm should run in linear time and in O(1) space. Example 1: 12Input: [3,2,3]Output: [3] Ex">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2019-09-04T03:10:47.263Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LeetCode: 229. Majority Element II">
-<meta name="twitter:description" content="题目描述 Given an integer array of size n, find all elements that appear more than ⌊ n/3 ⌋ times. Note: The algorithm should run in linear time and in O(1) space. Example 1: 12Input: [3,2,3]Output: [3]  E">
+<meta name="twitter:description" content="题目描述 Given an integer array of size n, find all elements that appear more than ⌊ n/3 ⌋ times. Note: The algorithm should run in linear time and in O(1) space. Example 1: 12Input: [3,2,3]Output: [3] Ex">
 
 
 
@@ -389,14 +389,9 @@
 <p><strong>Note:</strong> The algorithm should run in linear time and in O(1) space.</p>
 <p><strong>Example 1:</strong></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: [3,2,3]</span><br><span class="line">Output: [3]</span><br></pre></td></tr></table></figure>
-
 <p><strong>Example 2:</strong></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: [1,1,1,3,3,2,2,2]</span><br><span class="line">Output: [1,2]</span><br></pre></td></tr></table></figure>
-
 <a id="more"></a>
-
-
-
 <p>如果要满足O(1)的space complexity的话，这是挺难的一道题。</p>
 <p>由于需要找的数字最多只有两个，我们设置两个计数器，分别记录最有可能返回的两个值，以及他们记数的大小。</p>
 <p>在遍历的时候，如果遍历到除了这两个数字之外的其他数字，就给他们两个的记述器都减1，如果遍历到与这两个数字相同的数字，就给相同的那个计数器加1.当某个计数器为0的时候，下一次遍历就可以将该计数器所对应的数字记为该新数字。</p>
@@ -404,7 +399,6 @@
 <p>关于这题的理解我也并不是很透彻，已经标注了star</p>
 <p><strong>代码实现</strong></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">majorityElement</span><span class="params">(self, nums: <span class="string">'list[int]'</span>)</span> -&gt; 'list[int]':</span></span><br><span class="line">        num1, num2 = <span class="number">0</span>, <span class="number">0</span></span><br><span class="line">        count1, count2 = <span class="number">0</span>, <span class="number">0</span></span><br><span class="line">        threshold = len(nums) // <span class="number">3</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> num <span class="keyword">in</span> nums:</span><br><span class="line">            <span class="keyword">if</span> num1 == num:</span><br><span class="line">                count1 += <span class="number">1</span></span><br><span class="line">            <span class="keyword">elif</span> num2 == num:</span><br><span class="line">                count2 += <span class="number">1</span></span><br><span class="line">            <span class="keyword">elif</span> count1 == <span class="number">0</span>:</span><br><span class="line">                num1 = num</span><br><span class="line">                count1 = <span class="number">1</span></span><br><span class="line">            <span class="keyword">elif</span> count2 == <span class="number">0</span>:</span><br><span class="line">                num2 = num</span><br><span class="line">                count2 = <span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                count1 -= <span class="number">1</span></span><br><span class="line">                count2 -= <span class="number">1</span></span><br><span class="line"></span><br><span class="line">        count1, count2 = <span class="number">0</span>, <span class="number">0</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> num <span class="keyword">in</span> nums:</span><br><span class="line">            <span class="keyword">if</span> num == num1:</span><br><span class="line">                count1 += <span class="number">1</span></span><br><span class="line">            <span class="keyword">if</span> num == num2:</span><br><span class="line">                count2 += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">        result = []</span><br><span class="line">        <span class="keyword">if</span> count1 &gt; threshold:</span><br><span class="line">            result.append(num1)</span><br><span class="line">        <span class="keyword">if</span> num2 != num1 <span class="keyword">and</span> count2 &gt; threshold:</span><br><span class="line">            result.append(num2)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> result</span><br></pre></td></tr></table></figure>
-
 
       
     </div>

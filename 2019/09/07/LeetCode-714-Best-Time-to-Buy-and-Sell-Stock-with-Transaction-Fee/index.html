@@ -392,18 +392,12 @@
 <p>Return the maximum profit you can make.</p>
 <p><strong>Example 1:</strong></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Input: prices = [1, 3, 2, 8, 4, 9], fee = 2</span><br><span class="line">Output: 8</span><br><span class="line">Explanation: The maximum profit can be achieved by:</span><br><span class="line">Buying at prices[0] = 1Selling at prices[3] = 8Buying at prices[4] = 4Selling at prices[5] = 9The total profit is ((8 - 1) - 2) + ((9 - 4) - 2) = 8.</span><br></pre></td></tr></table></figure>
-
 <a id="more"></a>
-
-
-
 <p>这题有了309铺路之后就显得很好做，也是使用状态机来表示，无非这里只有两个状态（没有了$S_{2}$）</p>
 <p><img src="./LeetCode-714-Best-Time-to-Buy-and-Sell-Stock-with-Transaction-Fee/1567877449784.jpg" alt></p>
 <p>$S_{0}$是未买入时的状态，$S_{1}$为买入后的状态，状态转移方程为：</p>
-<p>$$S_{0}[i]=\max(S_{0}[i-1], S_{1}[i-1]+price[i]-fee) \ S_{1}[i]=\max(S_{1}[i-1], S_{0}[i-1]-price[i])$$</p>
-<p><strong>代码实现</strong></p>
+<script type="math/tex; mode=display">S_{0}[i]=\max(S_{0}[i-1], S_{1}[i-1]+price[i]-fee) \\ S_{1}[i]=\max(S_{1}[i-1], S_{0}[i-1]-price[i])</script><p><strong>代码实现</strong></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">maxProfit</span><span class="params">(self, prices: <span class="string">'list[int]'</span>, fee: <span class="string">'int'</span>)</span> -&gt; 'int':</span></span><br><span class="line">        <span class="keyword">if</span> len(prices) == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line"></span><br><span class="line">        dp = [[<span class="number">0</span>] * len(prices) <span class="keyword">for</span> _ <span class="keyword">in</span> range(<span class="number">2</span>)]</span><br><span class="line">        dp[<span class="number">1</span>][<span class="number">0</span>] = -prices[<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, len(prices)):</span><br><span class="line">            dp[<span class="number">0</span>][i] = max(dp[<span class="number">0</span>][i - <span class="number">1</span>], dp[<span class="number">1</span>][i - <span class="number">1</span>] + prices[i] - fee)</span><br><span class="line">            dp[<span class="number">1</span>][i] = max(dp[<span class="number">1</span>][i - <span class="number">1</span>], dp[<span class="number">0</span>][i - <span class="number">1</span>] - prices[i])</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> dp[<span class="number">0</span>][<span class="number">-1</span>]</span><br></pre></td></tr></table></figure>
-
 
       
     </div>

@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="题目描述 Write a SQL query to find all duplicate emails in a table named Person. 1234567+----+---------+| Id | Email   |+----+---------+| 1  | a@b.com || 2  | c@d.com || 3  | a@b.com |+----+---------+  Fo">
+<meta name="description" content="题目描述 Write a SQL query to find all duplicate emails in a table named Person. 1234567+----+---------+| Id | Email   |+----+---------+| 1  | a@b.com || 2  | c@d.com || 3  | a@b.com |+----+---------+ For">
 <meta name="keywords" content="LeetCode,SQL">
 <meta property="og:type" content="article">
 <meta property="og:title" content="LeetCode:182. Duplicate Emails">
 <meta property="og:url" content="https://sr0121.github.io/2019/08/22/LeetCode-182-Duplicate-Emails/index.html">
 <meta property="og:site_name" content="Rong @@@">
-<meta property="og:description" content="题目描述 Write a SQL query to find all duplicate emails in a table named Person. 1234567+----+---------+| Id | Email   |+----+---------+| 1  | a@b.com || 2  | c@d.com || 3  | a@b.com |+----+---------+  Fo">
+<meta property="og:description" content="题目描述 Write a SQL query to find all duplicate emails in a table named Person. 1234567+----+---------+| Id | Email   |+----+---------+| 1  | a@b.com || 2  | c@d.com || 3  | a@b.com |+----+---------+ For">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2019-08-22T07:45:57.843Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LeetCode:182. Duplicate Emails">
-<meta name="twitter:description" content="题目描述 Write a SQL query to find all duplicate emails in a table named Person. 1234567+----+---------+| Id | Email   |+----+---------+| 1  | a@b.com || 2  | c@d.com || 3  | a@b.com |+----+---------+  Fo">
+<meta name="twitter:description" content="题目描述 Write a SQL query to find all duplicate emails in a table named Person. 1234567+----+---------+| Id | Email   |+----+---------+| 1  | a@b.com || 2  | c@d.com || 3  | a@b.com |+----+---------+ For">
 
 
 
@@ -387,16 +387,12 @@
         <p><strong>题目描述</strong></p>
 <p>Write a SQL query to find all duplicate emails in a table named <code>Person</code>.</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">+----+---------+</span><br><span class="line">| Id | Email   |</span><br><span class="line">+----+---------+</span><br><span class="line">| 1  | a@b.com |</span><br><span class="line">| 2  | c@d.com |</span><br><span class="line">| 3  | a@b.com |</span><br><span class="line">+----+---------+</span><br></pre></td></tr></table></figure>
-
 <p>For example, your query should return the following for the above table:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">+---------+</span><br><span class="line">| Email   |</span><br><span class="line">+---------+</span><br><span class="line">| a@b.com |</span><br><span class="line">+---------+</span><br></pre></td></tr></table></figure>
-
 <a id="more"></a>
-
 <p>这题考查having语句的用法</p>
 <p><strong>代码实现</strong></p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> email </span><br><span class="line"><span class="keyword">from</span> person </span><br><span class="line"><span class="keyword">group</span> <span class="keyword">by</span> email</span><br><span class="line"><span class="keyword">having</span> <span class="keyword">count</span>(email) &gt; <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
-
 
       
     </div>

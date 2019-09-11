@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="题目描述 Write a SQL query to get the second highest salary from the Employee table. 1234567+----+--------+| Id | Salary |+----+--------+| 1  | 100    || 2  | 200    || 3  | 300    |+----+--------+  For e">
+<meta name="description" content="题目描述 Write a SQL query to get the second highest salary from the Employee table. 1234567+----+--------+| Id | Salary |+----+--------+| 1  | 100    || 2  | 200    || 3  | 300    |+----+--------+ For ex">
 <meta name="keywords" content="LeetCode,SQL">
 <meta property="og:type" content="article">
 <meta property="og:title" content="LeetCode:176. Second Highest Salary">
 <meta property="og:url" content="https://sr0121.github.io/2019/08/19/LeetCode-176-Second-Highest-Salary/index.html">
 <meta property="og:site_name" content="Rong @@@">
-<meta property="og:description" content="题目描述 Write a SQL query to get the second highest salary from the Employee table. 1234567+----+--------+| Id | Salary |+----+--------+| 1  | 100    || 2  | 200    || 3  | 300    |+----+--------+  For e">
+<meta property="og:description" content="题目描述 Write a SQL query to get the second highest salary from the Employee table. 1234567+----+--------+| Id | Salary |+----+--------+| 1  | 100    || 2  | 200    || 3  | 300    |+----+--------+ For ex">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2019-08-20T15:53:47.819Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LeetCode:176. Second Highest Salary">
-<meta name="twitter:description" content="题目描述 Write a SQL query to get the second highest salary from the Employee table. 1234567+----+--------+| Id | Salary |+----+--------+| 1  | 100    || 2  | 200    || 3  | 300    |+----+--------+  For e">
+<meta name="twitter:description" content="题目描述 Write a SQL query to get the second highest salary from the Employee table. 1234567+----+--------+| Id | Salary |+----+--------+| 1  | 100    || 2  | 200    || 3  | 300    |+----+--------+ For ex">
 
 
 
@@ -387,16 +387,12 @@
         <p><strong>题目描述</strong></p>
 <p>Write a SQL query to get the second highest salary from the <code>Employee</code> table.</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">+----+--------+</span><br><span class="line">| Id | Salary |</span><br><span class="line">+----+--------+</span><br><span class="line">| 1  | 100    |</span><br><span class="line">| 2  | 200    |</span><br><span class="line">| 3  | 300    |</span><br><span class="line">+----+--------+</span><br></pre></td></tr></table></figure>
-
 <p>For example, given the above Employee table, the query should return <code>200</code> as the second highest salary. If there is no second highest salary, then the query should return <code>null</code>.</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">+---------------------+</span><br><span class="line">| SecondHighestSalary |</span><br><span class="line">+---------------------+</span><br><span class="line">| 200                 |</span><br><span class="line">+---------------------+</span><br></pre></td></tr></table></figure>
-
 <a id="more"></a>
-
 <p>查找第二大的元素，只需要在where语句中过滤掉最大的元素后再使用max即可</p>
 <p><strong>代码实现</strong></p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">max</span>(Salary) <span class="keyword">as</span> SecondHighestSalary <span class="keyword">from</span> Employee <span class="keyword">where</span> Salary &lt; (<span class="keyword">select</span> <span class="keyword">max</span>(Salary) <span class="keyword">from</span> Employee)</span><br></pre></td></tr></table></figure>
-
 
       
     </div>

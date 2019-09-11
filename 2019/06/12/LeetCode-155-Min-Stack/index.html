@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="题目概述 Design a stack that supports push, pop, top, and retrieving the minimum element in constant time.  push(x) – Push element x onto stack. pop() – Removes the element on top of the stack. top() – Ge">
+<meta name="description" content="题目概述 Design a stack that supports push, pop, top, and retrieving the minimum element in constant time.  push(x) — Push element x onto stack. pop() — Removes the element on top of the stack. top() — Ge">
 <meta name="keywords" content="LeetCode,C++">
 <meta property="og:type" content="article">
 <meta property="og:title" content="LeetCode:155. Min Stack">
 <meta property="og:url" content="https://sr0121.github.io/2019/06/12/LeetCode-155-Min-Stack/index.html">
 <meta property="og:site_name" content="Rong @@@">
-<meta property="og:description" content="题目概述 Design a stack that supports push, pop, top, and retrieving the minimum element in constant time.  push(x) – Push element x onto stack. pop() – Removes the element on top of the stack. top() – Ge">
+<meta property="og:description" content="题目概述 Design a stack that supports push, pop, top, and retrieving the minimum element in constant time.  push(x) — Push element x onto stack. pop() — Removes the element on top of the stack. top() — Ge">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2019-08-20T16:11:50.799Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LeetCode:155. Min Stack">
-<meta name="twitter:description" content="题目概述 Design a stack that supports push, pop, top, and retrieving the minimum element in constant time.  push(x) – Push element x onto stack. pop() – Removes the element on top of the stack. top() – Ge">
+<meta name="twitter:description" content="题目概述 Design a stack that supports push, pop, top, and retrieving the minimum element in constant time.  push(x) — Push element x onto stack. pop() — Removes the element on top of the stack. top() — Ge">
 
 
 
@@ -387,20 +387,17 @@
         <p><strong>题目概述</strong></p>
 <p>Design a stack that supports push, pop, top, and retrieving the minimum element in constant time.</p>
 <ul>
-<li>push(x) – Push element x onto stack.</li>
-<li>pop() – Removes the element on top of the stack.</li>
-<li>top() – Get the top element.</li>
-<li>getMin() – Retrieve the minimum element in the stack.</li>
+<li>push(x) — Push element x onto stack.</li>
+<li>pop() — Removes the element on top of the stack.</li>
+<li>top() — Get the top element.</li>
+<li>getMin() — Retrieve the minimum element in the stack.</li>
 </ul>
 <p><strong>Example:</strong></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">MinStack minStack = new MinStack();</span><br><span class="line">minStack.push(-2);</span><br><span class="line">minStack.push(0);</span><br><span class="line">minStack.push(-3);</span><br><span class="line">minStack.getMin();   --&gt; Returns -3.</span><br><span class="line">minStack.pop();</span><br><span class="line">minStack.top();      --&gt; Returns 0.</span><br><span class="line">minStack.getMin();   --&gt; Returns -2.</span><br></pre></td></tr></table></figure>
-
 <a id="more"></a>
-
 <p>本题的解法就是要实现两个栈。其中一个栈用来存放原数据信息，第二个栈用来存放当前栈的最小值。第二个栈的栈顶是当前栈的最小值。在进行push和pop的时候，对第一个栈进行常规操作，当push的值小于第二个栈的栈顶时，要将该值也push进第二个栈；如果pop出的值为第二个栈的栈顶元素时，也需要对第二个栈进行pop操作。</p>
 <p><strong>代码实现</strong></p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MinStack</span> &#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="built_in">stack</span>&lt;<span class="keyword">int</span>&gt; itemStack;</span><br><span class="line">    <span class="built_in">stack</span>&lt;<span class="keyword">int</span>&gt; minStack;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="comment">/** initialize your data structure here. */</span></span><br><span class="line">    MinStack() &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">push</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (minStack.empty() || minStack.top() &gt;= x)&#123;</span><br><span class="line">            itemStack.push(x);</span><br><span class="line">            minStack.push(x);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            itemStack.push(x);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">pop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (itemStack.top() == minStack.top())&#123;</span><br><span class="line">            itemStack.pop();</span><br><span class="line">            minStack.pop();</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            itemStack.pop();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">top</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> itemStack.top();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">getMin</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> minStack.top();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
 
       
     </div>

@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="题目描述 Implement the following operations of a stack using queues.  push(x) – Push element x onto stack. pop() – Removes the element on top of the stack. top() – Get the top element. empty() – Return wh">
+<meta name="description" content="题目描述 Implement the following operations of a stack using queues.  push(x) — Push element x onto stack. pop() — Removes the element on top of the stack. top() — Get the top element. empty() — Return wh">
 <meta name="keywords" content="LeetCode,Python">
 <meta property="og:type" content="article">
 <meta property="og:title" content="LeetCode:225. Implement Stack using Queues">
 <meta property="og:url" content="https://sr0121.github.io/2019/09/01/LeetCode-225-Implement-Stack-using-Queues/index.html">
 <meta property="og:site_name" content="Rong @@@">
-<meta property="og:description" content="题目描述 Implement the following operations of a stack using queues.  push(x) – Push element x onto stack. pop() – Removes the element on top of the stack. top() – Get the top element. empty() – Return wh">
+<meta property="og:description" content="题目描述 Implement the following operations of a stack using queues.  push(x) — Push element x onto stack. pop() — Removes the element on top of the stack. top() — Get the top element. empty() — Return wh">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2019-09-01T15:32:34.235Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LeetCode:225. Implement Stack using Queues">
-<meta name="twitter:description" content="题目描述 Implement the following operations of a stack using queues.  push(x) – Push element x onto stack. pop() – Removes the element on top of the stack. top() – Get the top element. empty() – Return wh">
+<meta name="twitter:description" content="题目描述 Implement the following operations of a stack using queues.  push(x) — Push element x onto stack. pop() — Removes the element on top of the stack. top() — Get the top element. empty() — Return wh">
 
 
 
@@ -387,27 +387,22 @@
         <p><strong>题目描述</strong></p>
 <p>Implement the following operations of a stack using queues.</p>
 <ul>
-<li>push(x) – Push element x onto stack.</li>
-<li>pop() – Removes the element on top of the stack.</li>
-<li>top() – Get the top element.</li>
-<li>empty() – Return whether the stack is empty.</li>
+<li>push(x) — Push element x onto stack.</li>
+<li>pop() — Removes the element on top of the stack.</li>
+<li>top() — Get the top element.</li>
+<li>empty() — Return whether the stack is empty.</li>
 </ul>
 <p><strong>Example:</strong></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">MyStack stack = new MyStack();</span><br><span class="line"></span><br><span class="line">stack.push(1);</span><br><span class="line">stack.push(2);  </span><br><span class="line">stack.top();   // returns 2</span><br><span class="line">stack.pop();   // returns 2</span><br><span class="line">stack.empty(); // returns false</span><br></pre></td></tr></table></figure>
-
 <p><strong>Notes:</strong></p>
 <ul>
-<li>You must use <em>only</em> standard operations of a queue – which means only <code>push to back</code>, <code>peek/pop from front</code>, <code>size</code>, and <code>is empty</code> operations are valid.</li>
+<li>You must use <em>only</em> standard operations of a queue — which means only <code>push to back</code>, <code>peek/pop from front</code>, <code>size</code>, and <code>is empty</code> operations are valid.</li>
 <li>Depending on your language, queue may not be supported natively. You may simulate a queue by using a list or deque (double-ended queue), as long as you use only standard operations of a queue.</li>
 <li>You may assume that all operations are valid (for example, no pop or top operations will be called on an empty stack).</li>
 </ul>
 <a id="more"></a>
-
-
-
 <p><strong>代码实现</strong></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyStack</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        Initialize your data structure here.</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        self.stack = []</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">push</span><span class="params">(self, x: int)</span> -&gt; <span class="keyword">None</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        Push element x onto stack.</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        self.stack.append(x)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">pop</span><span class="params">(self)</span> -&gt; int:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        Removes the element on top of the stack and returns that element.</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        <span class="keyword">return</span> self.stack.pop()</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">top</span><span class="params">(self)</span> -&gt; int:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        Get the top element.</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        <span class="keyword">return</span> self.stack[<span class="number">-1</span>]</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">empty</span><span class="params">(self)</span> -&gt; bool:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        Returns whether the stack is empty.</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span> <span class="keyword">if</span> len(self.stack) == <span class="number">0</span> <span class="keyword">else</span> <span class="literal">False</span></span><br></pre></td></tr></table></figure>
-
 
       
     </div>
