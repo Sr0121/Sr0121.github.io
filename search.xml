@@ -1,6 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[LeetCode: 240. Search a 2D Matrix II]]></title>
+    <url>%2F2019%2F09%2F12%2FLeetCode-240-Search-a-2D-Matrix-II%2F</url>
+    <content type="text"><![CDATA[题目描述 Write an efficient algorithm that searches for a value in an m x n matrix. This matrix has the following properties: Integers in each row are sorted in ascending from left to right. Integers in each column are sorted in ascending from top to bottom. Example: Consider the following matrix: 1234567[ [1, 4, 7, 11, 15], [2, 5, 8, 12, 19], [3, 6, 9, 16, 22], [10, 13, 14, 17, 24], [18, 21, 23, 26, 30]] Given target = 5, return true. Given target = 20, return false. 这题需要用一个比较快的算法去在数组中查找数字。 我用的方法是一个最差时间复杂度为O(mlogn)的算法，竖着遍历数组，看每一行的首位两个元素的区间，如果target在这个区间内，就可以做一个记录。最后，对所有记录的数组进行二分查找，找到元素后直接返回。 代码实现 12345678910111213141516171819202122232425262728293031323334353637383940class Solution &#123;public: bool searchMatrix(vector&lt;vector&lt;int&gt;&gt;&amp; matrix, int target) &#123; if (matrix.size() == 0) return false; if (matrix[0].size() == 0) return false; int startIndex = -1; int endIndex = 0; for (endIndex = 0; endIndex &lt; matrix.size(); endIndex++) &#123; if (startIndex == -1 &amp;&amp; matrix[endIndex][0] &lt;= target &amp;&amp; matrix[endIndex][matrix[0].size()-1] &gt;= target) startIndex = endIndex; if (matrix[endIndex][0] &gt; target) break; &#125; if (startIndex == -1) return false; for (int i = startIndex; i &lt;= endIndex &amp;&amp; i &lt; matrix.size(); i ++) &#123; int left = 0; int right = matrix[0].size()-1; if (left == right &amp;&amp; matrix[i][left] == target) return true; while (left &lt;= right) &#123; int mid = (left + right) / 2; if (matrix[i][mid] == target) return true; else if (matrix[i][mid] &lt; target) left = mid + 1; else right = mid - 1; &#125; &#125; return false; &#125;&#125;;]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>LeetCode</tag>
+        <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LeetCode: 583. Delete Operation for Two Strings]]></title>
+    <url>%2F2019%2F09%2F12%2FLeetCode-583-Delete-Operation-for-Two-Strings%2F</url>
+    <content type="text"><![CDATA[题目描述 Given two words word1 and word2, find the minimum number of steps required to make word1 and word2 the same, where in each step you can delete one character in either string. Example 1: 123Input: &quot;sea&quot;, &quot;eat&quot;Output: 2Explanation: You need one step to make &quot;sea&quot; to &quot;ea&quot; and another step to make &quot;eat&quot; to &quot;ea&quot;. 动态规划题，和之前找两个词之间的距离那道题目很相近。令dp[i][j]为第一个字母从0到i和第二个字母从0到j的需要删除的最少次数。状态转移方程为: dp[i][j] = \begin{cases}dp[i-1][j-1],& \ word_{1}[i]=word_{2}[j] \\ min(dp[i-1][j]+1, dp[i][j-1]+1),& \ others\end{cases}就是当对于word1的索引i，word2的索引j来说，如果word1[i] == word2[j]的话，dp[i][j]就是dp[i-1][j-1]，因为此时只需要根据dp[i-1][j-1]的方式就可以处理dp[i][j]，否则，则只需要判断dp[i-1][j]和dp[i][j-1]哪个小就可以了，因为只需要对word1或word2删除最后一个元素就可以回到前面的两个状态。 代码实现 123456789101112131415161718192021222324252627282930class Solution &#123;public: int minDistance(string word1, string word2) &#123; if (word1.length() == 0) return word2.length(); if (word2.length() == 0) return word1.length(); vector&lt;vector&lt;int&gt;&gt; dp(word1.size()+1, vector&lt;int&gt; (word2.size()+1)); for (int i = 0; i &lt; dp.size(); i++) &#123; dp[i][0] = i; &#125; for (int i = 0; i &lt; dp[0].size(); i++) &#123; dp[0][i] = i; &#125; for (int i = 0; i &lt; word1.length(); i++) &#123; for (int j = 0; j &lt; word2.length(); j++) &#123; if (word1[i] == word2[j]) &#123; dp[i+1][j+1] = dp[i][j]; &#125; else &#123; dp[i+1][j+1] = min(dp[i][j+1]+1, dp[i+1][j]+1); &#125; &#125; &#125; return dp[word1.size()][word2.size()]; &#125;&#125;;]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>LeetCode</tag>
+        <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LeetCode: 322. Coin Change]]></title>
+    <url>%2F2019%2F09%2F12%2FLeetCode-322-Coin-Change%2F</url>
+    <content type="text"><![CDATA[题目描述 You are given coins of different denominations and a total amount of money amount. Write a function to compute the fewest number of coins that you need to make up that amount. If that amount of money cannot be made up by any combination of the coins, return -1. Example 1: 123Input: coins = [1, 2, 5], amount = 11Output: 3 Explanation: 11 = 5 + 5 + 1 Example 2: 12Input: coins = [2], amount = 3Output: -1 这题也是一道动态规划的题目。令dp[i]为累积和为i的最小的coin的个数。转移方程为: dp_[i] = \begin{cases}1,& \ i\in coins \\max_{j}(dp_[i-j])+1,& \ i\notin coins, j \in coins\end{cases}含义就是当i在coins里的话，只需要取一个就好了，剩下的情况需要取找之前和i相差coins里的一枚硬币的最小值，然后加一即可。 代码实现 1234567891011121314151617181920212223242526class Solution &#123;public: int coinChange(vector&lt;int&gt;&amp; coins, int amount) &#123; if (amount == 0) return 0; if (coins.size() == 0) return -1; vector&lt;int&gt; dp(amount+1, -1); for (int i = 1; i &lt; dp.size(); i++) &#123; for (int j = 0; j &lt; coins.size(); j++) &#123; if (i-coins[j] == 0) &#123; dp[i] = 1; &#125; if (i-coins[j] &gt; 0 &amp;&amp; dp[i-coins[j]] != -1) &#123; if (dp[i] == -1) dp[i] = dp[i-coins[j]]+1; else dp[i] = min(dp[i], dp[i-coins[j]]+1); &#125; &#125; &#125; return dp[dp.size() - 1]; &#125;&#125;;]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>LeetCode</tag>
+        <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LeetCode: 518. Coin Change 2]]></title>
+    <url>%2F2019%2F09%2F12%2FLeetCode-518-Coin-Change-2%2F</url>
+    <content type="text"><![CDATA[题目描述 You are given coins of different denominations and a total amount of money. Write a function to compute the number of combinations that make up that amount. You may assume that you have infinite number of each kind of coin. Example 1: 1234567Input: amount = 5, coins = [1, 2, 5]Output: 4Explanation: there are four ways to make up the amount:5=55=2+2+15=2+1+1+15=1+1+1+1+1 Example 2: 123Input: amount = 3, coins = [2]Output: 0Explanation: the amount of 3 cannot be made up just with coins of 2. Example 3: 1Input: amount = 10, coins = [10] 这题很明显可以用DP来做，但是要注意的是，题目要求给出组合的数，而不是要给所有结果的排列。 为了在DP中实现这种类似于组合的方法，我们想象一下把所有的结果进行从小到大的排序。如果我们使用DP得到的结果能保证有序性，那么我们得到的一定就是一个排列。（比如在算amount为5的时候，先有1 1 1 1 1，然后1 1 1 2， 1 2 2，5） 为了实现这种有序性，我们可以在dp的for循环中，把coins的index作为外层的循环，言下之意就是先仅仅使用1，然后再在现有的基础上尝试使用2（但是一旦使用2了，就不能再使用1了），最后再使用5。 代码实现 123456789101112131415161718192021222324class Solution &#123;public: int change(int amount, vector&lt;int&gt;&amp; coins) &#123; vector&lt;int&gt; dp(amount+1); if (amount == 0) &#123; return 1; &#125; if (coins.size() == 0) &#123; return 0; &#125; for (int j = 0; j &lt; coins.size(); j++) &#123; for (int i = 0; i &lt; dp.size(); i++) &#123; if (i-coins[j] == 0) &#123; dp[i] += 1; &#125; if (i-coins[j] &gt;= 0) &#123; dp[i] += (dp[i-coins[j]]); &#125; &#125; &#125; return dp[dp.size()-1]; &#125;&#125;;]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>LeetCode</tag>
+        <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[LeetCode: 647. Palindromic Substrings]]></title>
     <url>%2F2019%2F09%2F11%2FLeetCode-647-Palindromic-Substrings%2F</url>
     <content type="text"><![CDATA[题目描述 Given a string, your task is to count how many palindromic substrings in this string. The substrings with different start indexes or end indexes are counted as different substrings even they consist of same characters. Example 1: 123Input: &quot;abc&quot;Output: 3Explanation: Three palindromic strings: &quot;a&quot;, &quot;b&quot;, &quot;c&quot;. Example 2: 123Input: &quot;aaa&quot;Output: 6Explanation: Six palindromic strings: &quot;a&quot;, &quot;a&quot;, &quot;a&quot;, &quot;aa&quot;, &quot;aa&quot;, &quot;aaa&quot;. 这题的第一反应就是用动态规划做。dp[i][j]表示从s[i]-s[j]的字符串是否为回文，如果为回文，则为1，反之0. 状态转移表达式为： dp[i][j]=\begin{cases}1&\ s[i]=s[j]\bigwedge(j-i=1\bigvee dp[i+1][j-1]=1)\\0&\ else \end{cases}初始化为对任何i，$dp[i][i] =1$。最后，只需要计算出dp中有多少个1即可。 代码实现 12345678910111213141516171819202122232425class Solution &#123;public: int countSubstrings(string s) &#123; int result = 0; vector&lt;vector&lt;int&gt;&gt; dp(s.length(), vector&lt;int&gt;(s.length())); for (int i=0; i&lt;s.length(); i++) &#123; dp[i][i] = 1; result += 1; &#125; for (int j=1; j &lt; s.length(); j++) &#123; for (int i=0; i&lt;s.length(); i++) &#123; if (i+j &gt;= s.length()) break; if (j == 1 &amp;&amp; s[i] == s[i+j]) &#123; dp[i][i+j] = 1; result += 1; &#125; else if (dp[i+1][i+j-1] == 1 &amp;&amp; s[i] == s[i+j]) &#123; dp[i][i+j] = 1; result += 1; &#125; &#125; &#125; return result; &#125;&#125;;]]></content>
