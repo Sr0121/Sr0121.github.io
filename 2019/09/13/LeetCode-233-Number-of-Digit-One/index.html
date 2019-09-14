@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="LeetCode,Python,">
+  <meta name="keywords" content="LeetCode,C++,">
 
 
 
@@ -79,20 +79,18 @@
 
 
 
-<meta name="description" content="题目描述 Find the total area covered by two rectilinear rectangles in a 2D plane. Each rectangle is defined by its bottom left corner and top right corner as shown in the figure.  Example: 12Input: A = -3">
-<meta name="keywords" content="LeetCode,Python">
+<meta name="description" content="题目描述 Given an integer n, count the total number of digit 1 appearing in all non-negative integers less than or equal to n. Example: 123Input: 13Output: 6 Explanation: Digit 1 occurred in the following">
+<meta name="keywords" content="LeetCode,C++">
 <meta property="og:type" content="article">
-<meta property="og:title" content="LeetCode:223. Rectangle Area">
-<meta property="og:url" content="https://sr0121.github.io/2019/08/31/LeetCode-223-Rectangle-Area/index.html">
+<meta property="og:title" content="LeetCode: 233. Number of Digit One">
+<meta property="og:url" content="https://sr0121.github.io/2019/09/13/LeetCode-233-Number-of-Digit-One/index.html">
 <meta property="og:site_name" content="Rong @@@">
-<meta property="og:description" content="题目描述 Find the total area covered by two rectilinear rectangles in a 2D plane. Each rectangle is defined by its bottom left corner and top right corner as shown in the figure.  Example: 12Input: A = -3">
+<meta property="og:description" content="题目描述 Given an integer n, count the total number of digit 1 appearing in all non-negative integers less than or equal to n. Example: 123Input: 13Output: 6 Explanation: Digit 1 occurred in the following">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://assets.leetcode.com/uploads/2018/10/22/rectangle_area.png">
-<meta property="og:updated_time" content="2019-08-31T18:48:47.988Z">
+<meta property="og:updated_time" content="2019-09-14T03:45:28.048Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="LeetCode:223. Rectangle Area">
-<meta name="twitter:description" content="题目描述 Find the total area covered by two rectilinear rectangles in a 2D plane. Each rectangle is defined by its bottom left corner and top right corner as shown in the figure.  Example: 12Input: A = -3">
-<meta name="twitter:image" content="https://assets.leetcode.com/uploads/2018/10/22/rectangle_area.png">
+<meta name="twitter:title" content="LeetCode: 233. Number of Digit One">
+<meta name="twitter:description" content="题目描述 Given an integer n, count the total number of digit 1 appearing in all non-negative integers less than or equal to n. Example: 123Input: 13Output: 6 Explanation: Digit 1 occurred in the following">
 
 
 
@@ -122,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="https://sr0121.github.io/2019/08/31/LeetCode-223-Rectangle-Area/">
+  <link rel="canonical" href="https://sr0121.github.io/2019/09/13/LeetCode-233-Number-of-Digit-One/">
 
 
 
 
 
-  <title>LeetCode:223. Rectangle Area | Rong @@@</title>
+  <title>LeetCode: 233. Number of Digit One | Rong @@@</title>
   
 
 
@@ -297,7 +295,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://sr0121.github.io/2019/08/31/LeetCode-223-Rectangle-Area/">
+    <link itemprop="mainEntityOfPage" href="https://sr0121.github.io/2019/09/13/LeetCode-233-Number-of-Digit-One/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Rong Song">
@@ -314,7 +312,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">LeetCode:223. Rectangle Area</h1>
+          <h1 class="post-title" itemprop="name headline">LeetCode: 233. Number of Digit One</h1>
         
 
         <div class="post-meta">
@@ -326,8 +324,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-31T14:45:19-04:00">
-                2019-08-31
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-13T23:27:44-04:00">
+                2019-09-13
               </time>
             
 
@@ -387,18 +385,16 @@
 
       
         <p><strong>题目描述</strong></p>
-<p>Find the total area covered by two <strong>rectilinear</strong> rectangles in a <strong>2D</strong> plane.</p>
-<p>Each rectangle is defined by its bottom left corner and top right corner as shown in the figure.</p>
-<p><img src="https://assets.leetcode.com/uploads/2018/10/22/rectangle_area.png" alt="Rectangle Area"></p>
+<p>Given an integer n, count the total number of digit 1 appearing in all non-negative integers less than or equal to n.</p>
 <p><strong>Example:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: A = -3, B = 0, C = 3, D = 4, E = 0, F = -1, G = 9, H = 2</span><br><span class="line">Output: 45</span><br></pre></td></tr></table></figure>
-<p><strong>Note:</strong></p>
-<p>Assume that the total area is never beyond the maximum possible value of <strong>int</strong>.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: 13</span><br><span class="line">Output: 6 </span><br><span class="line">Explanation: Digit 1 occurred in the following numbers: 1, 10, 11, 12, 13.</span><br></pre></td></tr></table></figure>
 <a id="more"></a>
-<p>这题的核心就是求重叠部分的面积。</p>
-<p>实际上，重叠部分的左下角为(max(A, E), max(B, F))，右上角为(min(C, G), min(D, H))，如果左下角的点不在右上角的点的左下方，则重叠面积为0。</p>
+<p>挺巧妙的一道hard题。</p>
+<p>这题需要我们找所有小于等于n的数字中1的数量。这里的思路是逐位寻找。</p>
+<p>对于数字12345来说，我们先找个位，及所有形式为x1的数字都是成立的，其中1234&gt;=x&gt;=0；接着找十位上是1的数字，即所有x1y，其中123&gt;=x&gt;=0，9&gt;=y&gt;=0；接着找百位上是1的数字，即所有x1y，其中12&gt;=x&gt;=0，99&gt;=y&gt;=0；接着找千位上是1的数字，即所有x1y，其中1&gt;=x&gt;=0，999&gt;=y&gt;=0…接着找万位上是1的数字，即所有1y，其中2345&gt;=y&gt;=0…</p>
+<p>事实上，我们可以发现规律，对于xpy来说，如果p&gt;1，那么p位上为1的数字为：x*(10*y的位数)+10<em>y的位数；如果p==1，那么p位上为1的数字为：x\</em>(10*y的位数)+y的值+1，y的值+1表示从0到y的数字；如果p为0，那么p位上为1的数字为x*(10*y的位数)。</p>
 <p><strong>代码实现</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">computeArea</span><span class="params">(self, A: int, B: int, C: int, D: int, E: int, F: int, G: int, H: int)</span> -&gt; int:</span></span><br><span class="line">        result = (C-A) * (D-B) + (G-E) * (H-F)</span><br><span class="line">        rtx = min(C, G)</span><br><span class="line">        rty = min(D, H)</span><br><span class="line">        ldx = max(A, E)</span><br><span class="line">        ldy = max(B, F)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> ldx &gt; rtx <span class="keyword">or</span> ldy &gt; rty:</span><br><span class="line">            <span class="keyword">return</span> result</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            result -= (rtx - ldx) * (rty - ldy)</span><br><span class="line">            <span class="keyword">return</span> result</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">countIndexOne</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> index)</span> </span>&#123;</span><br><span class="line">        u_long threshold = <span class="built_in">pow</span>(<span class="number">10</span>, index);</span><br><span class="line">        <span class="keyword">if</span> (threshold &gt; n) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> result = <span class="number">0</span>;</span><br><span class="line">        result += <span class="keyword">int</span>(n / <span class="built_in">pow</span>(<span class="number">10</span>, index+<span class="number">1</span>)) * <span class="built_in">pow</span>(<span class="number">10</span>, index);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (n / threshold % <span class="number">10</span> == <span class="number">1</span>) &#123;</span><br><span class="line">            result += (n % threshold + <span class="number">1</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (n / threshold % <span class="number">10</span> &gt; <span class="number">1</span>) &#123;</span><br><span class="line">            result += threshold;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">countDigitOne</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (n &lt; <span class="number">1</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> sum = <span class="number">0</span>, tmp = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">            tmp = countIndexOne(n, i++);</span><br><span class="line">            <span class="keyword">if</span> (tmp == <span class="number">-1</span>)</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            sum += tmp;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> sum;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -418,7 +414,7 @@
           
             <a href="/tags/LeetCode/" rel="tag"># LeetCode</a>
           
-            <a href="/tags/Python/" rel="tag"># Python</a>
+            <a href="/tags/C/" rel="tag"># C++</a>
           
         </div>
       
@@ -431,8 +427,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/08/29/LeetCode-222-Count-Complete-Tree-Nodes/" rel="next" title="LeetCode:222. Count Complete Tree Nodes">
-                <i class="fa fa-chevron-left"></i> LeetCode:222. Count Complete Tree Nodes
+              <a href="/2019/09/12/LeetCode-240-Search-a-2D-Matrix-II/" rel="next" title="LeetCode: 240. Search a 2D Matrix II">
+                <i class="fa fa-chevron-left"></i> LeetCode: 240. Search a 2D Matrix II
               </a>
             
           </div>
@@ -440,10 +436,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/08/31/LeetCode-224-Basic-Calculator/" rel="prev" title="LeetCode:224. Basic Calculator">
-                LeetCode:224. Basic Calculator <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>

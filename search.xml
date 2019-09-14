@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[LeetCode: 233. Number of Digit One]]></title>
+    <url>%2F2019%2F09%2F13%2FLeetCode-233-Number-of-Digit-One%2F</url>
+    <content type="text"><![CDATA[题目描述 Given an integer n, count the total number of digit 1 appearing in all non-negative integers less than or equal to n. Example: 123Input: 13Output: 6 Explanation: Digit 1 occurred in the following numbers: 1, 10, 11, 12, 13. 挺巧妙的一道hard题。 这题需要我们找所有小于等于n的数字中1的数量。这里的思路是逐位寻找。 对于数字12345来说，我们先找个位，及所有形式为x1的数字都是成立的，其中1234&gt;=x&gt;=0；接着找十位上是1的数字，即所有x1y，其中123&gt;=x&gt;=0，9&gt;=y&gt;=0；接着找百位上是1的数字，即所有x1y，其中12&gt;=x&gt;=0，99&gt;=y&gt;=0；接着找千位上是1的数字，即所有x1y，其中1&gt;=x&gt;=0，999&gt;=y&gt;=0…接着找万位上是1的数字，即所有1y，其中2345&gt;=y&gt;=0… 事实上，我们可以发现规律，对于xpy来说，如果p&gt;1，那么p位上为1的数字为：x*(10*y的位数)+10y的位数；如果p==1，那么p位上为1的数字为：x\(10*y的位数)+y的值+1，y的值+1表示从0到y的数字；如果p为0，那么p位上为1的数字为x*(10*y的位数)。 代码实现 12345678910111213141516171819202122232425262728293031323334class Solution &#123;private: int countIndexOne(int n, int index) &#123; u_long threshold = pow(10, index); if (threshold &gt; n) &#123; return -1; &#125; int result = 0; result += int(n / pow(10, index+1)) * pow(10, index); if (n / threshold % 10 == 1) &#123; result += (n % threshold + 1); &#125; else if (n / threshold % 10 &gt; 1) &#123; result += threshold; &#125; return result; &#125;public: int countDigitOne(int n) &#123; if (n &lt; 1) return 0; int sum = 0, tmp = 0; int i = 0; while (true) &#123; tmp = countIndexOne(n, i++); if (tmp == -1) break; sum += tmp; &#125; return sum; &#125;&#125;;]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>LeetCode</tag>
+        <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[LeetCode: 240. Search a 2D Matrix II]]></title>
     <url>%2F2019%2F09%2F12%2FLeetCode-240-Search-a-2D-Matrix-II%2F</url>
     <content type="text"><![CDATA[题目描述 Write an efficient algorithm that searches for a value in an m x n matrix. This matrix has the following properties: Integers in each row are sorted in ascending from left to right. Integers in each column are sorted in ascending from top to bottom. Example: Consider the following matrix: 1234567[ [1, 4, 7, 11, 15], [2, 5, 8, 12, 19], [3, 6, 9, 16, 22], [10, 13, 14, 17, 24], [18, 21, 23, 26, 30]] Given target = 5, return true. Given target = 20, return false. 这题需要用一个比较快的算法去在数组中查找数字。 我用的方法是一个最差时间复杂度为O(mlogn)的算法，竖着遍历数组，看每一行的首位两个元素的区间，如果target在这个区间内，就可以做一个记录。最后，对所有记录的数组进行二分查找，找到元素后直接返回。 代码实现 12345678910111213141516171819202122232425262728293031323334353637383940class Solution &#123;public: bool searchMatrix(vector&lt;vector&lt;int&gt;&gt;&amp; matrix, int target) &#123; if (matrix.size() == 0) return false; if (matrix[0].size() == 0) return false; int startIndex = -1; int endIndex = 0; for (endIndex = 0; endIndex &lt; matrix.size(); endIndex++) &#123; if (startIndex == -1 &amp;&amp; matrix[endIndex][0] &lt;= target &amp;&amp; matrix[endIndex][matrix[0].size()-1] &gt;= target) startIndex = endIndex; if (matrix[endIndex][0] &gt; target) break; &#125; if (startIndex == -1) return false; for (int i = startIndex; i &lt;= endIndex &amp;&amp; i &lt; matrix.size(); i ++) &#123; int left = 0; int right = matrix[0].size()-1; if (left == right &amp;&amp; matrix[i][left] == target) return true; while (left &lt;= right) &#123; int mid = (left + right) / 2; if (matrix[i][mid] == target) return true; else if (matrix[i][mid] &lt; target) left = mid + 1; else right = mid - 1; &#125; &#125; return false; &#125;&#125;;]]></content>
