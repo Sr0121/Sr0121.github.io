@@ -1,6 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[LeetCode: 241. Different Ways to Add Parentheses]]></title>
+    <url>%2F2019%2F09%2F14%2FLeetCode-241-Different-Ways-to-Add-Parentheses%2F</url>
+    <content type="text"><![CDATA[题目描述 Given a string of numbers and operators, return all possible results from computing all the different possible ways to group numbers and operators. The valid operators are +, - and *. Example 1: 12345Input: &quot;2-1-1&quot;Output: [0, 2]Explanation: ((2-1)-1) = 0 (2-(1-1)) = 2 Example 2: 12345678Input: &quot;2*3-4*5&quot;Output: [-34, -14, -10, -10, 10]Explanation: (2*(3-(4*5))) = -34 ((2*3)-(4*5)) = -14 ((2*(3-4))*5) = -10 (2*((3-4)*5)) = -10 (((2*3)-4)*5) = 10 这题需要使用分治法。比如对于2*3-4*5，可以根据操作符来进行分治，比如根据’-‘可以分成2*3和4*5，然后再算每一个小块的所有可能值，最后用’-‘在所有可能值之间进行减法操作。 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061class Solution &#123;private: vector&lt;int&gt; getInt(string input) &#123; vector&lt;int&gt; result; int startIndex = 0; for (int i = 0; i &lt; input.length(); i++) &#123; if (input[i] == '+' || input[i] == '-' || input[i] == '*')&#123; result.push_back(stoi(input.substr(startIndex, i-startIndex))); startIndex = i+1; &#125; &#125; result.push_back(stoi(input.substr(startIndex, input.length()-startIndex))); return result; &#125; vector&lt;char&gt; getChar(string input) &#123; vector&lt;char&gt; result; for (int i = 0; i &lt; input.length(); i++) &#123; if (input[i] == '+' || input[i] == '-' || input[i] == '*') result.push_back(input[i]); &#125; return result; &#125; vector&lt;int&gt; divide(vector&lt;int&gt; ints, vector&lt;char&gt; chars, int left, int right) &#123; vector&lt;int&gt; result; if (left == right) &#123; result.push_back(ints[left]); return result; &#125; for (int i=left; i&lt;right; i++) &#123; vector&lt;int&gt; leftVector = divide(ints, chars, left, i); vector&lt;int&gt; rightVector = divide(ints, chars, i+1, right); for (int j: leftVector) &#123; for (int k: rightVector) &#123; if (chars[i] == '+') result.push_back(j+k); if (chars[i] == '-') result.push_back(j-k); if (chars[i] == '*') result.push_back(j*k); &#125; &#125; &#125; return result; &#125;public: vector&lt;int&gt; diffWaysToCompute(string input) &#123; vector&lt;int&gt; ints = getInt(input); vector&lt;char&gt; chars = getChar(input); return divide(ints, chars, 0, ints.size()-1); &#125;&#125;;]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>LeetCode</tag>
+        <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LeetCode: 238. Product of Array Except Self]]></title>
+    <url>%2F2019%2F09%2F14%2FLeetCode-238-Product-of-Array-Except-Self%2F</url>
+    <content type="text"><![CDATA[题目描述 Given an array nums of n integers where n &gt; 1, return an array output such that output[i] is equal to the product of all the elements of nums except nums[i]. Example: 12Input: [1,2,3,4]Output: [24,12,8,6] Note: Please solve it without division and in O(n). 这题要求不使用除法，在O(n)内完成。 实际上，对于index为i来说这个乘法操作可以看成是对0到i-1的数字的累乘结果乘上i+1到n的累乘结果。这里的累乘结果可以存在另外两个vector中，在最终的输出中，只需要查找两个数组，把合适位置的值乘起来就可以了。需要遍历三次数组即可。 代码实现 123456789101112131415161718192021222324252627282930class Solution &#123;public: vector&lt;int&gt; productExceptSelf(vector&lt;int&gt;&amp; nums) &#123; vector&lt;int&gt; vec1(nums.size()); vector&lt;int&gt; vec2(nums.size()); vector&lt;int&gt; vec3(nums.size()); int tmp = 1; for (int i = 0; i &lt; nums.size(); i++) &#123; tmp *= nums[i]; vec1[i] = tmp; &#125; tmp = 1; for (int i = nums.size()-1; i &gt;= 0; i--) &#123; tmp *= nums[i]; vec2[i] = tmp; &#125; for (int i = 0; i &lt; nums.size(); i++) &#123; if (i == 0) vec3[i] = vec2[i+1]; else if (i == nums.size()-1) vec3[i] = vec1[i-1]; else vec3[i] = vec1[i-1] * vec2[i+1]; &#125; return vec3; &#125;&#125;;]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>LeetCode</tag>
+        <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LeetCode: 236. Lowest Common Ancestor of a Binary Tree]]></title>
+    <url>%2F2019%2F09%2F14%2FLeetCode-236-Lowest-Common-Ancestor-of-a-Binary-Tree%2F</url>
+    <content type="text"><![CDATA[题目描述 Given a binary tree, find the lowest common ancestor (LCA) of two given nodes in the tree. According to the definition of LCA on Wikipedia: “The lowest common ancestor is defined between two nodes p and q as the lowest node in T that has both p and q as descendants (where we allow a node to be a descendant of itself).” Given the following binary tree: root = [3,5,1,6,2,0,8,null,null,7,4] Example 1: 123Input: root = [3,5,1,6,2,0,8,null,null,7,4], p = 5, q = 1Output: 3Explanation: The LCA of nodes 5 and 1 is 3. Example 2: 123Input: root = [3,5,1,6,2,0,8,null,null,7,4], p = 5, q = 4Output: 5Explanation: The LCA of nodes 5 and 4 is 5, since a node can be a descendant of itself according to the LCA definition. 这题要在二叉树中寻找两个点的最低的ancestor。 思路就是用两次DFS，找到两个点p和点q，并且记录路径，最后找路径中最先出现的相同点就可以了。在找路径出现的相同点点时候，使用set来找。 代码实现 12345678910111213141516171819202122232425262728293031323334353637383940414243class Solution &#123;private: int findNode(TreeNode* root, TreeNode* p, vector&lt;TreeNode*&gt;&amp; path) &#123; path.push_back(root); if (root == p) &#123; return 1; &#125; if (root-&gt;left != NULL)&#123; if (findNode(root-&gt;left, p, path)) return 1; path.pop_back(); &#125; if (root-&gt;right != NULL)&#123; if (findNode(root-&gt;right, p, path)) return 1; path.pop_back(); &#125; return 0; &#125;public: TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) &#123; set&lt;TreeNode*&gt; setNode; vector&lt;TreeNode*&gt; path1, path2; findNode(root, p, path1); findNode(root, q, path2); for (int i = 0; i &lt; path1.size(); i++) &#123; setNode.insert(path1[i]); &#125; for (int i = path2.size()-1; i &gt;= 0; i--) &#123; if (setNode.find(path2[i])!=setNode.end()) return path2[i]; &#125; return NULL; &#125;&#125;;]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>LeetCode</tag>
+        <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LeetCode: 235. Lowest Common Ancestor of a Binary Search Tree]]></title>
+    <url>%2F2019%2F09%2F14%2FLeetCode-235-Lowest-Common-Ancestor-of-a-Binary-Search-Tree%2F</url>
+    <content type="text"><![CDATA[题目描述 Given a binary search tree (BST), find the lowest common ancestor (LCA) of two given nodes in the BST. According to the definition of LCA on Wikipedia: “The lowest common ancestor is defined between two nodes p and q as the lowest node in T that has both p and q as descendants (where we allow a node to be a descendant of itself).” Given binary search tree: root = [6,2,8,0,4,7,9,null,null,3,5] Example 1: 123Input: root = [6,2,8,0,4,7,9,null,null,3,5], p = 2, q = 8Output: 6Explanation: The LCA of nodes 2 and 8 is 6. Example 2: 123Input: root = [6,2,8,0,4,7,9,null,null,3,5], p = 2, q = 4Output: 2Explanation: The LCA of nodes 2 and 4 is 2, since a node can be a descendant of itself according to the LCA definition. 在BST中找到两个点的共同ancestor。 由于是个BST，所以只需要根据节点值来判断，从头开始，最先出现在p和q之间的值的节点就是他们最开始的共同节点。如果说当前节点小于p和q，就检查当前节点的右子节点；反之检查当前节点的左子节点。 代码实现 123456789101112131415161718192021222324252627class Solution &#123;private: TreeNode* findNode(TreeNode* root, int left, int right) &#123; if (root-&gt;val == left || root-&gt;val == right) return root; if (root-&gt;val &gt; left &amp;&amp; root-&gt;val &lt; right) return root; if (root-&gt;val &gt; right) return findNode(root-&gt;left, left, right); else return findNode(root-&gt;right, left, right); &#125;public: TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) &#123; int left = p-&gt;val; int right = q-&gt;val; if (left &gt; right) &#123; int tmp = left; left = right; right = tmp; &#125; return findNode(root, left, right); &#125;&#125;;]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>LeetCode</tag>
+        <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[LeetCode: 234. Palindrome Linked List]]></title>
     <url>%2F2019%2F09%2F14%2FLeetCode-234-Palindrome-Linked-List%2F</url>
     <content type="text"><![CDATA[题目描述 Given a singly linked list, determine if it is a palindrome. Example 1: 12Input: 1-&gt;2Output: false Example 2: 12Input: 1-&gt;2-&gt;2-&gt;1Output: true Follow up:Could you do it in O(n) time and O(1) space? O(1)的空间复杂度，言外之意就是不借用数组等工具来做，那么最先想到的还是快慢指针。使用快指针来探索是否链表遍历到了头，慢指针来确定链表的中间位置。由于还要进行比较，所以在慢指针进行遍历的时候，需要把链表反转，方便之后的比较工作。 代码实现 1234567891011121314151617181920212223242526272829303132333435363738394041class Solution &#123;public: bool isPalindrome(ListNode* head) &#123; ListNode* slow = head; if (slow == NULL or slow-&gt;next == NULL) return true; ListNode* fast = head-&gt;next; ListNode* last = NULL; ListNode* tmp = NULL; int flag = 0; while (fast-&gt;next != NULL) &#123; fast = fast-&gt;next; if (fast-&gt;next == NULL) &#123; flag = 1; break; &#125; tmp = slow-&gt;next; slow-&gt;next = last; last = slow; slow = tmp; fast = fast-&gt;next; &#125; fast = slow-&gt;next; if (flag) fast = fast-&gt;next; slow-&gt;next = last; while (slow != NULL) &#123; if (slow-&gt;val != fast-&gt;val) return false; slow = slow-&gt;next; fast = fast-&gt;next; &#125; return true; &#125;&#125;;]]></content>
