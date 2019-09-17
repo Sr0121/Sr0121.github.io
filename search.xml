@@ -1,6 +1,114 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[LeetCode: 275. H-Index II]]></title>
+    <url>%2F2019%2F09%2F16%2FLeetCode-275-H-Index-II%2F</url>
+    <content type="text"><![CDATA[题目描述 Given an array of citations sorted in ascending order (each citation is a non-negative integer) of a researcher, write a function to compute the researcher’s h-index. According to the definition of h-index on Wikipedia: “A scientist has index h if h of his/her N papers have at least h citations each, and the other N − h papers have no more than h citations each.” Example: 123456Input: citations = [0,1,3,5,6]Output: 3 Explanation: [0,1,3,5,6] means the researcher has 5 papers in total and each of them had received 0, 1, 3, 5, 6 citations respectively. Since the researcher has 3 papers with at least 3 citations each and the remaining two with no more than 3 citations each, her h-index is 3. 代码实现 12345678910111213141516class Solution &#123;public: int hIndex(vector&lt;int&gt;&amp; citations) &#123; int result = 0; while (result &lt; citations.size()) &#123; if (citations[citations.size()-1-result] &lt; result+1) return result; result += 1; &#125; return result; &#125;&#125;;]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>LeetCode</tag>
+        <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LeetCode: 274. H-Index]]></title>
+    <url>%2F2019%2F09%2F16%2FLeetCode-274-H-Index%2F</url>
+    <content type="text"><![CDATA[题目描述 Given an array of citations (each citation is a non-negative integer) of a researcher, write a function to compute the researcher’s h-index. According to the definition of h-index on Wikipedia: “A scientist has index h if h of his/her N papers have at least hcitations each, and the other N − h papers have no more than h citations each.” Example: 123456Input: citations = [3,0,6,1,5]Output: 3 Explanation: [3,0,6,1,5] means the researcher has 5 papers in total and each of them had received 3, 0, 6, 1, 5 citations respectively. Since the researcher has 3 papers with at least 3 citations each and the remaining two with no more than 3 citations each, her h-index is 3. 代码实现 123456789101112131415161718class Solution &#123;public: int hIndex(vector&lt;int&gt;&amp; citations) &#123; sort(citations.begin(), citations.end(), greater&lt;int&gt;()); int result = 0; while (result &lt; citations.size()) &#123; if (citations[result] &lt; result+1) return result; result += 1; &#125; return result; &#125;&#125;;]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>LeetCode</tag>
+        <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LeetCode: 268. Missing Number]]></title>
+    <url>%2F2019%2F09%2F16%2FLeetCode-268-Missing-Number%2F</url>
+    <content type="text"><![CDATA[题目描述 Given an array containing n distinct numbers taken from 0, 1, 2, ..., n, find the one that is missing from the array. Example 1: 12Input: [3,0,1]Output: 2 Example 2: 12Input: [9,6,4,2,3,5,7,0,1]Output: 8 通过数组的size可以求的如果没有少数字的时候的应有的数字和，然后用应有的减去实际的就可以得到缺少了点数字。 代码实现 12345678910class Solution &#123;public: int missingNumber(vector&lt;int&gt;&amp; nums) &#123; int sum = 0; for (int i: nums) &#123; sum += i; &#125; return (nums.size()+1)*nums.size()/2-sum; &#125;&#125;;]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>LeetCode</tag>
+        <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LeetCode: 264. Ugly Number II]]></title>
+    <url>%2F2019%2F09%2F16%2FLeetCode-264-Ugly-Number-II%2F</url>
+    <content type="text"><![CDATA[题目描述 Write a program to find the n-th ugly number. Ugly numbers are positive numbers whose prime factors only include 2, 3, 5. Example: 123Input: n = 10Output: 12Explanation: 1, 2, 3, 4, 5, 6, 8, 9, 10, 12 is the sequence of the first 10 ugly numbers. 所有的ugly number必然由已有的ugly number乘以2、3、5获得，所以我们需要使用三个index，分别作为乘以2、3、5后最有可能成为下一个ugly number的数字的位置，并且进行比较。如果说它真的成为了下一个ugly number，那么就把它的索引加一后继续寻找下下个ugly number。 代码实现 12345678910111213141516171819class Solution &#123;public: int nthUglyNumber(int n) &#123; vector&lt;int&gt; lists = &#123;1&#125;; int index2 = 0, index3 = 0, index5 = 0; while (--n) &#123; int newNum = min(lists[index2] * 2, lists[index3] * 3); newNum = min(newNum, lists[index5] * 5); lists.push_back(newNum); if (newNum == lists[index2] * 2) index2++; if (newNum == lists[index3] * 3) index3++; if (newNum == lists[index5] * 5) index5++; &#125; return lists[lists.size()-1]; &#125;&#125;;]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>LeetCode</tag>
+        <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LeetCode: 263. Ugly Number]]></title>
+    <url>%2F2019%2F09%2F16%2FLeetCode-263-Ugly-Number%2F</url>
+    <content type="text"><![CDATA[题目描述 Write a program to check whether a given number is an ugly number. Ugly numbers are positive numbers whose prime factors only include 2, 3, 5. Example 1: 123Input: 6Output: trueExplanation: 6 = 2 × 3 Example 2: 123Input: 8Output: trueExplanation: 8 = 2 × 2 × 2 Example 3: 123Input: 14Output: false Explanation: 14 is not ugly since it includes another prime factor 7. 代码实现 123456789101112131415161718class Solution &#123;public: bool isUgly(int num) &#123; if (num &lt; 1) return false; while (num % 2 == 0) &#123; num /= 2; &#125; while (num % 3 == 0) &#123; num /= 3; &#125; while (num % 5 == 0) &#123; num /= 5; &#125; return num == 1; &#125;&#125;;]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>LeetCode</tag>
+        <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LeetCode: 260. Single Number III]]></title>
+    <url>%2F2019%2F09%2F16%2FLeetCode-260-Single-Number-III%2F</url>
+    <content type="text"><![CDATA[题目描述 Given an array of numbers nums, in which exactly two elements appear only once and all the other elements appear exactly twice. Find the two elements that appear only once. Example: 12Input: [1,2,1,3,2,5]Output: [3,5] 这题真的很巧妙，本质上还是使用了single number的方法来做。 但是这里需要用方法把两个数字的区分开来，然后把所有数字分成两组，每组中有一个单独的数字，另外为成对出现的数字。 首先对所有的数字进行异或处理，可以得到了两个单独数字的异或值，这里为3和5的异或：ox=11\^101=110。我们可以看出，最能区分出两个数字的方法为异或值的最右边的一位1，该位上可以区分3和5。接着就可以用ox\^-ox的方法得到最低位的异或值为1的数字（因为-ox为ox去非后+1），这里就可以得到10。然后用10去与所有的值，可以成功将nums分成两类，每个单独的值在一类里，其余的值都是成对出现。 代码实现 12345678910111213141516171819class Solution &#123;public: vector&lt;int&gt; singleNumber(vector&lt;int&gt;&amp; nums) &#123; vector&lt;int&gt; result(2); int ox = 0; for (int i = 0; i &lt; nums.size(); i++) ox ^= nums[i]; ox &amp;= -ox; for (int i = 0; i &lt; nums.size(); i++) &#123; if (ox&amp;nums[i]) result[0] ^= nums[i]; else result[1] ^= nums[i]; &#125; return result; &#125;&#125;;]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>LeetCode</tag>
+        <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LeetCode: 258. Add Digits]]></title>
+    <url>%2F2019%2F09%2F15%2FLeetCode-258-Add-Digits%2F</url>
+    <content type="text"><![CDATA[题目描述 Given a non-negative integer num, repeatedly add all its digits until the result has only one digit. Example: 1234Input: 38Output: 2 Explanation: The process is like: 3 + 8 = 11, 1 + 1 = 2. Since 2 has only one digit, return it. 写了几个数字之后，可以发现这个结果以9为一个循环，并且返回值为处以9后的余数。在整除的情况下，除了0返回0以外，其他都返回9（如9，18，27等）。 代码实现 123456789101112class Solution &#123;public: int addDigits(int num) &#123; if (num == 0) return 0; int remain = num % 9; if (remain == 0) return 9; else return remain; &#125;&#125;;]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>LeetCode</tag>
+        <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LeetCode: 257. Binary Tree Paths]]></title>
+    <url>%2F2019%2F09%2F15%2FLeetCode-257-Binary-Tree-Paths%2F</url>
+    <content type="text"><![CDATA[题目描述 Given a binary tree, return all root-to-leaf paths. Note: A leaf is a node with no children. Example: 1234567891011Input: 1 / \2 3 \ 5Output: [&quot;1-&gt;2-&gt;5&quot;, &quot;1-&gt;3&quot;]Explanation: All root-to-leaf paths are: 1-&gt;2-&gt;5, 1-&gt;3 使用DFS来找所有的path后，打印即可。 代码实现 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950class Solution &#123;private: vector&lt;vector&lt;int&gt;&gt; _paths; void findPath(TreeNode* root, vector&lt;int&gt;&amp; path) &#123; if (root == NULL) &#123; return; &#125; path.push_back(root-&gt;val); if (root-&gt;left != NULL)&#123; findPath(root-&gt;left, path); path.pop_back(); &#125; if (root-&gt;right != NULL)&#123; findPath(root-&gt;right, path); path.pop_back(); &#125; if (root-&gt;left == NULL &amp;&amp; root-&gt;right == NULL)&#123; _paths.push_back(path); &#125; &#125; vector&lt;string&gt; printPath() &#123; vector&lt;string&gt; result; for (auto i: _paths) &#123; string s; for (auto j: i) &#123; if (s == "") &#123; s += to_string(j); &#125; else &#123; s += "-&gt;"; s += to_string(j); &#125; &#125; result.push_back(s); &#125; return result; &#125;public: vector&lt;string&gt; binaryTreePaths(TreeNode* root) &#123; vector&lt;int&gt; path(0); findPath(root, path); return printPath(); &#125;&#125;;]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>LeetCode</tag>
+        <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LeetCode: 242. Valid Anagram]]></title>
+    <url>%2F2019%2F09%2F15%2FLeetCode-242-Valid-Anagram%2F</url>
+    <content type="text"><![CDATA[题目描述 Given two strings s and t , write a function to determine if t is an anagram of s. Example 1: 12Input: s = &quot;anagram&quot;, t = &quot;nagaram&quot;Output: true Example 2: 12Input: s = &quot;rat&quot;, t = &quot;car&quot;Output: false 使用unordered_map实现。 代码实现 12345678910111213141516171819202122232425262728class Solution &#123;public: bool isAnagram(string s, string t) &#123; unordered_map&lt;char, int&gt; mapDic; for (auto i: s) &#123; if (mapDic.find(i) == mapDic.end()) &#123; mapDic[i] = 1; &#125; else &#123; mapDic[i] += 1; &#125; &#125; for (auto i: t) &#123; if (mapDic.find(i) == mapDic.end()) &#123; return false; &#125; else &#123; if (--mapDic[i] == 0) mapDic.erase(mapDic.find(i)); &#125; &#125; if (mapDic.empty() == true) &#123; return true; &#125; return false; &#125;&#125;;]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>LeetCode</tag>
+        <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[LeetCode: 241. Different Ways to Add Parentheses]]></title>
     <url>%2F2019%2F09%2F14%2FLeetCode-241-Different-Ways-to-Add-Parentheses%2F</url>
     <content type="text"><![CDATA[题目描述 Given a string of numbers and operators, return all possible results from computing all the different possible ways to group numbers and operators. The valid operators are +, - and *. Example 1: 12345Input: &quot;2-1-1&quot;Output: [0, 2]Explanation: ((2-1)-1) = 0 (2-(1-1)) = 2 Example 2: 12345678Input: &quot;2*3-4*5&quot;Output: [-34, -14, -10, -10, 10]Explanation: (2*(3-(4*5))) = -34 ((2*3)-(4*5)) = -14 ((2*(3-4))*5) = -10 (2*((3-4)*5)) = -10 (((2*3)-4)*5) = 10 这题需要使用分治法。比如对于2*3-4*5，可以根据操作符来进行分治，比如根据’-‘可以分成2*3和4*5，然后再算每一个小块的所有可能值，最后用’-‘在所有可能值之间进行减法操作。 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061class Solution &#123;private: vector&lt;int&gt; getInt(string input) &#123; vector&lt;int&gt; result; int startIndex = 0; for (int i = 0; i &lt; input.length(); i++) &#123; if (input[i] == '+' || input[i] == '-' || input[i] == '*')&#123; result.push_back(stoi(input.substr(startIndex, i-startIndex))); startIndex = i+1; &#125; &#125; result.push_back(stoi(input.substr(startIndex, input.length()-startIndex))); return result; &#125; vector&lt;char&gt; getChar(string input) &#123; vector&lt;char&gt; result; for (int i = 0; i &lt; input.length(); i++) &#123; if (input[i] == '+' || input[i] == '-' || input[i] == '*') result.push_back(input[i]); &#125; return result; &#125; vector&lt;int&gt; divide(vector&lt;int&gt; ints, vector&lt;char&gt; chars, int left, int right) &#123; vector&lt;int&gt; result; if (left == right) &#123; result.push_back(ints[left]); return result; &#125; for (int i=left; i&lt;right; i++) &#123; vector&lt;int&gt; leftVector = divide(ints, chars, left, i); vector&lt;int&gt; rightVector = divide(ints, chars, i+1, right); for (int j: leftVector) &#123; for (int k: rightVector) &#123; if (chars[i] == '+') result.push_back(j+k); if (chars[i] == '-') result.push_back(j-k); if (chars[i] == '*') result.push_back(j*k); &#125; &#125; &#125; return result; &#125;public: vector&lt;int&gt; diffWaysToCompute(string input) &#123; vector&lt;int&gt; ints = getInt(input); vector&lt;char&gt; chars = getChar(input); return divide(ints, chars, 0, ints.size()-1); &#125;&#125;;]]></content>
